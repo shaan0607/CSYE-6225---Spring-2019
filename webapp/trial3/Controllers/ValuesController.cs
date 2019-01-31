@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using trial3.Controller.Model;
+//using trial3.Controller.Model;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using Microsoft.IdentityModel.Tokens;
@@ -12,13 +12,13 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using trial3;
+using BCrypt.Net;
 
 namespace trial.Controllers
 {
-    [ApiController]
     public class ValuesController : ControllerBase
     {
-        public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
+       
         // GET api/values
 
         
@@ -31,31 +31,6 @@ namespace trial.Controllers
         {
             return DateTime.Now;
         }
-        [HttpPost]
-        [Route("/token")]
-        public ActionResult GetToken()
-        {
-            //Security Key
-            string securityKey = "security_key$dfsf";
-
-            //Symmetric security key
-            var symmetriSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
-
-            //siging credential 
-            var signingCredentials = new SigningCredentials(symmetriSecurityKey, SecurityAlgorithms.HmacSha256Signature);
-
-            //create token
-            var token = new JwtSecurityToken(
-                issuer: "smesk.in",
-                audience: "readers",
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials : signingCredentials
-                );
-            //return token
-
-            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-
-        }
         private CLOUD_CSYEContext _context;
 
         public ValuesController(CLOUD_CSYEContext context)
@@ -63,26 +38,43 @@ namespace trial.Controllers
             _context = context;
            // _context.Database.EnsureCreated();
         }
+         public string GetRandomSalt()
+        {
+          
+           return BCrypt.Net.BCrypt.GenerateSalt(12); ;
+        }
+        public string HashPassword(string password)
+        {
+            
+            return  BCrypt.Net.BCrypt.HashPassword(password, GetRandomSalt());
+
+            //return hashedPassword;
+            // return BCrypt.HashPassword(password, GetRandomSalt());
+        }
+
         [HttpPost]
         [Route("/user/register")]
-        public ActionResult signup([FromBody] User u)
+        public ActionResult signup([FromBody] Users u)
         {
 
-            if(!userDetails.ContainsKey(u.email))
-            {
+           Users us =  _context.Users.Find(u.Email);
+            if(us == null){
                 if(ModelState.IsValid){
-
-                if (string.IsNullOrWhiteSpace(u.email))
-               { return BadRequest();}
-                userDetails.Add(u.email, u);
-                var s =  GetToken();
-                return s;  
+                
+                if (string.IsNullOrWhiteSpace(u.Email))
+               { return StatusCode(400, "Something Went Wrong");}
+                var s = HashPassword(u.Password);
+                var user = new Users{Email= u.Email, Password = s};
+                _context.Add(user);
+                _context.SaveChanges();
+                var Created = "User Created Successfully";
+                return StatusCode(201, new {result = Created});
                 }
-                return BadRequest();
+                return StatusCode(400, "Something Went Wrong");
             }
-        return StatusCode(409);
-        // eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDg2MTY0NzIsImlzcyI6InNtZXNrLmluIiwiYXVkIjoicmVhZGVycyJ9.AGZncdwXyGDXt6p6Doq8Ec1bWC6_GnaR6H7rokXGQ7o
-        // eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDg2MTY1NTUsImlzcyI6InNtZXNrLmluIiwiYXVkIjoicmVhZGVycyJ9.6m4Ck2OS7qsHtcFElM27qPFDHE5CfVsNvBEgPApZyIs
-        }
+            else{
+                var conflict = "Email Already exists";
+                return StatusCode(409, new{ result = conflict});
+            }}
     }
 }
