@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using trial3;
 using BCrypt.Net;
 
-namespace trial.Controllers
+namespace trial3.Controllers
 {
     public class ValuesController : ControllerBase
     {
