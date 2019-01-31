@@ -12174,23 +12174,23 @@
     ]
   },
   "packageFolders": {
-    "/home/amish132/.nuget/packages/": {},
+    "/home/shantanu/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/amish132/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "projectUniqueName": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
       "projectName": "trial3",
-      "projectPath": "/home/amish132/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
-      "packagesPath": "/home/amish132/.nuget/packages/",
-      "outputPath": "/home/amish132/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
+      "projectPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "packagesPath": "/home/shantanu/.nuget/packages/",
+      "outputPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/amish132/.nuget/NuGet/NuGet.Config"
+        "/home/shantanu/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
