@@ -56,6 +56,13 @@ namespace trial.Controllers
             return Ok(new JwtSecurityTokenHandler().WriteToken(token));
 
         }
+        private CLOUD_CSYEContext _context;
+
+        public ValuesController(CLOUD_CSYEContext context)
+        {
+            _context = context;
+           // _context.Database.EnsureCreated();
+        }
         [HttpPost]
         [Route("/user/register")]
         public ActionResult signup([FromBody] User u)
