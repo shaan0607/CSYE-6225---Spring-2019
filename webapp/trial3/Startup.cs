@@ -34,7 +34,7 @@ namespace trial3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-                var connection = @"Server=localhost;Database=CLOUD_CSYE;user= deosthale;password=NikonD%100";
+                var connection = @"Server=localhost;Database=CLOUD_CSYE;user= root;password=1234";
     services.AddDbContext<CLOUD_CSYEContext>(options => options.UseMySql(connection));
          //   services.AddDbContextPool<USerContext>( // replace "YourDbContext" with the class name of your DbContext
            //     options => options.UseMySql("server=localhost; port=3306; database=CSYE;user=deosthale;password=NikonD%100")); // replace with your Connection Strin;
