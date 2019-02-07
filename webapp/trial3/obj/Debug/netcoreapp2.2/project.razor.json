@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ProjectFilePath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+=======
+  "ProjectFilePath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+>>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
   "TargetFramework": "netcoreapp2.2",
   "TagHelpers": [],
   "Configuration": {

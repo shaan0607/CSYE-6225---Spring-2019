@@ -13808,23 +13808,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/home/arjit/.nuget/packages/": {},
+=======
+    "/home/sgncloud/.nuget/packages/": {},
+>>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/unitest/unitest.csproj",
       "projectName": "unitest",
       "projectPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/unitest/unitest.csproj",
       "packagesPath": "/home/arjit/.nuget/packages/",
       "outputPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/unitest/obj/",
+=======
+      "projectUniqueName": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/unitest/unitest.csproj",
+      "projectName": "unitest",
+      "projectPath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/unitest/unitest.csproj",
+      "packagesPath": "/home/sgncloud/.nuget/packages/",
+      "outputPath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/unitest/obj/",
+>>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "/home/arjit/.nuget/NuGet/NuGet.Config"
+=======
+        "/home/sgncloud/.nuget/NuGet/NuGet.Config"
+>>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -13835,8 +13851,13 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+<<<<<<< HEAD
             "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj": {
               "projectPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj"
+=======
+            "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj": {
+              "projectPath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj"
+>>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
             }
           }
         }
