@@ -12174,23 +12174,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "/home/arjit/.nuget/packages/": {},
+=======
     "/home/shantanu/.nuget/packages/": {},
+>>>>>>> 50cf322bfb7562a25c48cfa20f29b25651c0b0b6
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "projectName": "trial3",
+      "projectPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "packagesPath": "/home/arjit/.nuget/packages/",
+      "outputPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
+=======
       "projectUniqueName": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
       "projectName": "trial3",
       "projectPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
       "packagesPath": "/home/shantanu/.nuget/packages/",
       "outputPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
+>>>>>>> 50cf322bfb7562a25c48cfa20f29b25651c0b0b6
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
+        "/home/arjit/.nuget/NuGet/NuGet.Config"
+=======
         "/home/shantanu/.nuget/NuGet/NuGet.Config"
+>>>>>>> 50cf322bfb7562a25c48cfa20f29b25651c0b0b6
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -12248,6 +12264,16 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+<<<<<<< HEAD
+      "message": "Problem reading the cache file /home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/trial3.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problem reading the cache file /home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/trial3.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> 50cf322bfb7562a25c48cfa20f29b25651c0b0b6
+    },
     {
       "code": "NU1701",
       "level": "Warning",

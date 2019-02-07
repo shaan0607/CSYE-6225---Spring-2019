@@ -27,9 +27,9 @@ namespace trial3.Controllers
         [Route("/")]
         [Authorize]
         
-        public System.DateTime Get()
+        public ActionResult Get()
         {
-            return DateTime.Now;
+            return StatusCode(200, new{result  = DateTime.Now});
         }
         private CLOUD_CSYEContext _context;
 
@@ -62,7 +62,8 @@ namespace trial3.Controllers
                 if(ModelState.IsValid){
                 
                 if (string.IsNullOrWhiteSpace(u.Email))
-               { return StatusCode(400, "Something Went Wrong");}
+               { 
+                return StatusCode(400, new{ result ="Something Went Wrong"} );}
                 var s = HashPassword(u.Password);
                 var user = new Users{Email= u.Email, Password = s};
                 _context.Add(user);
@@ -70,7 +71,8 @@ namespace trial3.Controllers
                 var Created = "User Created Successfully";
                 return StatusCode(201, new {result = Created});
                 }
-                return StatusCode(400, "Something Went Wrong");
+                
+                return StatusCode(400, new{ result =  "Something Went Wrong"} );
             }
             else{
                 var conflict = "Email Already exists";
