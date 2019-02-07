@@ -67,4 +67,3 @@ aws ec2 authorize-security-group-ingress --group-id $groupid --protocol tcp --po
 aws ec2 authorize-security-group-ingress --group-id $groupid --protocol tcp --port 80 --cidr 0.0.0.0/0
 
 echo "Task completed successfully"
-
