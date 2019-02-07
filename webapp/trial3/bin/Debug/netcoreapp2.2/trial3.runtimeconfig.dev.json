@@ -1,13 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-<<<<<<< HEAD
-      "/home/arjit/.dotnet/store/|arch|/|tfm|",
-      "/home/arjit/.nuget/packages",
-=======
-      "/home/sgncloud/.dotnet/store/|arch|/|tfm|",
-      "/home/sgncloud/.nuget/packages",
->>>>>>> 798fd5801e2d1304c8bcb8015cebdc82a872b37d
+      "/home/shantanu/.dotnet/store/|arch|/|tfm|",
+      "/home/shantanu/.nuget/packages",
       "/usr/share/dotnet/sdk/NuGetFallbackFolder"
     ]
   }
