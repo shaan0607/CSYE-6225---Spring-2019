@@ -227,7 +227,7 @@ namespace trial3.Controllers
                     }
                     }
                     else{
-                      return StatusCode(404, new{result = "Not Authorized"});
+                      return StatusCode(404, new{result = "Not Found"});
                   }
 
         }
