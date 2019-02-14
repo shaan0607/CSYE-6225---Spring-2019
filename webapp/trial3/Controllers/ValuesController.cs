@@ -203,6 +203,34 @@ namespace trial3.Controllers
                     return StatusCode(400, new{result = "Bad Request"});
                 }
         }
+        [HttpDelete]
+        [Route("/note/{id}")]
+        [Authorize]
+        public ActionResult Deletenote(string id){
+
+            string username = getUsername();
+
+                    NOTES note = _context.notes.Find(id);
+
+                    if(note !=null){
+                    if(note.EMAIL == username){
+
+                    _context.notes.Remove(note);
+                   
+                    _context.SaveChanges();
+
+
+                return  StatusCode(204, new{Result= "Note Deleted Successfully" });
+                    }
+                    else{
+                        return StatusCode(401, new{result = "Not Authorized"});
+                    }
+                    }
+                    else{
+                      return StatusCode(404, new{result = "Not Authorized"});
+                  }
+
+        }
         
 
 }
