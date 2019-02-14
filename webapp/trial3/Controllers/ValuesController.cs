@@ -13,6 +13,11 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using trial3;
 using BCrypt.Net;
+using trial3.Authentication;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net;
 
 namespace trial3.Controllers
 {
@@ -21,6 +26,15 @@ namespace trial3.Controllers
        
         // GET api/values
 
+
+        public string getUsername(){
+            
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
+            var username = credentials[0];
+            return username;
+        }
         
         [HttpGet]
         
@@ -98,10 +112,10 @@ namespace trial3.Controllers
             }
             else{
                 var conflict = "Bad Request";
-                return StatusCode(409, new{ result = conflict});
+                return StatusCode(400, new{ result = conflict});
             }
         }
-               [HttpGet]
+        [HttpGet]
         [Route("/note")]
         [Authorize]
         public ActionResult getNote(){
@@ -133,7 +147,7 @@ namespace trial3.Controllers
 
                 
         }
-        [HttpGet]
+         [HttpGet]
         [Route("/note/{id}")]
         [Authorize]
         public  ActionResult GetNotebyId(string id){
@@ -142,7 +156,7 @@ namespace trial3.Controllers
  
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
-
+                if(notes != null){
                 if(notes.EMAIL == username)
                 {
                     return StatusCode(200, new{ID= notes.ID, Content = notes.content,Title = notes.title, Created_On = notes.created_on, last_updated_on= notes.last_updated_on});
@@ -151,6 +165,10 @@ namespace trial3.Controllers
                 {
                     return StatusCode(401, new{result = "Not Authorized"});
                 }
+                }
+                else{
+                    return StatusCode(404, new{result = "Not Found"});
+                }
         }   
 
         [HttpPut]
@@ -158,8 +176,10 @@ namespace trial3.Controllers
         [Authorize]
         public ActionResult putnote(string id,[FromBody] NOTES n){
 
+                if(ModelState.IsValid){
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
+                  if(note != null){
                   if(note.EMAIL == username){
                   var ID = note.ID;
                   var created = note.created_on;
@@ -174,8 +194,45 @@ namespace trial3.Controllers
         else{
             return StatusCode(401, new{result = "Not Authorized"});
         }
+                  }
+                  else{
+                      return StatusCode(404, new{result = "Not Found"});
+                  }
+                }
+                else{
+                    return StatusCode(400, new{result = "Bad Request"});
+                }
+        }
+        [HttpDelete]
+        [Route("/note/{id}")]
+        [Authorize]
+        public ActionResult Deletenote(string id){
+
+            string username = getUsername();
+
+                    NOTES note = _context.notes.Find(id);
+
+                    if(note !=null){
+                    if(note.EMAIL == username){
+
+                    _context.notes.Remove(note);
+                   
+                    _context.SaveChanges();
+
+
+                return  StatusCode(204, new{Result= "Note Deleted Successfully" });
+                    }
+                    else{
+                        return StatusCode(401, new{result = "Not Authorized"});
+                    }
+                    }
+                    else{
+                      return StatusCode(404, new{result = "Not Authorized"});
+                  }
+
         }
         
 
-    }
+}
+
 }
