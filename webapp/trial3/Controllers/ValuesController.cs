@@ -102,5 +102,29 @@ namespace trial3.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("/note/{id}")]
+        [Authorize]
+        public ActionResult putnote(string id,[FromBody] NOTES n){
+
+                  string username = getUsername();
+                  NOTES note = _context.notes.Find(id);
+                  if(note.EMAIL == username){
+                  var ID = note.ID;
+                  var created = note.created_on;
+                  _context.notes.Remove(note);
+                  _context.SaveChanges();
+
+            var notes = new NOTES{ID = ID ,created_on= created, content= n.content, title= n.title, last_updated_on= DateTime.Now, EMAIL= username};
+            _context.Add(notes);
+            _context.SaveChanges();
+         return  StatusCode(204, new{Result= "Note Updated Successfully" });
+        }
+        else{
+            return StatusCode(401, new{result = "Not Authorized"});
+        }
+        }
+        
+
     }
 }
