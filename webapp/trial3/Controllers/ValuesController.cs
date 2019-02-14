@@ -112,7 +112,7 @@ namespace trial3.Controllers
             }
             else{
                 var conflict = "Bad Request";
-                return StatusCode(409, new{ result = conflict});
+                return StatusCode(400, new{ result = conflict});
             }
         }
         [HttpGet]
@@ -176,6 +176,7 @@ namespace trial3.Controllers
         [Authorize]
         public ActionResult putnote(string id,[FromBody] NOTES n){
 
+                if(ModelState.IsValid){
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
                   if(note != null){
@@ -195,8 +196,12 @@ namespace trial3.Controllers
         }
                   }
                   else{
-                      return StatusCode(404, new{result = "Not Authorized"});
+                      return StatusCode(404, new{result = "Not Found"});
                   }
+                }
+                else{
+                    return StatusCode(400, new{result = "Bad Request"});
+                }
         }
         
 
