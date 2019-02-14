@@ -101,7 +101,7 @@ namespace trial3.Controllers
                 return StatusCode(409, new{ result = conflict});
             }
         }
-               [HttpGet]
+        [HttpGet]
         [Route("/note")]
         [Authorize]
         public ActionResult getNote(){
@@ -157,7 +157,7 @@ namespace trial3.Controllers
         [Route("/note/{id}")]
         [Authorize]
         public ActionResult putnote(string id,[FromBody] NOTES n){
-
+                  if(ModelState.IsValid){
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
                   if(note.EMAIL == username){
@@ -175,7 +175,12 @@ namespace trial3.Controllers
             return StatusCode(401, new{result = "Not Authorized"});
         }
         }
+        else{
+            return StatusCode(400, new{result = "Bad Request"});
+        }
+    }
         
 
-    }
+}
+
 }
