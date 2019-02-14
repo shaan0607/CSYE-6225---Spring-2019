@@ -77,6 +77,30 @@ namespace trial3.Controllers
             else{
                 var conflict = "Email Already exists";
                 return StatusCode(409, new{ result = conflict});
-            }}
+            }
+        }
+        [HttpPost]
+        [Route("/note")]
+        [Authorize]
+        
+        public ActionResult createNotes([FromBody] NOTES n){
+            if(ModelState.IsValid){
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
+            var username = credentials[0];
+
+          //  string username = us.getUsername();
+            NOTES notes = new NOTES{created_on= DateTime.Now ,content= n.content,title= n.title,last_updated_on= DateTime.Now,EMAIL= username};
+            _context.Add(notes);
+            _context.SaveChanges();
+            return StatusCode(201, new{result =  "Created"});
+            }
+            else{
+                var conflict = "Bad Request";
+                return StatusCode(409, new{ result = conflict});
+            }
+        }
+
     }
 }
