@@ -101,6 +101,81 @@ namespace trial3.Controllers
                 return StatusCode(409, new{ result = conflict});
             }
         }
+               [HttpGet]
+        [Route("/note")]
+        [Authorize]
+        public ActionResult getNote(){
+            IEnumerable<NOTES> notes = _context.notes.AsEnumerable();
+
+            List<NOTE> note = new List<NOTE>();
+
+            string username = getUsername();
+            
+                foreach(NOTES item in notes){
+                    if(item.EMAIL == username){
+                NOTE n =  new NOTE();
+
+                n.ID = item.ID;
+                n.content = item.content;
+                n.created_on = item.created_on;
+                n.title  = item.title;
+                n.last_updated_on = item.last_updated_on;
+                note.Add(n);}
+            }
+            if(note.Capacity !=0) {
+            IEnumerable<NOTE> newnote = note;
+            string Json = JsonConvert.SerializeObject(newnote, Formatting.Indented);
+            return StatusCode(200, Json);
+            }
+            else{
+                return StatusCode(200, new{result = "You Don't have any notes"});
+            }
+
+                
+        }
+        [HttpGet]
+        [Route("/note/{id}")]
+        [Authorize]
+        public  ActionResult GetNotebyId(string id){
+
+            
+ 
+                string username = getUsername();
+                NOTES notes =  _context.notes.Find(id);
+
+                if(notes.EMAIL == username)
+                {
+                    return StatusCode(200, new{ID= notes.ID, Content = notes.content,Title = notes.title, Created_On = notes.created_on, last_updated_on= notes.last_updated_on});
+                }
+                else
+                {
+                    return StatusCode(401, new{result = "Not Authorized"});
+                }
+        }   
+
+        [HttpPut]
+        [Route("/note/{id}")]
+        [Authorize]
+        public ActionResult putnote(string id,[FromBody] NOTES n){
+
+                  string username = getUsername();
+                  NOTES note = _context.notes.Find(id);
+                  if(note.EMAIL == username){
+                  var ID = note.ID;
+                  var created = note.created_on;
+                  _context.notes.Remove(note);
+                  _context.SaveChanges();
+
+            var notes = new NOTES{ID = ID ,created_on= created, content= n.content, title= n.title, last_updated_on= DateTime.Now, EMAIL= username};
+            _context.Add(notes);
+            _context.SaveChanges();
+         return  StatusCode(204, new{Result= "Note Updated Successfully" });
+        }
+        else{
+            return StatusCode(401, new{result = "Not Authorized"});
+        }
+        }
+        
 
     }
 }
