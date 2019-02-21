@@ -1,0 +1,14 @@
+/home/shantanu/trial3/bin/Release/netcoreapp2.2/trial3.deps.json
+/home/shantanu/trial3/bin/Release/netcoreapp2.2/trial3.runtimeconfig.json
+/home/shantanu/trial3/bin/Release/netcoreapp2.2/trial3.runtimeconfig.dev.json
+/home/shantanu/trial3/bin/Release/netcoreapp2.2/trial3.dll
+/home/shantanu/trial3/bin/Release/netcoreapp2.2/trial3.pdb
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.csprojAssemblyReference.cache
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.csproj.CoreCompileInputs.cache
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.RazorAssemblyInfo.cache
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.RazorAssemblyInfo.cs
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.AssemblyInfoInputs.cache
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.AssemblyInfo.cs
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.RazorTargetAssemblyInfo.cache
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.dll
+/home/shantanu/trial3/obj/Release/netcoreapp2.2/trial3.pdb
