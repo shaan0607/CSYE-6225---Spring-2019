@@ -10,7 +10,7 @@ else
 	exit 0
 fi
 
-RC1=$(aws cloudformation delete-stack --stack-name $StackName)
+RC1=$(aws cloudformation wait stack-delete-complete --stack-name $StackName)
 if [ $? -eq 0 ]
 then
 	echo "Stack Deleted"
