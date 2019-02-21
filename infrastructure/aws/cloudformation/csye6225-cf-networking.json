@@ -4,7 +4,7 @@
         "VPC": {
             "Type": "AWS::EC2::VPC",
             "Properties": {
-                "CidrBlock": "10.0.0.0/16",
+                "CidrBlock": "191.0.0.0/16",
                 "EnableDnsSupport": "true",
                 "EnableDnsHostnames": "true",
                 "InstanceTenancy": "default",
@@ -14,7 +14,7 @@
         "PublicSubnet1": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "CidrBlock": "10.0.0.0/24",
+                "CidrBlock": "191.0.0.0/24",
                 "AvailabilityZone": "us-east-1a",
                 "Tags": [
                     {
@@ -30,7 +30,7 @@
         "PublicSubnet2": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "CidrBlock": "10.0.1.0/24",
+                "CidrBlock": "191.0.1.0/24",
                 "AvailabilityZone": "us-east-1b",
                 "Tags": [
                     {
@@ -46,7 +46,7 @@
         "PublicSubnet3": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "CidrBlock": "10.0.2.0/24",
+                "CidrBlock": "191.0.2.0/24",
                 "AvailabilityZone": "us-east-1c",
                 "Tags": [
                     {
