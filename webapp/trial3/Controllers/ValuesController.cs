@@ -56,7 +56,7 @@ namespace trial.Controllers
         }
         
         [HttpGet]
-      //  [Authorize]
+        [Authorize]
         [Route("/")]
         public ActionResult Get()
         {   try{
@@ -84,6 +84,7 @@ namespace trial.Controllers
 
         [HttpPost]
         [Route("/user/register")]
+        
         public ActionResult signup([FromBody] Users u)
         {
             Users us =  _context.Users.Find(u.Email);
