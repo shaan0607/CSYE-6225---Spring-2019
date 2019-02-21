@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,10 +17,16 @@ namespace trial3
         {
             
             CreateWebHostBuilder(args).Build().Run();
-            
+        var config = new ConfigurationBuilder()  
+            .Build();
+
+ 
         }
-      public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+   
+            public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseKestrel()
                 .UseStartup<Startup>();
+                
     }
 }

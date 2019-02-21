@@ -1,12 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +32,8 @@ namespace trial3
             Configuration = configuration;
         }
 
+//        MySqlConnection connection = new MySqlConnection("server=xxx-rds-dev.cri8oe6mntib.us-east-1.rds.amazonaws.com;user id=xxx;password=xxx;database=xxx;port=3306;"))
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -46,18 +51,38 @@ namespace trial3
 
             // Register DI for user service
             services.AddScoped<IUSerServices, UserServices>();
+            services.AddAWSService<IAmazonS3>();
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment())
+            { 
+            app.UseDeveloperExceptionPage();
+            }   
+            else if(env.IsProduction())
+            {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
             }
 
-            app.UseAuthentication();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+app.UseAuthentication();
+ 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
             
             app.UseMvc();
         }

@@ -1,0 +1,92 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/shantanu/RiderProjects/NoteApp_Production/NoteApp_Production/NoteApp_Production.csproj",
+    "projectName": "NoteApp_Production",
+    "projectPath": "/home/shantanu/RiderProjects/NoteApp_Production/NoteApp_Production/NoteApp_Production.csproj",
+    "outputPath": "/home/shantanu/RiderProjects/NoteApp_Production/NoteApp_Production/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "AWSSDK.Core": {
+          "target": "Package",
+          "version": "[3.3.31.10, )"
+        },
+        "AWSSDK.Extensions.NETCore.Setup": {
+          "target": "Package",
+          "version": "[3.3.6, )"
+        },
+        "AWSSDK.S3": {
+          "target": "Package",
+          "version": "[3.3.31.18, )"
+        },
+        "Amazon.S3": {
+          "target": "Package",
+          "version": "[4.0.0, )"
+        },
+        "Bcrypt.Net": {
+          "target": "Package",
+          "version": "[0.1.0, )"
+        },
+        "Microsoft.AspNetCore.App": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.AspNetCore.Razor.Design": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.EntityFrameworkcore": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.EntityFrameworkcore.Tools": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.Extensions.Configuration.CommandLine": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[12.0.1, )"
+        },
+        "Pomelo.EntityFrameworkCore.MySql": {
+          "target": "Package",
+          "version": "[2.2.0-preview1-final, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

@@ -25,9 +25,15 @@ namespace trial3
                 optionsBuilder.UseMySql("Server=localhost;Database=CLOUD_CSYE;user= deosthale;password=NikonD%100");
             }
         }
+
          public virtual DbSet<NOTES> notes { get; set; }
+
+         public virtual DbSet<Attachments> attachments {get; set;}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+        
+            
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.ToTable("USERS");
@@ -41,11 +47,12 @@ namespace trial3
                 entity.Property(e => e.Password)
                     .HasColumnName("PASSWORD")
                     .HasColumnType("varchar(20)");
-                    
             });
+
+
             modelBuilder.Entity<NOTES>(enitityNotes =>{
                 enitityNotes.ToTable("NOTES");
-                 enitityNotes.Property(e => e.ID)
+                 enitityNotes.Property(e => e.noteID)
                     .IsRequired()
                     .HasColumnName("ID")
                     .HasColumnType("varchar(100)");
@@ -67,7 +74,15 @@ namespace trial3
                     .HasColumnType("varchar(40)");
 
             });
+            modelBuilder.Entity<Attachments>(attach =>{
+                attach.ToTable("Attachments");
+                attach.Property(e=> e.AID).IsRequired().HasColumnName("AID").HasColumnType("varchar(40)");
+                attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(40)");
+                attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(40)");
+                attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(40)");
+                attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(40)");
         
+            });
         }
     }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "547b1771f336603c88f36ebc568b2b0b1607a57f"
+    "signature": "ebe9b320cefebd956c04a2009d2a99ce900f5f92"
   },
   "compilationOptions": {
     "defines": [
@@ -24,11 +24,18 @@
     ".NETCoreApp,Version=v2.2": {
       "trial3/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.3.31.10",
+          "AWSSDK.Extensions.NETCore.Setup": "3.3.6",
+          "AWSSDK.S3": "3.3.31.18",
+          "Amazon.S3": "4.0.0",
           "BCrypt.Net": "0.1.0",
           "Microsoft.AspNetCore.App": "2.2.0",
+          "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.2.0",
+          "Microsoft.Extensions.Configuration.CommandLine": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
+          "Newtonsoft.Json": "12.0.1",
           "Pomelo.EntityFrameworkCore.MySql": "2.2.0-preview1-final"
         },
         "runtime": {
@@ -36,6 +43,96 @@
         },
         "compile": {
           "trial3.dll": {}
+        }
+      },
+      "Amazon.Core/0.3.2": {
+        "dependencies": {
+          "Carbon.Json": "1.0.0",
+          "System.Linq": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Security.Cryptography.Algorithms": "4.3.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Amazon.Core.dll": {
+            "assemblyVersion": "0.3.0.0",
+            "fileVersion": "0.3.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Amazon.Core.dll": {}
+        }
+      },
+      "Amazon.S3/4.0.0": {
+        "dependencies": {
+          "Amazon.Core": "0.3.2",
+          "Carbon.Storage": "1.0.0",
+          "System.Collections": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Security.Cryptography.Algorithms": "4.3.0",
+          "System.Xml.XDocument": "4.3.0",
+          "System.Xml.XmlSerializer": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Amazon.S3.dll": {
+            "assemblyVersion": "0.4.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Amazon.S3.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.3.31.10": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Net.Requests": "4.0.11",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Security.Cryptography.Csp": "4.3.0",
+          "System.Threading.Thread": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.31.10"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/3.3.6": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.31.10",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.6.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.Extensions.NETCore.Setup.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.31.18": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.31.10"
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.31.18"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
       "BCrypt.Net/0.1.0": {
@@ -47,6 +144,49 @@
         },
         "compile": {
           "lib/net35/BCrypt.Net.dll": {}
+        }
+      },
+      "Carbon.Json/1.0.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.ComponentModel.Annotations": "4.5.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Carbon.Json.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Carbon.Json.dll": {}
+        }
+      },
+      "Carbon.Storage/1.0.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Security.Cryptography.Algorithms": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Carbon.Storage.dll": {
+            "assemblyVersion": "0.8.2.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Carbon.Storage.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.2.0": {
@@ -231,6 +371,17 @@
           "Microsoft.NETCore.Platforms": "2.2.0"
         }
       },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "2.2.0",
@@ -250,7 +401,7 @@
       "Pomelo.JsonObject/2.2.0-preview1-final": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {
@@ -262,9 +413,44 @@
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {}
         }
       },
+      "System.Net.Requests/4.0.11": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.2.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "runtimeTargets": {
+          "runtime/unix/lib/_._": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtime/win/lib/_._": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.Net.WebHeaderCollection/4.0.1": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "dependencies": {
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "Newtonsoft.Json.Bson": "1.0.1"
         },
         "compile": {
@@ -552,7 +738,7 @@
       "Microsoft.AspNetCore.Authentication.OAuth/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.OAuth.dll": {}
@@ -830,7 +1016,7 @@
           "Microsoft.AspNetCore.Http.Connections.Common": "1.1.0",
           "Microsoft.AspNetCore.Routing": "2.2.0",
           "Microsoft.AspNetCore.WebSockets": "2.2.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
@@ -841,7 +1027,7 @@
       "Microsoft.AspNetCore.Http.Connections.Common/1.1.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Connections.Abstractions": "2.2.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Buffers": "4.5.0"
         },
         "compile": {
@@ -935,7 +1121,7 @@
       "Microsoft.AspNetCore.JsonPatch/2.2.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
@@ -1168,7 +1354,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging.Console": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.NodeServices.dll": {}
@@ -1418,7 +1604,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Connections.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "2.2.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Buffers": "4.5.0"
         },
         "compile": {
@@ -1444,7 +1630,7 @@
       "Microsoft.AspNetCore.SignalR.Protocols.Json/1.1.0": {
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Common": "1.1.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll": {}
@@ -1769,7 +1955,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.2.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.dll": {}
@@ -1824,7 +2010,7 @@
       "Microsoft.Extensions.DependencyModel/2.1.0": {
         "dependencies": {
           "Microsoft.DotNet.PlatformAbstractions": "2.1.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Diagnostics.Debug": "4.3.0",
           "System.Dynamic.Runtime": "4.3.0",
           "System.Linq": "4.3.0"
@@ -2031,7 +2217,7 @@
       "Microsoft.Extensions.Logging.EventSource/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.EventSource.dll": {}
@@ -2111,7 +2297,7 @@
       "Microsoft.IdentityModel.JsonWebTokens/5.3.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "5.3.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
@@ -2146,7 +2332,7 @@
       "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.3.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols": "5.3.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Dynamic.Runtime": "4.3.0",
           "System.IdentityModel.Tokens.Jwt": "5.3.0"
         },
@@ -2170,7 +2356,7 @@
       "Microsoft.IdentityModel.Tokens/5.3.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "5.3.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Newtonsoft.Json": "12.0.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
           "System.Reflection": "4.3.0",
@@ -2229,16 +2415,10 @@
         },
         "compileOnly": true
       },
-      "Newtonsoft.Json/11.0.2": {
-        "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        },
-        "compileOnly": true
-      },
       "Newtonsoft.Json.Bson/1.0.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
@@ -2546,7 +2726,7 @@
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "5.3.0",
           "Microsoft.IdentityModel.Tokens": "5.3.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "compile": {
           "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
@@ -3283,12 +3463,61 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Amazon.Core/0.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GGFQX/21Ko6U4OnOgAVGxK9Nyp+QavDC6AEKWxQ+GxiwTFmvlKuytSl4V3Wc4X8QREav+Hx6xpO0k7M1OB0X1g==",
+      "path": "amazon.core/0.3.2",
+      "hashPath": "amazon.core.0.3.2.nupkg.sha512"
+    },
+    "Amazon.S3/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WlcJ0qponLleXOrDFfcTOVQP+R1sNy3jd/7yuBDA5oA7VfJHZ5B8zgw2AEygfxzki8NvPEi/if7RM7MGoq0rVQ==",
+      "path": "amazon.s3/4.0.0",
+      "hashPath": "amazon.s3.4.0.0.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.3.31.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nRxZIU3PPFAExvCvRotpnvsW/jMfjT5ZTJ59ofxRh97zostILnlablcHf4YrevUn9urs/ozhrK28uTHR6wyuMA==",
+      "path": "awssdk.core/3.3.31.10",
+      "hashPath": "awssdk.core.3.3.31.10.nupkg.sha512"
+    },
+    "AWSSDK.Extensions.NETCore.Setup/3.3.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sq70+FTn230Mdl3h+EgzSK8kyunhNfA3irxDmB2bTHfwzSxlagjytc1lrwHVrG5s8kOLNitwYyDKOUy+qTGmwg==",
+      "path": "awssdk.extensions.netcore.setup/3.3.6",
+      "hashPath": "awssdk.extensions.netcore.setup.3.3.6.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.3.31.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lFzBDLKCPLIAxyXtcYqoiXDRmhbUddntYSABlFXLNeMNi1hO83vJQP9r91MZW98iDzU+hmIAdCJ9DLtHNoSXxg==",
+      "path": "awssdk.s3/3.3.31.18",
+      "hashPath": "awssdk.s3.3.3.31.18.nupkg.sha512"
+    },
     "BCrypt.Net/0.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-oj+aPQXqkSW+tNBi2f0YeMpap23RSVLbLcqJjeS8wPzRsv/wZ+az4oZdsDyKQqUnuQsdv3+Gzm6BsirgJLMX1Q==",
       "path": "bcrypt.net/0.1.0",
       "hashPath": "bcrypt.net.0.1.0.nupkg.sha512"
+    },
+    "Carbon.Json/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DdZkEqB2ySfNgYLXQ03t+AZv/96FnEIdz6hZB+yUVH80vUyE/4+kMe9yuty2D3NTeFxpRCgajaEietpEK1yXsA==",
+      "path": "carbon.json/1.0.0",
+      "hashPath": "carbon.json.1.0.0.nupkg.sha512"
+    },
+    "Carbon.Storage/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0Dkfr5SKqvKc0Eb17LG+iGdt+YK/PLUVgbmHSdkRhafm4htumv/I81HNQ+Vj2GyXkDZRcwyXZ5di/bN7gC9wPg==",
+      "path": "carbon.storage/1.0.0",
+      "hashPath": "carbon.storage.1.0.0.nupkg.sha512"
     },
     "Microsoft.NETCore.App/2.2.0": {
       "type": "package",
@@ -3346,6 +3575,13 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jmVyoEyk0In8r+AObYQyFKVFm7uSRzE0XSHSbEtBJcZDMV6DqJoyB4FLcHwprPVhAh826so0db3DIKXVnpGoPA==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
+    },
     "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
       "type": "package",
       "serviceable": true,
@@ -3359,6 +3595,20 @@
       "sha512": "sha512-B0YsUgrtI5L3wbWiecOB+SyEdnXrmj/jaXkoaqSQ4E/Us1L97wGGHseR6zfV1zzjv+prSRXw+Rktat2G9llsRw==",
       "path": "pomelo.jsonobject/2.2.0-preview1-final",
       "hashPath": "pomelo.jsonobject.2.2.0-preview1-final.nupkg.sha512"
+    },
+    "System.Net.Requests/4.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IvOLGTTzJ2y5GpSn0ewgypC52TCCD6tYU8MdLedtZQW0VcP241b6sRJ2rLhFFPn5n+biTXXuYGfaTyT3CVUf8Q==",
+      "path": "system.net.requests/4.0.11",
+      "hashPath": "system.net.requests.4.0.11.nupkg.sha512"
+    },
+    "System.Net.WebHeaderCollection/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0aLl8yaaH+/jyI0f1Mn9xOvBWWwyOaJm/pR2SPAN2RvxhTD/yxxPaZt5d+2KXAZdPkJOafS4QQ1GaXhZcMN16g==",
+      "path": "system.net.webheadercollection/4.0.1",
+      "hashPath": "system.net.webheadercollection.4.0.1.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",
@@ -4514,13 +4764,6 @@
       "sha512": "sha512-nt8HW2YtCF3xGObHXtCAn5tzuZpjy5YMPftzyrjF6Ek5RyLUFU4cSw4yGWV2+dyftDXjDpytdLPrgSttC9ZePA==",
       "path": "microsoft.win32.registry/4.5.0",
       "hashPath": "microsoft.win32.registry.4.5.0.nupkg.sha512"
-    },
-    "Newtonsoft.Json/11.0.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
-      "path": "newtonsoft.json/11.0.2",
-      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
     "Newtonsoft.Json.Bson/1.0.1": {
       "type": "package",
