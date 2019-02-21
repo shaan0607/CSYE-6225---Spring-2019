@@ -16,6 +16,9 @@ namespace trial3.Authentication
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private IUSerServices _userService;
+        
+        public string username{get; set;}
+        public string password{get; set;}
 
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
                                           ILoggerFactory logger,
@@ -38,8 +41,8 @@ namespace trial3.Authentication
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
                 var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
                 var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
-                var username = credentials[0];
-                var password = credentials[1];
+                 username = credentials[0];
+                 password = credentials[1];
                 user = _userService.Authenticate(username, password);
             }
             catch

@@ -1,11 +1,11 @@
 using System;
 using BCrypt.Net;
+using trial.Controllers;
 
 namespace trial3.Authentication{
-    public class UserServices : IUSerServices{
-
+    public class UserServices : IUSerServices
+    {
         private CLOUD_CSYEContext _context;
-        
         public UserServices(CLOUD_CSYEContext context)
         {
             _context = context;
@@ -17,6 +17,7 @@ namespace trial3.Authentication{
            return u;
            
         }
+
         public Users Authenticate(string Email,string Password){
         
             
@@ -26,6 +27,7 @@ namespace trial3.Authentication{
         
 
         if(s == true){
+         // username = u.Email;
             return u;
         }
         else{
@@ -35,7 +37,9 @@ namespace trial3.Authentication{
         else{
         return  null;
         }
+    
     }
 }
+
 }
 

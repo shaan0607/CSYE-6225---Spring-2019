@@ -8,7 +8,7 @@ namespace trial3
     {
         //public Users(string )
         [Key]
-        public string ID { get; set; }
+        public string noteID { get; set; }
         [Required]
         public string content { get; set; }
         [Required]
@@ -18,5 +18,8 @@ namespace trial3
         public System.DateTime last_updated_on {get; set;}
     
         public string EMAIL{get; set;}
+
+        public  Attachments attachments {get; set;}
+
     }
 }
