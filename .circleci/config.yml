@@ -26,8 +26,12 @@ jobs:
             ls -al
             cd NoteApp_Production
             pwd
-	    dotnet restore
+            dotnet restore
             dotnet build
             dotnet ef migrations add ${CIRCLE_BUILD_NUM}
             dotnet publish -o aws
+            cd ../
+            cd ../
+            cd aws/
+            ls -al
 
