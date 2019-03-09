@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/1entos-template.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NoteApp_Production.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NoteApp_Production.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/1entos-template.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Core.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Extensions.NETCore.Setup.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.S3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Amazon.Core.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Amazon.S3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/BCrypt.Net.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Carbon.Json.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Carbon.Storage.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/MySqlConnector.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Newtonsoft.Json.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Pomelo.EntityFrameworkCore.MySql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/Pomelo.JsonObject.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/app.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/web.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entos-template.json1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/NoteApp_Production.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/NoteApp_Production.csproj.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/NoteApp_Production.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/NoteApp_Production.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trial3/obj/Debug/netcoreapp2.2/trial3.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../trial3/obj/Debug/netcoreapp2.2/trial3.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trial3/obj/Debug/netcoreapp2.2/trial3.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../trial3/obj/Debug/netcoreapp2.2/trial3.csprojAssemblyReference.cache" afterDir="false" />
-    </list>
+    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,12 +162,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552116668383</updated>
-      <workItem from="1552116675683" duration="1305000" />
+      <workItem from="1552116675683" duration="1476000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1305000" />
+    <option name="totallyTimeSpent" value="1476000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
