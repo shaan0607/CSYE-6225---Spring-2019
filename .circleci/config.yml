@@ -14,5 +14,5 @@ jobs:
           command: sudo apt update && sudo apt install wget zip unzip python2.7 python-pip -y && sudo apt install -f -y && sudo apt update && sudo dpkg --configure -a && sudo apt install apt-transport-https -y
       - run:
           name: Install Dotnet
-          command: wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && sudo apt-get install software-properties-common -y && sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse" && sudo apt update && sudo apt-get install dotnet-sdk-2.2
+          command: wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && sudo apt-get install software-properties-common -y && sudo apt-get update && sudo apt-get install dotnet-sdk-2.2
 
