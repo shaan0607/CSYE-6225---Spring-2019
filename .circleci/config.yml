@@ -24,7 +24,7 @@ jobs:
             cd webapp/NoteApp_Production
             pwd
             ls -al
-	    dotnet ef migrations add ${CIRCLE_BUILD_NUM}
+            dotnet ef migrations add ${CIRCLE_BUILD_NUM}
             dotnet publish -o aws 
             cd aws/
             ls -al
