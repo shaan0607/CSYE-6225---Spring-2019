@@ -15,3 +15,39 @@ jobs:
       - run:
           name: Install Dotnet
           command: wget -q https://packages.microsoft.com/config/ubuntu/14.04/packages-microsoft-prod.deb &&sudo dpkg -i packages-microsoft-prod.deb && sudo apt-get install apt-transport-https -y && sudo apt-get update && sudo apt-get install dotnet-sdk-2.2 -y
+ - run:
+          name: Install awscli
+          command: sudo pip install awscli
+
+      - run:
+          name: Build Artifact
+          command: |
+            cd webapp/NoteApp_Production
+            pwd
+            ls -al
+            dotnet ef migrations add  ${CIRCLE_BUILD_NUM}
+            dotnet publish -o aws 
+            cd aws/
+            ls -al
+            cd ../
+            pwd
+            ls -al
+      - run:
+          name: Zip Artifact
+          command: |
+            echo "Hello the current build number is ${CIRCLE_BUILD_NUM}"
+            pwd
+            mkdir -p codedeploy_artifact
+            
+            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip webapp/NoteApp_Production/aws/*
+            mv csye6225-web-app-${CIRCLE_BUILD_NUM}.zip codedeploy_artifact/
+            cd codedeploy_artifact
+            ls -al
+            pwd
+            cd ..
+            pwd
+            ls -al
+      - run:
+          name: Upload Artifact to S3
+          command: |
+            aws s3 sync codedeploy_artifact s3://code-deploy.fangn.me
