@@ -25,6 +25,7 @@ jobs:
             cd webapp/NoteApp_Production
             pwd
             ls -al
+            dotnet dev-certs https --trust
             dotnet ef migrations add  ${CIRCLE_BUILD_NUM}
             dotnet publish -o aws 
             cd aws/
