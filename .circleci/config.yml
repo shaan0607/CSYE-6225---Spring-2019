@@ -22,5 +22,9 @@ jobs:
       - run:
           name: Build Artifact
           command: |
-            dotnet --version
+            cd webapp
+            ls -al
+            cd NoteApp_Production
+	    pwd
+            dotnet publish -o aws
 
