@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "Please enter Application Stack Name:"
 read appStackName
 if [ -z "$appStackName" ]
@@ -6,35 +7,49 @@ then
 	echo "StackName error exiting!"
 	exit 1
 fi
-echo "$appStackName"
 
-echo "Validating template"
-RC=$(aws cloudformation validate-template --template-body file://./csye6225-cf-ci-cd.json)
+RC=$(aws cloudformation describe-stacks --stack-name $appStackName-ci-cd --query Stacks[0].StackId --output text)
 
 if [ $? -eq 0 ]
 then
-	echo "Success: validate template"
+	continue
 else
-	echo "Fail validate template"
-	exit 1
+	echo "Stack $1 doesn't exist"
+	exit 0
 fi
+
+EC2_ID=$(aws ec2 describe-instances --filter "Name=tag:aws:cloudformation:stack-name,Values=$appStackName-ci-cd" "Name=instance-state-code,Values=16" --query 'Reservations[*].Instances[*].{id:InstanceId}' --output text)
+
+# Command to disable Termination Protection, It will disable it on a specific Instance, hence the instance Id is required
+aws ec2 modify-instance-attribute --instance-id $EC2_ID --no-disable-api-termination
 
 # Domain name for ARN
 echo "Fetching domain name from Route 53"
 DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 
-CD_DOMAIN="code-deploy."${DOMAIN_NAME%?}
-echo "$CD_DOMAIN"
+# Emptying the code-deploy.$DOMAIN bucket
+echo "Emptying the code deploy bucket"
+RC=$(aws s3 rm s3://"code-deploy."${DOMAIN_NAME%?} --recursive)
 
+if [ $? -eq 0 ]
+then
+  echo "Bucket successfully emptied"
+else
+ 	echo "Emptying the bucket failed"
+ 	exit 1
+fi
 
-# Account id for arn
-echo "Fetching user's account id"
-ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+echo "Deleting stack: $RC"
 
-RC=$(aws cloudformation create-stack --stack-name $appStackName-ci-cd --capabilities "CAPABILITY_NAMED_IAM" --template-body file://./csye6225-cf-ci-cd.json --parameters ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=CDAPPNAME,ParameterValue=CodeDeployApp)
+aws cloudformation delete-stack --stack-name $appStackName-ci-cd
 
-echo "CI stack creation in progress. Please wait"
-aws cloudformation wait stack-create-complete --stack-name $appStackName-ci-cd
-STACKDETAILS=$(aws cloudformation describe-stacks --stack-name $appStackName-ci-cd --query Stacks[0].StackId --output text)
-echo "CI stack creation complete"
-echo "CI Stack id: $STACKDETAILS"
+echo "Stack deletion in progress. Please wait"
+RC=$(aws cloudformation wait stack-delete-complete --stack-name $appStackName-ci-cd)
+
+if [ $? -eq 0 ]
+then
+  echo "Application stack deletion complete"
+else
+ 	echo "Failed Stack deletion"
+ 	exit 1
+fi
