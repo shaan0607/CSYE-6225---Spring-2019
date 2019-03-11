@@ -31,7 +31,7 @@ echo "$CD_DOMAIN"
 echo "Fetching user's account id"
 ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 
-RC=$(aws cloudformation create-stack --stack-name $appStackName-ci-cd --capabilities "CAPABILITY_NAMED_IAM" --template-body file://./csye6225-cf-ci-cd.json --parameters ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=CDAPPNAME,ParameterValue=CodeDeployApp)
+RC=$(aws cloudformation create-stack --stack-name $appStackName-ci-cd --capabilities "CAPABILITY_NAMED_IAM" --template-body file://./csye6225-cf-ci-cd.json --parameters ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDAPPNAME,ParameterValue=CodeDeployApp)
 
 echo "CI stack creation in progress. Please wait"
 aws cloudformation wait stack-create-complete --stack-name $appStackName-ci-cd
