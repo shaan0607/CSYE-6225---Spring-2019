@@ -48,11 +48,11 @@ namespace trial3
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasColumnName("EMAIL")
-                    .HasColumnType("varchar(20)");
+                    .HasColumnType("varchar(100)");
 
                 entity.Property(e => e.Password)
                     .HasColumnName("PASSWORD")
-                    .HasColumnType("varchar(20)");
+                    .HasColumnType("varchar(100)");
             });
 
 
@@ -77,16 +77,16 @@ namespace trial3
                     .HasColumnType("DateTime");
                      enitityNotes.Property(e => e.EMAIL)
                     .HasColumnName("EMAIL")
-                    .HasColumnType("varchar(40)");
+                    .HasColumnType("varchar(100)");
 
             });
             modelBuilder.Entity<Attachments>(attach =>{
                 attach.ToTable("Attachments");
-                attach.Property(e=> e.AID).IsRequired().HasColumnName("AID").HasColumnType("varchar(40)");
-                attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(40)");
-                attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(40)");
-                attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(40)");
-                attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(40)");
+                attach.Property(e=> e.AID).IsRequired().HasColumnName("AID").HasColumnType("varchar(100)");
+                attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(100)");
+                attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(100)");
+                attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(100)");
+                attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(100)");
         
             });
         }
