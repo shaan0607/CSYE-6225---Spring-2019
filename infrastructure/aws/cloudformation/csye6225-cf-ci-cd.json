@@ -21,6 +21,9 @@
         }
     ]
       },
+        "Roles": [{
+          "Ref": "CodeDeployEC2ServiceRole"
+        }],
     "Users" : ["circleci"]
    }
 },
@@ -251,9 +254,6 @@
 },
  "Parameters": {
    "CDARN":{
-     "Type": "String"
-   },
-   "CDARN1":{
      "Type": "String"
    },
    "CDAPPNAME":{
