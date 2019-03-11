@@ -85,9 +85,7 @@
               "Action": [
                 "s3:PutObject"
               ],
-              "Resource": {
-                "Ref": "CDARN"
-              }
+           "Resource":  "arn:aws:s3:::*/*"
             }
           ]
         },
@@ -248,10 +246,13 @@
         ],
         "RoleName": "CodeDeployServiceRole"
       }
-    },
+    }
 },
  "Parameters": {
    "CDARN":{
+     "Type": "String"
+   },
+   "CDARN1":{
      "Type": "String"
    },
    "CDAPPNAME":{
