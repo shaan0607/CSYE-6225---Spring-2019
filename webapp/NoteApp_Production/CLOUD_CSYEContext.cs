@@ -83,7 +83,7 @@ namespace trial3
             modelBuilder.Entity<Attachments>(attach =>{
                 attach.ToTable("Attachments");
                 attach.Property(e=> e.AID).IsRequired().HasColumnName("AID").HasColumnType("varchar(100)");
-                attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(100)");
+                attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(250)");
                 attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(100)");
                 attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(100)");
                 attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(100)");
