@@ -13,7 +13,8 @@
             "Action": [
                 "s3:Get*",
                 "s3:List*",
-		"s3:Put*"            ],
+		"s3:Put*"
+            ],
             "Effect": "Allow",
             "Resource": [{
                 "Ref": "CDARN"
@@ -78,7 +79,7 @@
     "Users" : ["circleci"]
    }
 },
-    "circleciUploadToS3": {
+   "circleciUploadToS3": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -89,7 +90,17 @@
               "Action": [
                 "s3:PutObject"
               ],
-           "Resource":  "CDARN"
+           "Resource":  [{
+                "Ref": "CDARN"
+              }]
+            },{
+              "Effect": "Allow",
+              "Action": [
+                "s3:PutObject"
+              ],
+           "Resource":  [{
+                "Ref": "CDARN1"
+              }]
             }
           ]
         },
