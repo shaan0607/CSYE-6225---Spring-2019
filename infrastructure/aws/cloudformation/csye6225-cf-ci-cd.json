@@ -253,9 +253,7 @@
    "CDARN":{
      "Type": "String"
    },
-   "CDARN1":{
-     "Type": "String"
-   },
+
    "CDAPPNAME":{
      "Type":"String"
    }
