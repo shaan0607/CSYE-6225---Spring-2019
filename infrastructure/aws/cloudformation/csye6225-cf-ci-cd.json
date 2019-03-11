@@ -12,8 +12,8 @@
         {
             "Action": [
                 "s3:Get*",
-                "s3:List*"
-            ],
+                "s3:List*",
+		"s3:Put*"            ],
             "Effect": "Allow",
             "Resource": [{
                 "Ref": "CDARN"
@@ -254,6 +254,9 @@
 },
  "Parameters": {
    "CDARN":{
+     "Type": "String"
+   },
+   "CDARN1":{
      "Type": "String"
    },
    "CDAPPNAME":{
