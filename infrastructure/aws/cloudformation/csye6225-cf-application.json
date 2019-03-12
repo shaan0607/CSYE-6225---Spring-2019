@@ -1,4 +1,3 @@
-
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Application Stack for CSYE 6225 - Spring 2019",
@@ -34,7 +33,19 @@
     "VpcID": {
       
       "Type": "String"
-    }
+    },
+    "CDAPPNAME": {
+      
+      "Type": "String"
+    },    
+   "CDGRPNAME": {
+      
+      "Type": "String"
+    },
+  "ARN" :{
+	"Type" :"String"	
+}
+
   },
   "Resources": {
     "EC2Instance": {
@@ -43,7 +54,6 @@
         "ImageId": {
             "Ref": "ImageID"
           },
-        #"AvailabilityZone": "us-east-1c",
         "InstanceType": "t2.micro",
         "KeyName": {
             "Ref": "KeyName"
@@ -73,6 +83,18 @@
         ]
       }
     },
+    "DeploymentGroup": {
+	 "Type" : "AWS::CodeDeploy::DeploymentGroup",
+  	 "Properties" : {
+    	 "ApplicationName" : {"Ref" : "CDAPPNAME"},
+	"AutoRollbackConfiguration": {"Enabled" : true,"Events":["DEPLOYMENT_FAILURE"] },
+	"DeploymentGroupName": {"Ref": "CDGRPNAME"},
+	"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
+	"DeploymentStyle" : {"DeploymentOption" : "WITHOUT_TRAFFIC_CONTROL","DeploymentType" : "IN_PLACE"},
+	"Ec2TagFilters": [{"Key" : "CodeDeployTag","Type" : "KEY_AND_VALUE", "Value" : "Deploy"}],
+ 	"ServiceRoleArn" : {"Ref": "ARN" }
+}
+},
     "WebServerSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {

@@ -54,5 +54,9 @@ jobs:
           name: Upload Artifact to S3
           command: |
             aws s3 sync codedeploy_artifact s3://${S3Bucket}
+      - run:
+          name: Code-Deployment
+          command: |
+            aws deploy create-deployment --application-name csye6225-webapp --deployment-group-name csye6225-webapp-deployment --s3-location bucket=${S3Bucket},bundleType=zip --description "Deployed via CircleCI"
 
 

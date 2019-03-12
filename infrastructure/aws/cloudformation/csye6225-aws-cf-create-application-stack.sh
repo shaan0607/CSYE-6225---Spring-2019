@@ -79,7 +79,7 @@ fi
 
 # Create CloudFormation Stack
 echo "Validating template"
-TMP_code=`aws cloudformation validate-template --template-body file://./csye-cf-application.json`
+TMP_code=`aws cloudformation validate-template --template-body file://./csye6225-cf-application.json`
 if [ -z "$TMP_code" ]
 then
 	echo "Template error exiting!"
@@ -89,7 +89,9 @@ echo "Cloudformation template validation success"
 
 echo "Now Creating CloudFormation Stack"
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid`
+ARN=$(aws iam get-role --role-name CodeDeployServiceRole --query 'Role.Arn' --output text)
+
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=CDAPPNAME,ParameterValue=csye6225-webapp ParameterKey=CDGRPNAME,ParameterValue=csye6225-webapp-deployment ParameterKey=ARN,ParameterValue=$ARN`
 if [ -z "$CRTSTACK_Code" ]
 then
 	echo "Stack Creation error exiting!"
