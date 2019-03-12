@@ -20,7 +20,7 @@ First run setup.sh using bash and provide details
 then run delete to delete.
 
 ## Deploy Instructions
-Deploy
+
 
 ## Running Tests
 
