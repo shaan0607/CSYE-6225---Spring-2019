@@ -12,7 +12,8 @@
         {
             "Action": [
                 "s3:Get*",
-                "s3:List*"
+                "s3:List*",
+		"s3:Put*"
             ],
             "Effect": "Allow",
             "Resource": [{
@@ -21,6 +22,9 @@
         }
     ]
       },
+        "Roles": [{
+          "Ref": "CodeDeployEC2ServiceRole"
+        }],
     "Users" : ["circleci"]
    }
 },
@@ -75,7 +79,7 @@
     "Users" : ["circleci"]
    }
 },
-    "circleciUploadToS3": {
+   "circleciUploadToS3": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -86,7 +90,17 @@
               "Action": [
                 "s3:PutObject"
               ],
-           "Resource":  "arn:aws:s3:::*/*"
+           "Resource":  [{
+                "Ref": "CDARN"
+              }]
+            },{
+              "Effect": "Allow",
+              "Action": [
+                "s3:PutObject"
+              ],
+           "Resource":  [{
+                "Ref": "CDARN1"
+              }]
             }
           ]
         },
@@ -251,6 +265,9 @@
 },
  "Parameters": {
    "CDARN":{
+     "Type": "String"
+   },
+"CDARN1":{
      "Type": "String"
    },
 
