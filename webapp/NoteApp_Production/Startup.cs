@@ -21,6 +21,17 @@ namespace NoteApp_Production
 {
     public class Startup
     {
+        private static String[] arguments = Environment.GetCommandLineArgs();
+
+        private string server = arguments[2];
+
+        private string database = arguments[3];
+
+        private string username = arguments[4];
+
+        private string password = arguments[5];
+        
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,8 +43,8 @@ namespace NoteApp_Production
         public void ConfigureServices(IServiceCollection services)
 
         {
-            keys k = new keys();
-            var connection =@"Server="+k.server+";Database="+k.database +";user="+k.username+";password="+k.password+"; port=3306";
+
+            var connection =@"Server="+server+";Database="+database +";user="+username+";password="+password+"; port=3306";
             services.AddDbContext<CLOUD_CSYEContext>(options => options.UseMySql(connection));
    
          //   services.AddDbContextPool<USerContext>( // replace "YourDbContext" with the class name of your DbContext

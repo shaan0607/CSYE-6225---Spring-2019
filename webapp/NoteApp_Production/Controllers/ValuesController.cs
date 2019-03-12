@@ -57,10 +57,7 @@ namespace trial.Controllers
         {
             _context = context;
             s3Client = new AmazonS3Client(bucketRegion);
-            keys k = new keys();
-
-
-            // _context.Database.EnsureCreated();
+             // _context.Database.EnsureCreated();
         }
         
         [HttpGet]

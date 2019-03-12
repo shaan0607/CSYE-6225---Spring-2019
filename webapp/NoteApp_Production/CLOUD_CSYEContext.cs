@@ -9,7 +9,15 @@ namespace trial3
 {
     public partial class CLOUD_CSYEContext : DbContext
     {
-       
+        private static String[] arguments = Environment.GetCommandLineArgs();
+
+        private string server = arguments[2];
+
+        private string database = arguments[3];
+
+        private string username = arguments[4];
+
+        private string password = arguments[5];
         public CLOUD_CSYEContext()
         {
         }
@@ -23,12 +31,11 @@ namespace trial3
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-                keys k = new keys();
+
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql(@"Server="+k.server+";Database="+k.database + ";user="+k.username+";password="+k.password+"; port=3306");
+                optionsBuilder.UseMySql(@"Server="+server+";Database="+database +";user="+username+";password="+password+"; port=3306");
             }
         }
 
