@@ -6,17 +6,10 @@ files:
   - source: ./kestrel-aspnetcoreapp.service
     destination: /etc/systemd/system/
 hooks:
-  ApplicationStop:
-    - location: ./stop_service
-      timeout: 300
-      runas: root
 
   BeforeInstall:
     - location: ./remove_application
       timeout: 300
       runas: root
 
-  ApplicationStart:
-    - location: ./start_service
-      timeout: 300
-      runas: root
+
