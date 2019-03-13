@@ -1,3 +1,3 @@
 
 #!/bin/bash
-rm -rf /home/centos/aspnetcoreapp
+rm -rf /home/centos/WebApp/*

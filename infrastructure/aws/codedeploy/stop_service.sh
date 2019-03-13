@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # stop dotnet application
-systemctl stop kestrel-aspnetcoreapp.service
+sudo systemctl stop kestrel.service

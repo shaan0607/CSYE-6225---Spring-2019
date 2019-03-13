@@ -2,35 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/aws/AWSSDK.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/AWSSDK.Extensions.NETCore.Setup.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/AWSSDK.S3.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Amazon.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Amazon.S3.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/BCrypt.Net.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Carbon.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Carbon.Storage.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/MySqlConnector.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Newtonsoft.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/NoteApp_Production.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/NoteApp_Production.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/NoteApp_Production.dll.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/NoteApp_Production.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/NoteApp_Production.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Pomelo.EntityFrameworkCore.MySql.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/Pomelo.JsonObject.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/app.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aws/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.circleci/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../appspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../appspec.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-application.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-application.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-ci-cd.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-ci-cd.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kestrel-aspnetcoreapp.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../kestrel-aspnetcoreapp.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-networking.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../infrastructure/aws/cloudformation/csye6225-cf-networking.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ValuesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ValuesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Extensions.NETCore.Setup.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.S3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Amazon.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Amazon.S3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/BCrypt.Net.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Carbon.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Carbon.Storage.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/MySqlConnector.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Newtonsoft.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Pomelo.EntityFrameworkCore.MySql.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Pomelo.JsonObject.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/app.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/web.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,13 +41,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controllers/ValuesController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="62" column="42" lean-forward="true" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+            <state relative-caret-position="153">
+              <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
               <folding>
-                <marker date="1552500647814" expanded="false" signature="6:696" ph="..." />
+                <marker date="1552500647814" expanded="true" signature="6:696" ph="..." />
                 <marker date="1552500647814" expanded="true" signature="725:19544" ph="{...}" />
                 <marker date="1552500647814" expanded="true" signature="783:19542" ph="{...}" />
                 <marker date="1552500647814" expanded="true" signature="797:963" ph="/* public static Dictionary&lt;String,User&gt; userDetails = new Dictionary&lt;String, User&gt;(); ... */" />
@@ -116,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+            <state relative-caret-position="-15">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <marker date="1552415144967" expanded="false" signature="6:191" ph="..." />
                 <marker date="1552415144967" expanded="true" signature="209:3731" ph="{...}" />
@@ -145,11 +146,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="35" column="18" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+            <state>
+              <caret column="3" selection-start-column="3" selection-end-column="3" />
               <folding>
                 <marker date="1552452715044" expanded="false" signature="6:321" ph="..." />
                 <marker date="1552452715044" expanded="true" signature="351:1502" ph="{...}" />
@@ -293,12 +294,12 @@
       <updated>1552116668383</updated>
       <workItem from="1552116675683" duration="1476000" />
       <workItem from="1552414947581" duration="5077000" />
-      <workItem from="1552445961339" duration="11569000" />
+      <workItem from="1552445961339" duration="14056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18122000" />
+    <option name="totallyTimeSpent" value="20609000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -310,10 +311,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="925" extended-state="6" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1853" height="925" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.255119" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.255119" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -332,7 +332,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Unit Tests" order="11" />
       <window_info anchor="bottom" id="REST Client" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="13" visible="true" weight="0.32914573" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.32914573" />
       <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -368,26 +368,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.config">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding>
-            <marker date="1552415144967" expanded="false" signature="6:191" ph="..." />
-            <marker date="1552415144967" expanded="true" signature="209:3731" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="266:3729" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="579:599" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="706:726" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="870:1318" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="927:1308" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="1520:3723" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="1601:1997" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="2056:3074" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="3131:3711" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/127E718A-C42E-4542-A71B-54CEC3EF156B/18/1e86c897/WebHostBuilder.cs">
       <provider selected="true" editor-type-id="text-editor">
@@ -523,12 +503,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+          <folding>
+            <marker date="1552423669056" expanded="false" signature="6:560" ph="..." />
+            <marker date="1552423669056" expanded="true" signature="590:4148" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="617:4146" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="966:1029" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="1258:2561" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="1502:1944" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
+            <marker date="1552423669056" expanded="true" signature="2456:2549" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="2630:3015" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="2794:3005" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="2907:2991" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="3202:4140" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="3661:3735" ph="{...}" />
+            <marker date="1552423669056" expanded="true" signature="3778:3880" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+          <folding>
+            <marker date="1552452715044" expanded="false" signature="6:321" ph="..." />
+            <marker date="1552452715044" expanded="true" signature="351:1502" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="378:1500" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="431:505" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="672:1453" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <marker date="1552415144967" expanded="false" signature="6:191" ph="..." />
+            <marker date="1552415144967" expanded="true" signature="209:3731" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="266:3729" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="579:599" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="706:726" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="870:1318" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="927:1308" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="1520:3723" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="1601:1997" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="2056:3074" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="3131:3711" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/ValuesController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="62" column="42" lean-forward="true" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state relative-caret-position="153">
+          <caret line="33" column="45" lean-forward="true" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
           <folding>
-            <marker date="1552500647814" expanded="false" signature="6:696" ph="..." />
+            <marker date="1552500647814" expanded="true" signature="6:696" ph="..." />
             <marker date="1552500647814" expanded="true" signature="725:19544" ph="{...}" />
             <marker date="1552500647814" expanded="true" signature="783:19542" ph="{...}" />
             <marker date="1552500647814" expanded="true" signature="797:963" ph="/* public static Dictionary&lt;String,User&gt; userDetails = new Dictionary&lt;String, User&gt;(); ... */" />
@@ -590,42 +626,6 @@
             <marker date="1552500647814" expanded="true" signature="18917:19380" ph="{...}" />
             <marker date="1552500647814" expanded="true" signature="18987:19074" ph="{...}" />
             <marker date="1552500647814" expanded="true" signature="19400:19528" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Startup.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
-          <folding>
-            <marker date="1552423669056" expanded="false" signature="6:560" ph="..." />
-            <marker date="1552423669056" expanded="true" signature="590:4148" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="617:4146" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="966:1029" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="1258:2561" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="1502:1944" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
-            <marker date="1552423669056" expanded="true" signature="2456:2549" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2630:3015" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2794:3005" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2907:2991" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3202:4140" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3661:3735" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3778:3880" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Program.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="35" column="18" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-          <folding>
-            <marker date="1552452715044" expanded="false" signature="6:321" ph="..." />
-            <marker date="1552452715044" expanded="true" signature="351:1502" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="378:1500" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="431:505" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="672:1453" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -50,6 +50,7 @@
             "Properties": {
                 "CidrBlock": "191.0.2.0/24",
                 "AvailabilityZone": "us-east-1c",
+"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",

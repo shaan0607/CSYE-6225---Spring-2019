@@ -1,22 +1,19 @@
 version: 0.0
 os: linux
 files:
-  - source: /webapp/NoteApp_Production/aws/
-    destination: /opt/kestrel
+  - source: ./webapp/NoteApp_Production/aws/*
+    destination: /home/centos/WebApp
 hooks:
   ApplicationStop:
-    - location: ./stop_service
+    - location: ./stop_service.sh
       timeout: 300
       runas: centos
 
   BeforeInstall:
-    - location: ./remove_application
+    - location: ./remove_application.sh
       timeout: 300
       runas: centos
-
   ApplicationStart:
-    - location: ./start_service
+    - location: ./start_service.sh
       timeout: 300
-      runas: centos
-
-
+      runas: centos	

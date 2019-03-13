@@ -2,5 +2,5 @@
 cd /home/centos/
 
 # use systemd to start and monitor dotnet application
-systemctl enable kestrel-aspnetcoreapp.service
-systemctl start kestrel-aspnetcoreapp.service
+sudo systemctl enable kestrel.service
+sudo systemctl start kestrel.service
