@@ -22,6 +22,7 @@ using System.IO;
 using Amazon.S3;
 using Amazon.S3.Transfer;
 using Amazon;
+using Amazon.Runtime;
 using Amazon.S3.Model;
 using trial3;
 
@@ -45,6 +46,9 @@ namespace trial.Controllers
         static int rand=  1;
         private CLOUD_CSYEContext _context;
          private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+         private readonly AWSCredentials credentials;
+         
+         
         public string getUsername(){
             
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
@@ -56,7 +60,7 @@ namespace trial.Controllers
         public ValuesController(CLOUD_CSYEContext context)
         {
             _context = context;
-            s3Client = new AmazonS3Client(bucketRegion);
+            s3Client = new AmazonS3Client(credentials.GetCredentials().AccessKey,credentials.GetCredentials().SecretKey,bucketRegion);
              // _context.Database.EnsureCreated();
         }
         
@@ -65,11 +69,13 @@ namespace trial.Controllers
         [Route("/")]
         public ActionResult Get()
         {   try{
+          //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
             return StatusCode(200, new{result =DateTime.Now});
+           
         }
         catch{
             throw new Exception("Opps");
-        }
+       }
 
 
         }
