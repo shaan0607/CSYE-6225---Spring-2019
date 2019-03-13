@@ -2,14 +2,21 @@ version: 0.0
 os: linux
 files:
   - source: /webapp/NoteApp_Production/aws/
-    destination: /home/centos/aspnetcoreapp
-  - source: ./kestrel-aspnetcoreapp.service
-    destination: /etc/systemd/system/
+    destination: /opt/kestrel
 hooks:
+  ApplicationStop:
+    - location: ./stop_service
+      timeout: 300
+      runas: centos
 
   BeforeInstall:
     - location: ./remove_application
       timeout: 300
-      runas: root
+      runas: centos
+
+  ApplicationStart:
+    - location: ./start_service
+      timeout: 300
+      runas: centos
 
 

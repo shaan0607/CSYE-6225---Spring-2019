@@ -60,7 +60,7 @@ namespace trial.Controllers
         public ValuesController(CLOUD_CSYEContext context)
         {
             _context = context;
-            s3Client = new AmazonS3Client(credentials.GetCredentials().AccessKey,credentials.GetCredentials().SecretKey,bucketRegion);
+            s3Client = new AmazonS3Client(bucketRegion);
              // _context.Database.EnsureCreated();
         }
         
@@ -342,6 +342,7 @@ namespace trial.Controllers
                         if(atchm.noteID == id)
                         {
                             key = atchm.FileName;
+                            
                             fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
                             _context.attachments.Remove(atchm);
                             

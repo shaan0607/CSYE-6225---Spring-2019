@@ -58,7 +58,43 @@
         "KeyName": {
             "Ref": "KeyName"
           },
-        
+	  "UserData": {
+
+          "Fn::Base64": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "#!/bin/bash -xe ", 
+				"sudo su",
+                                "groupadd kestrel",
+                                "useradd -M -s /sbin/nologin -g kestrel -d /opt/kestrel kestrel",
+				"mkdir /opt/kestrel",
+                                "cd /opt/kestrel",
+                                "chgrp -R kestrel /opt/kestrel",
+                                "chown -R kestrel webapps/ work/ temp/ logs/",
+                                "cd /usr/lib/systemd/system",
+                                "touch kestrel.service",
+                                "echo '[Unit]' > kestrel.service",
+                                "echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
+                                "echo 'After=syslog.target network.target' >> kestrel.service",
+                                "echo '[Service]' >> kestrel.service",
+                                "echo 'WorkingDirectory=/opt/kestrel' >> kestrel.service",
+                                "echo 'ExecStart=/usr/bin/dotnet /opt/kestrel/NoteApp_Production.dll' >> kestrel.service",
+                                "echo 'ExecStop=/bin/kill -15 $MAINPID' >> kestrel.service",
+                                "echo 'User=kestrel' >> kestrel.service",
+                                "echo 'Group=kestrel' >> kestrel.service",
+                                "echo 'RestartSec=10' >> kestrel.service",
+                                "echo 'Restart=always' >> kestrel.service",
+                                "echo '[Install]' >> kestrel.service",
+                                "echo 'WantedBy=multi-user.target' >> kestrel.service",
+                                "systemctl daemon-reload",
+                                "systemctl enable kestrel.service",
+                                "systemctl start kestrel.service"
+                            ]
+                        ]
+                    }
+
+        },
         "SubnetId": {
             "Ref": "PublicSubnetKey1"
           },
@@ -81,6 +117,8 @@
             "Value": "Deploy"
           }
         ]
+
+
       }
     },
     "DeploymentGroup": {
