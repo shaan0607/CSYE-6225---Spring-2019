@@ -37,8 +37,7 @@ then
 	exit 1
 fi
 
-VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' \
---filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
+VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' --filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
 
 
 subnet=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=${VpcId})
