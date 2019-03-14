@@ -124,6 +124,7 @@ namespace trial.Controllers
         [Authorize]
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
+           
                if(ModelState.IsValid){
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
@@ -187,12 +188,14 @@ namespace trial.Controllers
                 return StatusCode(409, new{ result = conflict});
 
             }  
-    }
+            }
+
+    
 
         [HttpGet]
         [Route("/note")]
         [Authorize]
-       public ActionResult getNote(){
+        public ActionResult getNote(){
             IEnumerable<NOTES> notes = _context.notes.AsEnumerable();
 
             List<NOTE> note = new List<NOTE>();
@@ -202,7 +205,7 @@ namespace trial.Controllers
                 foreach(NOTES item in notes){
                     if(item.EMAIL == username){
                 NOTE n =  new NOTE();
-
+            
                 n.noteID = item.noteID;
                 n.content = item.content;
                 n.created_on = item.created_on;
@@ -366,6 +369,7 @@ namespace trial.Controllers
 
                 return  StatusCode(204, new{Result= "Note Deleted Successfully" });
                     }
+                    
                     else{
                         return StatusCode(401, new{result = "Not Authorized"});
                     }
