@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/centos/WebApp
+cd /home/centos/WebApp/NoteApp_Production/aws/
 
 # use systemd to start and monitor dotnet application
 dotnet ef database update
