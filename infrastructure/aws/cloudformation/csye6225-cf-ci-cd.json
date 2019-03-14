@@ -29,33 +29,7 @@
     "Users" : ["circleci"]
    }
 },
-   "E2S3Access": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": [
-                "s3:Delete*",
-                "s3:Get*",
-                "s3:Put*",
-                "s3:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [{
-                "Ref": "WEBAPPARN"
-              }]
-            }
-          ]
-        },
-        "PolicyName": "E2S3Access",
-        "Roles": [{
-          "Ref": "CodeDeployEC2ServiceRole"
-        }]
-      }
-    },
-	"CodeDeployServiceRoleInstanceProfile": {
+    "CodeDeployServiceRoleInstanceProfile": {
       "Type": "AWS::IAM::InstanceProfile",
       "Properties": {
         "Path": "/",
@@ -65,7 +39,7 @@
         "InstanceProfileName": "CodeDeployServiceRoleInstanceProfile"
       }
     },
-	"Circleciec2ami": {
+   "Circleciec2ami": {
    "Type" : "AWS::IAM::Policy",
    "Properties" : {
       "PolicyName" : "circleci-ec2-AMI",
