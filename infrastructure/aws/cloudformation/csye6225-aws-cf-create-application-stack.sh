@@ -106,6 +106,9 @@ DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output
 Bucket="${DOMAIN_NAME}csye6225.com"
 
 DOMAIN_NAME1=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
+<<<<<<< HEAD
+>>>>>>> cae506ca846f41d9bccbfab35b3b4105d3c397d0
+=======
 >>>>>>> cae506ca846f41d9bccbfab35b3b4105d3c397d0
 
 CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}
