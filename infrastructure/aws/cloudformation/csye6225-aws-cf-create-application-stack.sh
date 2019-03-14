@@ -2,7 +2,7 @@ echo "Please enter Network Stack Name:"
 read networkStackName
 if [ -z "$networkStackName" ]
 then
-	echo "StackName error exiting!"
+	echo "StackName error exiting! "
 	exit 1
 fi
 echo "$networkStackName"
