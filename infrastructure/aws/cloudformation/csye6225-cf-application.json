@@ -86,8 +86,7 @@
                     }
 
         },
-        
-        "SubnetId": {
+                "SubnetId": {
             "Ref": "PublicSubnetKey1"
           },
         "SecurityGroupIds": [
