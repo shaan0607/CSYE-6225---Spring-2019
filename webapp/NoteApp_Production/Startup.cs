@@ -71,7 +71,18 @@ namespace NoteApp_Production
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
                 });
         }
-
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<CLOUD_CSYEContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -86,6 +97,7 @@ namespace NoteApp_Production
             app.UseExceptionHandler("/Error");
             app.UseHsts();
             }
+            UpdateDatabase(app);
              app.UseAuthentication();
        
             app.UseHttpsRedirection();

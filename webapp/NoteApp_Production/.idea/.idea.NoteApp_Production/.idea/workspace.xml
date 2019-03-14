@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../infrastructure/aws/codedeploy/start_service.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../infrastructure/aws/codedeploy/start_service.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -136,20 +137,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Startup.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+            <state relative-caret-position="-3">
+              <caret line="73" selection-start-line="73" selection-end-line="84" selection-end-column="9" />
               <folding>
-                <marker date="1552552645429" expanded="false" signature="6:602" ph="..." />
-                <marker date="1552552645429" expanded="true" signature="632:3635" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="659:3633" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="1008:1071" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="1300:2914" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
-                <marker date="1552552645429" expanded="true" signature="2506:2740" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="2809:2902" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="3103:3627" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="3167:3241" ph="{...}" />
-                <marker date="1552552645429" expanded="true" signature="3284:3386" ph="{...}" />
+                <marker date="1552553049743" expanded="false" signature="6:602" ph="..." />
+                <marker date="1552553049743" expanded="true" signature="632:4120" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="659:4118" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="1008:1071" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="1300:2914" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
+                <marker date="1552553049743" expanded="true" signature="2506:2740" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="2809:2902" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="2982:3367" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="3146:3357" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="3259:3343" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="3555:4112" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="3619:3693" ph="{...}" />
+                <marker date="1552553049743" expanded="true" signature="3736:3838" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -265,12 +269,12 @@
       <workItem from="1552414947581" duration="5077000" />
       <workItem from="1552445961339" duration="14088000" />
       <workItem from="1552520506847" duration="1516000" />
-      <workItem from="1552526508226" duration="7271000" />
+      <workItem from="1552526508226" duration="7674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29428000" />
+    <option name="totallyTimeSpent" value="29831000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -582,20 +586,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Startup.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+        <state relative-caret-position="-3">
+          <caret line="73" selection-start-line="73" selection-end-line="84" selection-end-column="9" />
           <folding>
-            <marker date="1552552645429" expanded="false" signature="6:602" ph="..." />
-            <marker date="1552552645429" expanded="true" signature="632:3635" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="659:3633" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="1008:1071" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="1300:2914" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
-            <marker date="1552552645429" expanded="true" signature="2506:2740" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="2809:2902" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="3103:3627" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="3167:3241" ph="{...}" />
-            <marker date="1552552645429" expanded="true" signature="3284:3386" ph="{...}" />
+            <marker date="1552553049743" expanded="false" signature="6:602" ph="..." />
+            <marker date="1552553049743" expanded="true" signature="632:4120" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="659:4118" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="1008:1071" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="1300:2914" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
+            <marker date="1552553049743" expanded="true" signature="2506:2740" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="2809:2902" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="2982:3367" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="3146:3357" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="3259:3343" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="3555:4112" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="3619:3693" ph="{...}" />
+            <marker date="1552553049743" expanded="true" signature="3736:3838" ph="{...}" />
           </folding>
         </state>
       </provider>
