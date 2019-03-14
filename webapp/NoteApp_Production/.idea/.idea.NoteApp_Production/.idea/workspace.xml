@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="" />
+    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.circleci/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NoteApp_Production/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.Extensions.NETCore.Setup.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/AWSSDK.S3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Amazon.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Amazon.S3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/BCrypt.Net.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Carbon.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Carbon.Storage.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/MySqlConnector.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Newtonsoft.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.dll.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/NoteApp_Production.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Pomelo.EntityFrameworkCore.MySql.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/Pomelo.JsonObject.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/app.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/web.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,11 +242,6 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="NoteApp_Production" type="24d0babc:SolutionExplorerModelNode" />
             </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="NoteApp_Production" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Controllers" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -271,12 +297,12 @@
       <workItem from="1552414947581" duration="5077000" />
       <workItem from="1552445961339" duration="14088000" />
       <workItem from="1552520506847" duration="1516000" />
-      <workItem from="1552526508226" duration="8364000" />
+      <workItem from="1552526508226" duration="9028000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30521000" />
+    <option name="totallyTimeSpent" value="31185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

@@ -27,7 +27,6 @@ jobs:
             cd NoteApp_Production
             pwd
             dotnet restore
-            dotnet ef migrations add DB
             dotnet publish -o aws
             cd aws/
             ls -al
