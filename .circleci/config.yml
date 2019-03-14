@@ -27,8 +27,6 @@ jobs:
             cd NoteApp_Production
             pwd
             dotnet restore
-            dotnet build
-            dotnet ef migrations add ${CIRCLE_BUILD_NUM}
             dotnet publish -o aws
             cd aws/
             ls -al
@@ -42,7 +40,8 @@ jobs:
             echo "Hello the current build number is ${CIRCLE_BUILD_NUM}"
             pwd
             mkdir -p codedeploy_artifact
-            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip webapp/NoteApp_Production/aws/*
+            cp infrastructure/aws/codedeploy/*.sh .
+            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip webapp/NoteApp_Production/aws/* *.sh *.yml 
             mv csye6225-web-app-${CIRCLE_BUILD_NUM}.zip codedeploy_artifact/
             cd codedeploy_artifact
             ls -al
@@ -58,5 +57,6 @@ jobs:
           name: Code-Deployment
           command: |
             aws deploy create-deployment --application-name csye6225-webapp --deployment-group-name csye6225-webapp-deployment --s3-location bucket=${S3Bucket},bundleType=zip,key=csye6225-web-app-${CIRCLE_BUILD_NUM}.zip --description "Deployed via CircleCI" --region us-east-1
+
 
 
