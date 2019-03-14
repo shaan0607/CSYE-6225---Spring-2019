@@ -7,6 +7,7 @@ using Amazon.S3;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,7 @@ namespace NoteApp_Production
             var connection =@"Server="+server+";Database="+database +";user="+username+";password="+password+"; port=3306";
             services.AddDbContext<CLOUD_CSYEContext>(options => options.UseMySql(connection));
    
-         //   services.AddDbContextPool<USerContext>( // replace "YourDbContext" with the class name of your DbContext
+            //   services.AddDbContextPool<USerContext>( // replace "YourDbContext" with the class name of your DbContext
            //     options => options.UseMySql("server=localhost; port=3306; database=CSYE;user=deosthale;password=NikonD%100")); // replace with your Connection Strin;
                       //  services.AddDbContext<UserContext>(options =>
                // options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
@@ -58,34 +59,24 @@ namespace NoteApp_Production
             // Register DI for user service
             services.AddScoped<IUSerServices, UserServices>();
             services.AddAWSService<IAmazonS3>();
+            services.Configure<FormOptions>(
+                options =>
+                {
+                    options.MultipartBodyLengthLimit = 80000000;
+                    options.ValueLengthLimit = int.MaxValue;
+                    options.MultipartHeadersLengthLimit = int.MaxValue;
+                });
             services.Configure<ForwardedHeadersOptions>(options =>
             {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
                 });
         }
 
-        private static void UpdateDatabase(IApplicationBuilder app)
-        {
-            using (var serviceScope = app.ApplicationServices
-                .GetRequiredService<IServiceScopeFactory>()
-                .CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<CLOUD_CSYEContext>())
-                {
-                    context.Database.Migrate();
-                }
-            }
-        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-            {
+        {
                 
-                var builder = new ConfigurationBuilder()
-                    .SetBasePath(env.ContentRootPath)
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                    .AddEnvironmentVariables();
-                Configuration = builder.Build();
             if (env.IsDevelopment())
             { 
             app.UseDeveloperExceptionPage();
@@ -95,9 +86,8 @@ namespace NoteApp_Production
             app.UseExceptionHandler("/Error");
             app.UseHsts();
             }
-            UpdateDatabase(app);
-	    app.UseAuthentication();
- 
+             app.UseAuthentication();
+       
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

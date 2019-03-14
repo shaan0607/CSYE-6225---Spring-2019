@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="" />
+    <list default="true" id="28fa1f14-2b05-4b71-943e-fb30b932af7a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,22 +136,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Startup.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-483">
-              <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state relative-caret-position="222">
+              <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
               <folding>
-                <marker date="1552423669056" expanded="false" signature="6:560" ph="..." />
-                <marker date="1552423669056" expanded="true" signature="590:4148" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="617:4146" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="966:1029" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="1258:2561" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="1502:1944" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
-                <marker date="1552423669056" expanded="true" signature="2456:2549" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="2630:3015" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="2794:3005" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="2907:2991" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="3202:4140" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="3661:3735" ph="{...}" />
-                <marker date="1552423669056" expanded="true" signature="3778:3880" ph="{...}" />
+                <marker date="1552552645429" expanded="false" signature="6:602" ph="..." />
+                <marker date="1552552645429" expanded="true" signature="632:3635" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="659:3633" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="1008:1071" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="1300:2914" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
+                <marker date="1552552645429" expanded="true" signature="2506:2740" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="2809:2902" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="3103:3627" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="3167:3241" ph="{...}" />
+                <marker date="1552552645429" expanded="true" signature="3284:3386" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -180,13 +180,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/CLOUD_CSYEContext.cs" />
-        <option value="$PROJECT_DIR$/Startup.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/93/a78e0c3b/BasicAWSCredentials.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/19/119759f5/ImmutableCredentials.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2066B50D-7E19-431B-8AB9-2936931EF428/b0/65e60f3a/AwsCredentials.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/fd/793d7438/EnvironmentVariablesAWSCredentials.cs" />
         <option value="$PROJECT_DIR$/Program.cs" />
         <option value="$PROJECT_DIR$/Controllers/ValuesController.cs" />
+        <option value="$PROJECT_DIR$/Startup.cs" />
       </list>
     </option>
   </component>
@@ -265,12 +265,12 @@
       <workItem from="1552414947581" duration="5077000" />
       <workItem from="1552445961339" duration="14088000" />
       <workItem from="1552520506847" duration="1516000" />
-      <workItem from="1552526508226" duration="5638000" />
+      <workItem from="1552526508226" duration="7271000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27795000" />
+    <option name="totallyTimeSpent" value="29428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -469,6 +469,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <marker date="1552415144967" expanded="false" signature="6:191" ph="..." />
+            <marker date="1552415144967" expanded="true" signature="209:3731" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="266:3729" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="579:599" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="706:726" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="870:1318" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="927:1308" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="1520:3723" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="1601:1997" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="2056:3074" ph="{...}" />
+            <marker date="1552415144967" expanded="true" signature="3131:3711" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appsettings.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appsettings.Development.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+          <folding>
+            <marker date="1552452715044" expanded="false" signature="6:321" ph="..." />
+            <marker date="1552452715044" expanded="true" signature="351:1502" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="378:1500" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="431:505" ph="{...}" />
+            <marker date="1552452715044" expanded="true" signature="672:1453" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/ValuesController.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-210">
@@ -540,64 +580,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <marker date="1552415144967" expanded="false" signature="6:191" ph="..." />
-            <marker date="1552415144967" expanded="true" signature="209:3731" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="266:3729" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="579:599" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="706:726" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="870:1318" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="927:1308" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="1520:3723" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="1601:1997" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="2056:3074" ph="{...}" />
-            <marker date="1552415144967" expanded="true" signature="3131:3711" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appsettings.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appsettings.Development.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Program.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" selection-start-column="3" selection-end-column="3" />
-          <folding>
-            <marker date="1552452715044" expanded="false" signature="6:321" ph="..." />
-            <marker date="1552452715044" expanded="true" signature="351:1502" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="378:1500" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="431:505" ph="{...}" />
-            <marker date="1552452715044" expanded="true" signature="672:1453" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Startup.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+        <state relative-caret-position="222">
+          <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
           <folding>
-            <marker date="1552423669056" expanded="false" signature="6:560" ph="..." />
-            <marker date="1552423669056" expanded="true" signature="590:4148" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="617:4146" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="966:1029" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="1258:2561" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="1502:1944" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
-            <marker date="1552423669056" expanded="true" signature="2456:2549" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2630:3015" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2794:3005" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="2907:2991" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3202:4140" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3661:3735" ph="{...}" />
-            <marker date="1552423669056" expanded="true" signature="3778:3880" ph="{...}" />
+            <marker date="1552552645429" expanded="false" signature="6:602" ph="..." />
+            <marker date="1552552645429" expanded="true" signature="632:3635" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="659:3633" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="1008:1071" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="1300:2914" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="1547:1989" ph="/* services.AddDbContextPool&lt;USerContext&gt;( // replace &quot;YourDbContext&quot; with the class name of your DbContext ... */" />
+            <marker date="1552552645429" expanded="true" signature="2506:2740" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="2809:2902" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="3103:3627" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="3167:3241" ph="{...}" />
+            <marker date="1552552645429" expanded="true" signature="3284:3386" ph="{...}" />
           </folding>
         </state>
       </provider>
