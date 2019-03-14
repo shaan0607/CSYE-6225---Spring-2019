@@ -3,7 +3,7 @@ jobs:
   build:
     branches:
       only:
-        - Assignment5
+        - Assignment_5
     docker:
       - image: circleci/python:2.7-jessie
     steps:
