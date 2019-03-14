@@ -243,6 +243,7 @@ namespace trial.Controllers
  
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
+                if(notes!=null){
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                 List<mAttachments> newat = new List<mAttachments>();
 
@@ -264,6 +265,10 @@ namespace trial.Controllers
                 {
                     return StatusCode(401, new{result = "Not Authorized"});
                 }
+                }
+                 else{
+                    return StatusCode(401, new{result = "Note Absent"});
+                }
         }   
         [HttpGet]
         [Route("/note/{id}/attachments")]
@@ -274,6 +279,7 @@ namespace trial.Controllers
  
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
+                if(notes!=null){
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                 List<mAttachments> newat = new List<mAttachments>();
 
@@ -294,6 +300,10 @@ namespace trial.Controllers
                 else
                 {
                     return StatusCode(401, new{result = "Not Authorized"});
+                }
+                }
+                 else{
+                    return StatusCode(401, new{result = "Note Absent"});
                 }
         }
 
@@ -332,7 +342,7 @@ namespace trial.Controllers
                     string username = getUsername();
 
                     NOTES note = _context.notes.Find(id);
-
+                    if(note!=null){
                     IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                     string key = "";
                     if(note.EMAIL == username)
@@ -355,6 +365,10 @@ namespace trial.Controllers
 
 
                 return  StatusCode(204, new{Result= "Note Deleted Successfully" });
+                    }
+                    else{
+                        return StatusCode(401, new{result = "Not Authorized"});
+                    }
                     }
                     else{
                         return StatusCode(401, new{result = "Not Authorized"});
@@ -487,7 +501,7 @@ namespace trial.Controllers
                 string username = getUsername();
 
                     NOTES note = _context.notes.Find(id);
-
+                    if(note!=null){
                     Attachments a = _context.attachments.Find(atid);
                     string key = a.FileName;
                     if(note.EMAIL == username){
@@ -500,6 +514,10 @@ namespace trial.Controllers
                 return  StatusCode(204, new{Result= "Note Deleted Successfully" });
                     }
                    
+                    else{
+                        return StatusCode(401, new{result = "Not Authorized"});
+                    }
+                    }
                     else{
                         return StatusCode(401, new{result = "Not Authorized"});
                     }
