@@ -33,11 +33,7 @@
             "Properties": {
                 "CidrBlock": "191.0.1.0/24",
                 "AvailabilityZone": "us-east-1b",
-<<<<<<< HEAD
-		"MapPublicIpOnLaunch" : "true",
-=======
 "MapPublicIpOnLaunch" : "true",
->>>>>>> 4d2628e61c25119bec76aeab98be4d82323680ac
                 "Tags": [
                     {
                         "Key": "foo",
@@ -54,11 +50,7 @@
             "Properties": {
                 "CidrBlock": "191.0.2.0/24",
                 "AvailabilityZone": "us-east-1c",
-<<<<<<< HEAD
-		"MapPublicIpOnLaunch" : "true",
-=======
 "MapPublicIpOnLaunch" : "true",
->>>>>>> 4d2628e61c25119bec76aeab98be4d82323680ac
                 "Tags": [
                     {
                         "Key": "foo",

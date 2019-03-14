@@ -10,7 +10,9 @@
       },
 
 "CDARN": {
-"Type":"String"}
+"Type":"String"},"CDARN1":{
+"Type" : "String"
+}
    },
 "Resources":{
    "CodeDeployEC2S3": {
@@ -30,6 +32,8 @@
             "Effect": "Allow",
             "Resource": [{
                 "Ref": "CDARN"
+              },{
+                "Ref": "CDARN1"
               }]
         }
     ]
@@ -107,8 +111,11 @@
                         "s3:PutObject"
                      ],
                      "Resource":[
-                        "arn:aws:s3:::code-deploy.*",
-                        "arn:aws:s3:::web-app.*"
+                 {
+                "Ref": "CDARN"
+              },{
+                "Ref": "CDARN1"
+              }
                      ]
                   }
                ]
