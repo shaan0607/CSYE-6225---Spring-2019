@@ -35,7 +35,10 @@
 
       "VpcID":{
          "Type":"String"
-      }
+      },
+	"Bucket":{
+	"Type":"String"
+	}
    },
    "Conditions":{
       "Is-EC2-VPC":{
@@ -75,7 +78,7 @@
 		"sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
                 "sudo echo '[Service]' >> kestrel.service",
                 "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me ",{
+		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll  " ,{"Ref": "Bucket"},{
 		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}," csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
 
                 "sudo echo 'User=centos' >> kestrel.service",
