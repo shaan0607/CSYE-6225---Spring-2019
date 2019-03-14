@@ -5,10 +5,14 @@
          "Description":"circleci user",
          "Type":"String"
       },
+     "CDAPPNAME":{
+         "Type":"String"
+      },
+
 "CDARN": {
 "Type":"String"}
    },
-   "Resources":{
+"Resources":{
    "CodeDeployEC2S3": {
    "Type" : "AWS::IAM::Policy",
    "Properties" : {
@@ -142,7 +146,10 @@
                               {
                                  "Ref":"AWS::AccountId"
                               },
-                              ":application:CSYE6225WebappCodeDeploy"
+                              ":application:",
+                    {
+                      "Ref": "CDAPPNAME"
+                    }
                            ]
                         ]
                      }
