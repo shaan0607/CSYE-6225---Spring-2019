@@ -102,8 +102,12 @@ export circleciuser=circleci
 DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 Bucket="${DOMAIN_NAME}csye6225.com"
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=Bucket,ParameterValue=$Bucket`
+DOMAIN_NAME1=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 
+CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}
+
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=Bucket,ParameterValue=$Bucket ParameterKey=Bucket1,ParameterValue=$Bucket/* ParameterKey=CDARN,ParameterValue=$CD_DOMAIN ParameterKey=CDARN,ParameterValue=$CD_DOMAIN/*`
+ 
 if [ -z "$CRTSTACK_Code" ]
 then
 	echo "Stack Creation error exiting!"

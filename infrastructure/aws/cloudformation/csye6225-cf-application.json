@@ -32,6 +32,10 @@
       "PublicSubnetKey1":{
          "Type":"String"
       },
+	"CDARN":{"Type": "String"},
+	"CDARN1": {"Type": "String"},
+	"Bucket":{"Type": "String"},
+	"Bucket1":{"Type": "String"},
 
       "VpcID":{
          "Type":"String"
@@ -323,7 +327,7 @@
                                                                 "s3:List*"
 							],
 							"Effect": "Allow",
-							"Resource": ["arn:aws:s3:::code-deploy.*", "arn:aws:s3:::web-app.*"]
+							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
 					}
 				}]

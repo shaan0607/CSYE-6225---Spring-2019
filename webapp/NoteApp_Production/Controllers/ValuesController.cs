@@ -448,8 +448,12 @@ namespace trial.Controllers
             if(file.Length > 0)
                     using (var stream = new FileStream(filePath, FileMode.Create))
 
-            
+           
             file.CopyToAsync(stream);
+            
+            Attachments a1 = _context.attachments.Find(aid);
+            string key = a1.FileName;
+            fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
             fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
             
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
