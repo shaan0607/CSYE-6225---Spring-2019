@@ -75,7 +75,11 @@ then
 	exit 1
 fi
 
+timestamp=$(date +%s)
+stringec2="csye6225-EC2Instance-"
+sec2="$stringec2$timestamp"
 
+echo "$sec2"
 
 # Create CloudFormation Stack
 echo "Validating template"
@@ -89,13 +93,15 @@ echo "Cloudformation template validation success"
 
 echo "Now Creating CloudFormation Stack"
 
-
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid`
-
 ARN=$(aws iam get-role --role-name CodeDeployServiceRole --query 'Role.Arn' --output text)
+strcodedeploy="ami-0a850cd05ec441783"
+strcodedep="$strcodedeploy$timestamp"
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=CDAPPNAME,ParameterValue=csye6225-webapp ParameterKey=CDGRPNAME,ParameterValue=csye6225-webapp-deployment ParameterKey=ARN,ParameterValue=$ARN`
 
+DynamoDB="csye6225"
+DynamoDBTableName1="$DynamoDB$timestamp"
+
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=CDAPPNAME,ParameterValue=csye6225-webapp ParameterKey=CDGRPNAME,ParameterValue=csye6225-webapp-deployment ParameterKey=ARN,ParameterValue=$ARN ParameterKey=CreationDate,ParameterValue=$sec2 ParameterKey=DynamoDBTableName,ParameterValue=$DynamoDBTableName1`
 if [ -z "$CRTSTACK_Code" ]
 then
 	echo "Stack Creation error exiting!"

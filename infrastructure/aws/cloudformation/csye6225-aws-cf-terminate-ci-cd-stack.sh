@@ -18,10 +18,7 @@ else
 	exit 0
 fi
 
-EC2_ID=$(aws ec2 describe-instances --filter "Name=tag:aws:cloudformation:stack-name,Values=$appStackName-ci-cd" "Name=instance-state-code,Values=16" --query 'Reservations[*].Instances[*].{id:InstanceId}' --output text)
 
-# Command to disable Termination Protection, It will disable it on a specific Instance, hence the instance Id is required
-aws ec2 modify-instance-attribute --instance-id $EC2_ID --no-disable-api-termination
 
 # Domain name for ARN
 echo "Fetching domain name from Route 53"

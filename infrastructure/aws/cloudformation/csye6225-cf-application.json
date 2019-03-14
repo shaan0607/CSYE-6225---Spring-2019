@@ -37,15 +37,21 @@
     "CDAPPNAME": {
       
       "Type": "String"
-    },    
-   "CDGRPNAME": {
+    },    "CDGRPNAME": {
+      "Type": "String"
+    },
+      "DynamoDBTableName": {
       
       "Type": "String"
     },
-  "ARN" :{
-	"Type" :"String"	
-}
-
+          "ARN": {
+      
+      "Type": "String"
+    },
+          "CreationDate" : {
+      "Description" : "Date",
+      "Type" : "String"
+    }
   },
   "Resources": {
     "EC2Instance": {
@@ -54,10 +60,44 @@
         "ImageId": {
             "Ref": "ImageID"
           },
+
         "InstanceType": "t2.micro",
         "KeyName": {
             "Ref": "KeyName"
-          },
+          }, "UserData": {
+
+          "Fn::Base64": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                "#!/bin/bash -xe ", 
+		"pwd",
+		"mkdir /home/centos/WebApp",
+		"cd /usr/lib/systemd/system",
+                "sudo touch kestrel.service",
+                "sudo echo '[Unit]' > kestrel.service",
+                "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
+                "sudo echo 'After=syslog.target network.target' >> kestrel.service",
+                "sudo echo '[Service]' >> kestrel.service",
+                "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
+                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me csye6225-webapp-spring2019.cagfy3cjztoy.us east-1.rds.amazonaws.com csye6225master csye6225master csye6225password' >> kestrel.service",
+                "sudo echo 'ExecStop=/bin/kill -15 $MAINPID' >> kestrel.service",
+                "sudo echo 'User=centos' >> kestrel.service",
+		"sudo echo 'SyslogIdentifier=aspnetcoreapp' >> kestrel.service",
+                "sudo echo 'Restart=always' >> kestrel.service",
+		"sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
+                "sudo echo '[Install]' >> kestrel.service",
+                "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
+		"sudo su",
+		"chown centos /usr/lib/systemd/system/kestrel.service",
+                "systemctl daemon-reload",
+                "systemctl enable kestrel.service",
+                "systemctl start kestrel.service"
+                            ]
+                        ]
+                    }
+
+        },
         
         "SubnetId": {
             "Ref": "PublicSubnetKey1"
@@ -73,7 +113,8 @@
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-EC2Instance"
+              "Ref": "CreationDate"
+	       
             }
           },
           {
@@ -83,22 +124,10 @@
         ]
       }
     },
-    "DeploymentGroup": {
-	 "Type" : "AWS::CodeDeploy::DeploymentGroup",
-  	 "Properties" : {
-    	 "ApplicationName" : {"Ref" : "CDAPPNAME"},
-	"AutoRollbackConfiguration": {"Enabled" : true,"Events":["DEPLOYMENT_FAILURE"] },
-	"DeploymentGroupName": {"Ref": "CDGRPNAME"},
-	"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
-	"DeploymentStyle" : {"DeploymentOption" : "WITHOUT_TRAFFIC_CONTROL","DeploymentType" : "IN_PLACE"},
-	"Ec2TagFilters": [{"Key" : "CodeDeployTag","Type" : "KEY_AND_VALUE", "Value" : "Deploy"}],
- 	"ServiceRoleArn" : {"Ref": "ARN" }
-}
-},
     "WebServerSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupName": "csye6225-webapp",
+        "GroupName": {"Ref": "CreationDate"},
         "GroupDescription": "Enable HTTP access via port 80, SSH access via port 22, HTTPS access via port 443",
         "VpcId": {
             "Ref": "VpcID"
@@ -127,20 +156,21 @@
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-WebAppSecurityGroup"
+              "Ref": "CreationDate"
             }
           }
         ]
       }
     },
-    "DBServerSecurityGroup": 
-
-{
-   "Type" : "AWS::RDS::DBSecurityGroup",
-   "Properties" :
-   {
-      "EC2VpcId" : { "Ref" : "VpcID" },
-      "DBSecurityGroupIngress" : [
+    "DBServerSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "csye6225-rds",
+        "GroupDescription": "Allow TCP traffic on port 3306 for MySQL",
+        "VpcId": {
+            "Ref": "VpcID"
+          },
+        "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
             "FromPort": 3306,
@@ -150,18 +180,16 @@
             }
           }
         ],
-      "GroupDescription" : "Allow TCP traffic on port 3306 for MySQL",
-      "Tags" : [
+        "Tags": [
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-DBSecurityGroup"
+              "Ref": "CreationDate"
             }
           }
         ]
-   }
-}, 
-
+      }
+    },
     "RDSSubnetGroup": {
       "Type": "AWS::RDS::DBSubnetGroup",
       "Properties": {
@@ -178,16 +206,28 @@
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-RDSSubnetGroup"
+              "Ref": "CreationDate"
             }
           }
         ]
       }
     },
+    "DeploymentGroup": {
+	 "Type" : "AWS::CodeDeploy::DeploymentGroup",
+  	 "Properties" : {
+    	 "ApplicationName" : {"Ref" : "CDAPPNAME"},
+	"AutoRollbackConfiguration": {"Enabled" : true,"Events":["DEPLOYMENT_FAILURE"] },
+	"DeploymentGroupName": {"Ref": "CDGRPNAME"},
+	"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
+	"DeploymentStyle" : {"DeploymentOption" : "WITHOUT_TRAFFIC_CONTROL","DeploymentType" : "IN_PLACE"},
+	"Ec2TagFilters": [{"Key" : "CodeDeployTag","Type" : "KEY_AND_VALUE", "Value" : { "Ref": "CreationDate"}}],
+ 	"ServiceRoleArn" : {"Ref": "ARN" }
+}
+},
     "RDSInstance": {
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
-        "DBName": "csye6225",
+        "DBName": {"Ref":"DynamoDBTableName"},
         "AllocatedStorage": "100",
         "DBInstanceClass": "db.t2.medium",
         "Engine": "MySQL",
@@ -195,11 +235,6 @@
         "MasterUserPassword": "csye6225password",
         "MultiAZ": false,
         "DBInstanceIdentifier": "csye6225-spring2019",
-        "DBSecurityGroups" : [
-          {
-            "Ref": "DBServerSecurityGroup"
-          }
-        ],
         "PubliclyAccessible": true,
         "Port": "3306",
         "DBSubnetGroupName": {
@@ -209,7 +244,7 @@
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-RDSInstance"
+              "Ref": "CreationDate"
             }
           }
         ]
@@ -231,78 +266,21 @@
           }
         ],
         "ProvisionedThroughput": {
-          "ReadCapacityUnits": "1",
-          "WriteCapacityUnits": "1"
+          "ReadCapacityUnits": "5",
+          "WriteCapacityUnits": "5"
         },
-        "TableName": "csye6225",
+        "TableName": {"Ref":"DynamoDBTableName"},
         "Tags": [
           {
             "Key": "Name",
             "Value": {
-              "Fn::Sub": "csye6225-DynamoDBTable"
+              "Ref": "CreationDate"
             }
           }
         ]
       }
     }
     
-  },
-  "Outputs": {
-    "EC2Instance": {
-      "Description": "The EC2 Instance for Web Server",
-      "Value": {
-        "Ref": "EC2Instance"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "EC2InstanceID"
-        }
-      }
-    },
-    "WebServerSecurityGroup": {
-      "Description": "The security group id for the Web Server",
-      "Value": {
-        "Ref": "WebServerSecurityGroup"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "WebServerSecurityGroupID"
-        }
-      }
-    },
-    "DBServerSecurityGroup": {
-      "Description": "The security group id for the RDS Server",
-      "Value": {
-        "Ref": "DBServerSecurityGroup"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "DBServerSecurityGroupID"
-        }
-      }
-    },
-    "RDSInstance": {
-      "Description": "The RDS Instance for Backend Database",
-      "Value": {
-        "Ref": "RDSInstance"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "RDSInstanceID"
-        }
-      }
-    },
-    "DynamoDBTable": {
-      "Description": "The DynamoDBTableId",
-      "Value": {
-        "Ref": "DynamoDBTable"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "DynamoDBTableID"
-        }
-      }
-    }
-    
   }
+  
 }
