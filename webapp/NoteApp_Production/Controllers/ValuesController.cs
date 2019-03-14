@@ -143,7 +143,7 @@ namespace trial.Controllers
         
             
              file.CopyToAsync(stream);
-            fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
+            fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
             request.Key = fileName;
