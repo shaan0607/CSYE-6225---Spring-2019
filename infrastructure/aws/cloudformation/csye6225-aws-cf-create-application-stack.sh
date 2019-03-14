@@ -29,15 +29,28 @@ then
 fi
 echo "$keyName"
 
-echo "Please enter the ImageID of centos AMI  created"
-read imageid
-if [ -z "$imageid" ]
+#echo "Please enter the ImageID of centos AMI  created"
+#read imageid
+echo "Your latest AMI ID is:"
+imageid=$(aws ec2 describe-images --filters "Name=name,Values=csye6225*" --query "sort_by(Images, &CreationDate)[-1].[ImageId]" --output "text")
+if [ $? -eq 0 ]
 then
-	echo "ImageID error \n Exiting"
-	exit 1
+        echo "$imageid"
+else
+        echo "AMI Id retrival Failed"
+        exit 0
 fi
 
+<<<<<<< HEAD
 VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' --filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
+=======
+
+
+
+
+VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' \
+--filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
+>>>>>>> 4d2628e61c25119bec76aeab98be4d82323680ac
 
 
 subnet=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=${VpcId})
@@ -88,9 +101,16 @@ echo "Cloudformation template validation success"
 
 echo "Now Creating CloudFormation Stack"
 
+<<<<<<< HEAD
 ARN=$(aws iam get-role --role-name CodeDeployServiceRole --query 'Role.Arn' --output text)
 
 CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=CDAPPNAME,ParameterValue=csye6225-webapp ParameterKey=CDGRPNAME,ParameterValue=csye6225-webapp-deployment ParameterKey=ARN,ParameterValue=$ARN`
+=======
+export circleciuser=circleci
+
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser`
+
+>>>>>>> 4d2628e61c25119bec76aeab98be4d82323680ac
 if [ -z "$CRTSTACK_Code" ]
 then
 	echo "Stack Creation error exiting!"
