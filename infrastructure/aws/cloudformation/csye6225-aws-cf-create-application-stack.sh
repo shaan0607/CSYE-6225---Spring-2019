@@ -9,7 +9,7 @@ echo "$networkStackName"
 
 
 
-echo "Please enter Application Stack Name:"
+echo "Please enter Application Stack Name is :"
 read appStackName
 if [ -z "$appStackName" ]
 then
