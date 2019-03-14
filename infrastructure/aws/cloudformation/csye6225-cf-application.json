@@ -70,12 +70,19 @@
 		"pwd",
 		"mkdir /home/centos/WebApp",
 		"cd /usr/lib/systemd/system",
+		"export RDS_HOSTNAME=",
+                      {
+                        "Fn::GetAtt": [
+                          "RDSInstance",
+                          "Endpoint.Address"
+                        ]
+		},
                 "touch kestrel.service",
                 "sudo echo '[Unit]' > kestrel.service",
-                "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
+		"sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
                 "sudo echo '[Service]' >> kestrel.service",
                 "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me csye6225-webapp-spring2019.cagfy3cjztoy.us-east-1.rds.amazonaws.com csye6225master csye6225master csye6225password' >> kestrel.service",
+                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me ${RDS_HOSTNAME} csye6225master csye6225master csye6225password' >> kestrel.service",
                 "sudo echo 'User=centos' >> kestrel.service",
 		"sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
                 "sudo echo 'Restart=always' >> kestrel.service",
@@ -149,7 +156,11 @@
                   "FromPort":"443",
                   "ToPort":"443",
                   "CidrIp":"0.0.0.0/0"
-               }
+               },
+{                  "IpProtocol":"tcp",
+                  "FromPort":"5000",
+                  "ToPort":"5000",
+                  "CidrIp":"0.0.0.0/0"}
             ],
             "Tags":[
                {
