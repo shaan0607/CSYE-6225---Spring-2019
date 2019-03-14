@@ -1,4 +1,3 @@
-
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Application Stack for CSYE 6225 - Spring 2019",
@@ -34,6 +33,16 @@
     "VpcID": {
       
       "Type": "String"
+    },
+    "CDAPPNAME": {
+      
+      "Type": "String"
+    },    "CDGRPNAME": {
+      
+      "Type": "String"
+    },    "ARN": {
+      
+      "Type": "String"
     }
   },
   "Resources": {
@@ -43,11 +52,44 @@
         "ImageId": {
             "Ref": "ImageID"
           },
-        #"AvailabilityZone": "us-east-1c",
+
         "InstanceType": "t2.micro",
         "KeyName": {
             "Ref": "KeyName"
-          },
+          }, "UserData": {
+
+          "Fn::Base64": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                "#!/bin/bash -xe ", 
+		"pwd",
+		"mkdir /home/centos/WebApp",
+		"cd /usr/lib/systemd/system",
+                "sudo touch kestrel.service",
+                "sudo echo '[Unit]' > kestrel.service",
+                "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
+                "sudo echo 'After=syslog.target network.target' >> kestrel.service",
+                "sudo echo '[Service]' >> kestrel.service",
+                "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
+                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me csye6225-webapp-spring2019.cagfy3cjztoy.us east-1.rds.amazonaws.com csye6225master csye6225master csye6225password' >> kestrel.service",
+                "sudo echo 'ExecStop=/bin/kill -15 $MAINPID' >> kestrel.service",
+                "sudo echo 'User=centos' >> kestrel.service",
+		"sudo echo 'SyslogIdentifier=aspnetcoreapp' >> kestrel.service",
+                "sudo echo 'Restart=always' >> kestrel.service",
+		"sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
+                "sudo echo '[Install]' >> kestrel.service",
+                "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
+		"sudo su",
+		"chown centos /usr/lib/systemd/system/kestrel.service",
+                "systemctl daemon-reload",
+                "systemctl enable kestrel.service",
+                "systemctl start kestrel.service"
+                            ]
+                        ]
+                    }
+
+        },
         
         "SubnetId": {
             "Ref": "PublicSubnetKey1"
@@ -161,6 +203,18 @@
         ]
       }
     },
+    "DeploymentGroup": {
+	 "Type" : "AWS::CodeDeploy::DeploymentGroup",
+  	 "Properties" : {
+    	 "ApplicationName" : {"Ref" : "CDAPPNAME"},
+	"AutoRollbackConfiguration": {"Enabled" : true,"Events":["DEPLOYMENT_FAILURE"] },
+	"DeploymentGroupName": {"Ref": "CDGRPNAME"},
+	"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
+	"DeploymentStyle" : {"DeploymentOption" : "WITHOUT_TRAFFIC_CONTROL","DeploymentType" : "IN_PLACE"},
+	"Ec2TagFilters": [{"Key" : "CodeDeployTag","Type" : "KEY_AND_VALUE", "Value" : "Deploy"}],
+ 	"ServiceRoleArn" : {"Ref": "ARN" }
+}
+},
     "RDSInstance": {
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
@@ -253,6 +307,7 @@
         }
       }
     },
+
     "RDSInstance": {
       "Description": "The RDS Instance for Backend Database",
       "Value": {
