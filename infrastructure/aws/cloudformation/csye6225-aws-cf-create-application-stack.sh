@@ -75,6 +75,43 @@ then
 fi
 
 
+VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' --filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
+
+
+subnet=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=${VpcId})
+subnetid1=$(echo -e "$subnet" | jq '.Subnets[0].SubnetId' | tr -d '"')
+subnetid2=$(echo -e "$subnet" | jq '.Subnets[1].SubnetId' | tr -d '"')
+subnetid3=$(echo -e "$subnet" | jq '.Subnets[2].SubnetId' | tr -d '"')
+
+
+
+if [ -z "$subnetid1" ]
+then
+	echo "Subnet ID 1 error \n Exiting"
+	exit 1
+fi
+
+
+if [ -z "$VpcId" ]
+then
+	echo "VPC ID error \n Exiting"
+	exit 1
+fi
+
+
+if [ -z "$subnetid2" ]
+then
+	echo "Subnet ID 2 error \n Exiting"
+	exit 1
+fi
+
+
+if [ -z "$subnetid3" ]
+then
+	echo "Subnet ID 3 error \n Exiting"
+	exit 1
+fi
+
 
 # Create CloudFormation Stack
 echo "Validating template"

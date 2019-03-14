@@ -62,29 +62,25 @@
                         "Fn::Join": [
                             "\n",
                             [
-                "#!/bin/bash -xe ", 
+                "#!/bin/bash -xe", 
 		"pwd",
 		"mkdir /home/centos/WebApp",
 		"cd /usr/lib/systemd/system",
-                "sudo touch kestrel.service",
+                "touch kestrel.service",
                 "sudo echo '[Unit]' > kestrel.service",
                 "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
-                "sudo echo 'After=syslog.target network.target' >> kestrel.service",
                 "sudo echo '[Service]' >> kestrel.service",
                 "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me csye6225-webapp-spring2019.cagfy3cjztoy.us east-1.rds.amazonaws.com csye6225master csye6225master csye6225password' >> kestrel.service",
-                "sudo echo 'ExecStop=/bin/kill -15 $MAINPID' >> kestrel.service",
+                "sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me csye6225-webapp-spring2019.cagfy3cjztoy.us-east-1.rds.amazonaws.com csye6225master csye6225master csye6225password' >> kestrel.service",
                 "sudo echo 'User=centos' >> kestrel.service",
-		"sudo echo 'SyslogIdentifier=aspnetcoreapp' >> kestrel.service",
+		"sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
                 "sudo echo 'Restart=always' >> kestrel.service",
 		"sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
                 "sudo echo '[Install]' >> kestrel.service",
                 "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
 		"sudo su",
 		"chown centos /usr/lib/systemd/system/kestrel.service",
-                "systemctl daemon-reload",
-                "systemctl enable kestrel.service",
-                "systemctl start kestrel.service"
+		"chown centos /home/centos/WebApp"
                             ]
                         ]
                     }

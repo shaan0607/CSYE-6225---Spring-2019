@@ -27,6 +27,29 @@
       <e p="app.config" t="Include" />
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
+      <e p="aws" t="Include">
+        <e p="AWSSDK.Core.dll" t="Include" />
+        <e p="AWSSDK.Extensions.NETCore.Setup.dll" t="Include" />
+        <e p="AWSSDK.S3.dll" t="Include" />
+        <e p="Amazon.Core.dll" t="Include" />
+        <e p="Amazon.S3.dll" t="Include" />
+        <e p="BCrypt.Net.dll" t="Include" />
+        <e p="Carbon.Json.dll" t="Include" />
+        <e p="Carbon.Storage.dll" t="Include" />
+        <e p="MySqlConnector.dll" t="Include" />
+        <e p="Newtonsoft.Json.dll" t="Include" />
+        <e p="NoteApp_Production.deps.json" t="Include" />
+        <e p="NoteApp_Production.dll" t="Include" />
+        <e p="NoteApp_Production.dll.config" t="Include" />
+        <e p="NoteApp_Production.pdb" t="Include" />
+        <e p="NoteApp_Production.runtimeconfig.json" t="Include" />
+        <e p="Pomelo.EntityFrameworkCore.MySql.dll" t="Include" />
+        <e p="Pomelo.JsonObject.dll" t="Include" />
+        <e p="app.config" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="web.config" t="Include" />
+      </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="mAttachments.cs" t="Include" />
       <e p="obj" t="ExcludeRecursive">
