@@ -3,16 +3,17 @@
    "Parameters":{
       "circleci":{
          "Description":"circleci user",
-         "Type ":"String"
+         "Type":"String"
       },
      "CDAPPNAME":{
          "Type":"String"
       },
 
 "CDARN": {
-"Type":"String"},"CDARN1":{
-"Type" : "String"
-}
+"Type":"String"},
+	"CDARN1": {"Type": "String"},
+	"Bucket":{"Type": "String"},
+	"Bucket1":{"Type": "String"}
    },
 "Resources":{
    "CodeDeployEC2S3": {
@@ -30,11 +31,7 @@
 		"s3:Delete*"
             ],
             "Effect": "Allow",
-            "Resource": [{
-                "Ref": "CDARN"
-              },{
-                "Ref": "CDARN1"
-              }]
+            "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
         }
     ]
       },
@@ -111,11 +108,7 @@
                         "s3:PutObject"
                      ],
                      "Resource":[
-                 {
-                "Ref": "CDARN"
-              },{
-                "Ref": "CDARN1"
-              }
+                      {"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}
                      ]
                   }
                ]
