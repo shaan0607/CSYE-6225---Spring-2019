@@ -90,7 +90,7 @@ echo "Validating template"
 TMP_code=`aws cloudformation validate-template --template-body file://./csye6225-cf-application.json`
 if [ -z "$TMP_code" ]
 then
-	echo "Template error exiting!"
+	echo "Template error exiting! "
 	exit 1
 fi
 echo "Cloudformation template validation success"
