@@ -3,7 +3,7 @@
    "Parameters":{
       "circleci":{
          "Description":"circleci user",
-         "Type ":"String"
+         "Type":"String"
       },
      "CDAPPNAME":{
          "Type":"String"
