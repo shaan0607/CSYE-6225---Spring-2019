@@ -21,5 +21,22 @@
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0-preview1-final" />
         <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.2.0" />
     </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\1entos-template.json" />
+      <_ContentIncludedByDefault Remove="aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\NoteApp_Production.runtimeconfig.json" />
+    </ItemGroup>
 
 </Project>

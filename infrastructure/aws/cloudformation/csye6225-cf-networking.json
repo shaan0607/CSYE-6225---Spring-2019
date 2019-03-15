@@ -16,6 +16,7 @@
             "Properties": {
                 "CidrBlock": "191.0.0.0/24",
                 "AvailabilityZone": "us-east-1a",
+		"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",
@@ -32,6 +33,7 @@
             "Properties": {
                 "CidrBlock": "191.0.1.0/24",
                 "AvailabilityZone": "us-east-1b",
+"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",
@@ -48,6 +50,7 @@
             "Properties": {
                 "CidrBlock": "191.0.2.0/24",
                 "AvailabilityZone": "us-east-1c",
+"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",

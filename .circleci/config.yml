@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - Assignment5
+    docker:
+      - image: circleci/python:2.7-jessie
+    steps:
+      - checkout
+
+      - run:
+          name: Install packages
+          command: sudo apt update && sudo apt install wget zip unzip python2.7 python-pip -y 
+      - run:
+          name: Install Dotnet
+          command: wget -q https://packages.microsoft.com/config/ubuntu/14.04/packages-microsoft-prod.deb &&sudo dpkg -i packages-microsoft-prod.deb && sudo apt-get install apt-transport-https -y && sudo apt-get update && sudo apt-get install dotnet-sdk-2.2 -y
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+
+      - run:
+          name: Build Artifact
+          command: |
+            cd webapp
+            ls -al
+            cd NoteApp_Production
+            pwd
+            dotnet restore
+            dotnet publish -o aws
+            cd aws/
+            ls -al
+            cd ../
+            cd ../
+            pwd
+            ls -al
+      - run:
+          name: Zip Artifact
+          command: |
+            echo "Hello the current build number is ${CIRCLE_BUILD_NUM}"
+            pwd
+            mkdir -p codedeploy_artifact
+            cp infrastructure/aws/codedeploy/*.sh .
+            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip webapp/NoteApp_Production/aws/* *.sh *.yml 
+            mv csye6225-web-app-${CIRCLE_BUILD_NUM}.zip codedeploy_artifact/
+            cd codedeploy_artifact
+            ls -al
+            pwd
+            cd ..
+            pwd
+            ls -al
+      - run:
+          name: Upload Artifact to S3
+          command: |
+            aws s3 sync codedeploy_artifact s3://${S3Bucket}
+      - run:
+          name: Code-Deployment
+          command: |
+            aws deploy create-deployment --application-name csye6225-webapp --deployment-group-name csye6225-webapp-deployment --s3-location bucket=${S3Bucket},bundleType=zip,key=csye6225-web-app-${CIRCLE_BUILD_NUM}.zip --description "Deployed via CircleCI" --region us-east-1
+
+
+
