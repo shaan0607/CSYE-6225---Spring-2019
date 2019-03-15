@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: ./webapp/NoteApp_Production/aws/
+    destination: /home/centos/WebApp
+hooks:
+  ApplicationStop:
+    - location: ./stop_service.sh
+      timeout: 300
+      runas: centos
+  ApplicationStart:
+    - location: ./start_service.sh
+      timeout: 300
+      runas: centos

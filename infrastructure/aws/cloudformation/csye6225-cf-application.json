@@ -32,10 +32,17 @@
       "PublicSubnetKey1":{
          "Type":"String"
       },
+	"CDARN":{"Type": "String"},
+	"CDARN1": {"Type": "String"},
+	"Bucket":{"Type": "String"},
+	"Bucket1":{"Type": "String"},
 
       "VpcID":{
          "Type":"String"
-      }
+      },
+	"Bucket":{
+	"Type":"String"
+	}
    },
    "Conditions":{
       "Is-EC2-VPC":{
@@ -75,8 +82,8 @@
 		"sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
                 "sudo echo '[Service]' >> kestrel.service",
                 "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me ",{
-		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}," csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
+		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
+		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
 
                 "sudo echo 'User=centos' >> kestrel.service",
 		"sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
@@ -320,7 +327,7 @@
                                                                 "s3:List*"
 							],
 							"Effect": "Allow",
-							"Resource": ["arn:aws:s3:::code-deploy.*", "arn:aws:s3:::web-app.*"]
+							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
 					}
 				}]
@@ -462,3 +469,5 @@
       }
    }
 }
+
+

@@ -22,6 +22,7 @@ using System.IO;
 using Amazon.S3;
 using Amazon.S3.Transfer;
 using Amazon;
+using Amazon.Runtime;
 using Amazon.S3.Model;
 using trial3;
 
@@ -45,6 +46,9 @@ namespace trial.Controllers
         static int rand=  1;
         private CLOUD_CSYEContext _context;
          private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+         private readonly AWSCredentials credentials;
+         
+         
         public string getUsername(){
             
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
@@ -57,10 +61,7 @@ namespace trial.Controllers
         {
             _context = context;
             s3Client = new AmazonS3Client(bucketRegion);
-            keys k = new keys();
-
-
-            // _context.Database.EnsureCreated();
+             // _context.Database.EnsureCreated();
         }
         
         [HttpGet]
@@ -68,11 +69,13 @@ namespace trial.Controllers
         [Route("/")]
         public ActionResult Get()
         {   try{
+          //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
             return StatusCode(200, new{result =DateTime.Now});
+           
         }
         catch{
             throw new Exception("Opps");
-        }
+       }
 
 
         }
@@ -140,7 +143,7 @@ namespace trial.Controllers
         
             
              file.CopyToAsync(stream);
-            fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
+            fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
             request.Key = fileName;
@@ -339,6 +342,7 @@ namespace trial.Controllers
                         if(atchm.noteID == id)
                         {
                             key = atchm.FileName;
+                            
                             fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
                             _context.attachments.Remove(atchm);
                             
@@ -444,8 +448,12 @@ namespace trial.Controllers
             if(file.Length > 0)
                     using (var stream = new FileStream(filePath, FileMode.Create))
 
-            
+           
             file.CopyToAsync(stream);
+            
+            Attachments a1 = _context.attachments.Find(aid);
+            string key = a1.FileName;
+            fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
             fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
             
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();

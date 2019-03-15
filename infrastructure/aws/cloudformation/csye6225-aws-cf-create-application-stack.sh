@@ -90,7 +90,7 @@ echo "Validating template"
 TMP_code=`aws cloudformation validate-template --template-body file://./csye6225-cf-application.json`
 if [ -z "$TMP_code" ]
 then
-	echo "Template error exiting!"
+	echo "Template error exiting! "
 	exit 1
 fi
 echo "Cloudformation template validation success"
@@ -99,8 +99,15 @@ echo "Now Creating CloudFormation Stack"
 
 export circleciuser=circleci
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser`
+DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
+Bucket="${DOMAIN_NAME}csye6225.com"
 
+DOMAIN_NAME1=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
+
+CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}
+
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=Bucket,ParameterValue=arn:aws:s3:::$Bucket ParameterKey=Bucket1,ParameterValue=arn:aws:s3:::$Bucket/* ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/*`
+ 
 if [ -z "$CRTSTACK_Code" ]
 then
 	echo "Stack Creation error exiting!"

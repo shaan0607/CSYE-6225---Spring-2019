@@ -10,7 +10,10 @@
       },
 
 "CDARN": {
-"Type":"String"}
+"Type":"String"},
+	"CDARN1": {"Type": "String"},
+	"Bucket":{"Type": "String"},
+	"Bucket1":{"Type": "String"}
    },
 "Resources":{
    "CodeDeployEC2S3": {
@@ -28,9 +31,7 @@
 		"s3:Delete*"
             ],
             "Effect": "Allow",
-            "Resource": [{
-                "Ref": "CDARN"
-              }]
+            "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
         }
     ]
       },
@@ -107,8 +108,7 @@
                         "s3:PutObject"
                      ],
                      "Resource":[
-                        "arn:aws:s3:::code-deploy.*",
-                        "arn:aws:s3:::web-app.*"
+                      {"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}
                      ]
                   }
                ]
