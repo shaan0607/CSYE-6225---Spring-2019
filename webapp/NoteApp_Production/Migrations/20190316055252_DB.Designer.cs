@@ -9,7 +9,7 @@ using trial3;
 namespace NoteApp_Production.Migrations
 {
     [DbContext(typeof(CLOUD_CSYEContext))]
-    [Migration("20190314090503_DB")]
+    [Migration("20190316055252_DB")]
     partial class DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

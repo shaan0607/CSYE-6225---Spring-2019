@@ -402,7 +402,7 @@ namespace trial.Controllers
                   NOTES note = _context.notes.Find(id);
 
                   var Attachment = new Attachments{url=url,FileName=fileName, length=file.Length, noteID = note.noteID};
-                  _context.Add(Attachment);
+                  _context.attachments.Add(Attachment);
                   _context.SaveChanges(); 
 
              IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable();
