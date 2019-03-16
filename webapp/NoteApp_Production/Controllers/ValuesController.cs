@@ -131,18 +131,21 @@ namespace trial.Controllers
             var username = credentials[0];
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-            Console.WriteLine(arguments[0]);
+   
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
 
             var filePath = Path.Combine(uploads);
-            if(file.Length > 0)
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-        
-            
-             file.CopyToAsync(stream);
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+
+
+                    file.CopyToAsync(stream);
+            }
+
             fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
@@ -389,9 +392,7 @@ namespace trial.Controllers
                      request.Protocol   = Protocol.HTTP;
                      string url =  fileTransferUtility.S3Client.GetPreSignedURL(request);         
             string username = getUsername();
-         Console.WriteLine(arguments[1]);
-                Console.WriteLine("Upload 1 completed");
-            if(file.Length > 0){
+    if(file.Length > 0){
 
             }
 
