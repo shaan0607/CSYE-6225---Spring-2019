@@ -12642,10 +12642,14 @@
       ],
       "configFilePaths": [
 <<<<<<< HEAD
+<<<<<<< HEAD
         "/home/arjit/.nuget/NuGet/NuGet.Config"
 =======
         "/home/shantanu/.config/NuGet/NuGet.Config"
 >>>>>>> d458072c8e751bbe98bab6b361208e4513bb24d5
+=======
+        "/home/shantanu/.nuget/NuGet/NuGet.Config"
+>>>>>>> 672e6231eebf62976c1796783ab50ef349a53004
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"

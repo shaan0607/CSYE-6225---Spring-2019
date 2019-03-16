@@ -131,18 +131,21 @@ namespace trial.Controllers
             var username = credentials[0];
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-            Console.WriteLine(arguments[0]);
+   
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
 
             var filePath = Path.Combine(uploads);
-            if(file.Length > 0)
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-        
-            
-             file.CopyToAsync(stream);
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+
+
+                    file.CopyToAsync(stream);
+            }
+
             fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
@@ -380,9 +383,9 @@ namespace trial.Controllers
         //[Consumes("multipart/form-data")]
         [Authorize]
         public  ActionResult AttachImage(string id, IFormFile file){
-            var fileTransferUtility =
+                      var fileTransferUtility =
                     new TransferUtility(s3Client);
-            Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+         
     
             string fileName = (rand.ToString() + file.FileName );
             rand++;
@@ -394,15 +397,16 @@ namespace trial.Controllers
                    // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
                     file.CopyToAsync(stream);
                 }  
+                   
                      fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
                      GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
-                     request.BucketName = bucketName;
+                     request.BucketName =  bucketName;
                      request.Key = fileName;
                      request.Expires    = DateTime.Now.AddYears((2));
                      request.Protocol   = Protocol.HTTP;
                      string url =  fileTransferUtility.S3Client.GetPreSignedURL(request);         
             string username = getUsername();
-         Console.WriteLine(arguments[1]);
+        // Console.WriteLine(arguments[1]);
                 Console.WriteLine("Upload 1 completed");
             if(file.Length > 0){
 
@@ -418,7 +422,7 @@ namespace trial.Controllers
              List<mAttachments> am = new List<mAttachments>();
              string key = "";
              foreach(Attachments at in a1){
-                 if(at.noteID == id)
+                 if(at.noteID== id)
                  {
                      key = at.FileName;
                      mAttachments mA = new mAttachments();
@@ -428,7 +432,7 @@ namespace trial.Controllers
                  }
             }
              
-             fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
+           //  fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketname, Key =  key });
             
             IEnumerable<mAttachments> newA = am;
     
@@ -442,9 +446,8 @@ namespace trial.Controllers
                 var conflict = "Bad Request";
                 return StatusCode(409, new{ result = conflict});
 
-            }
+            }  }
 
-    }
     
         [HttpPut]
         [Route("/note/{id}/attachments/{aid}")]
