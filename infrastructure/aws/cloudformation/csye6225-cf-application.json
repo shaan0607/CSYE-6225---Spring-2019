@@ -39,14 +39,10 @@
 
       "VpcID":{
          "Type":"String"
-<<<<<<< HEAD
-      }
-=======
       },
 	"S3Bucket":{
 	"Type":"String"
 	}
->>>>>>> 672e6231eebf62976c1796783ab50ef349a53004
    },
    "Conditions":{
       "Is-EC2-VPC":{
@@ -86,22 +82,8 @@
 		"sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
                 "sudo echo '[Service]' >> kestrel.service",
                 "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll code-deploy.csye6225-spring2019-deosthales.me ",{
-		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}," csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
-=======
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
-		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
->>>>>>> cae506ca846f41d9bccbfab35b3b4105d3c397d0
-=======
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
-=======
 		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "S3Bucket"}," ",{
->>>>>>> 672e6231eebf62976c1796783ab50ef349a53004
 		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
->>>>>>> cae506ca846f41d9bccbfab35b3b4105d3c397d0
 
                 "sudo echo 'User=centos' >> kestrel.service",
 		"sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
@@ -487,3 +469,5 @@
       }
    }
 }
+
+
