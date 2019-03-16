@@ -372,7 +372,7 @@ namespace trial.Controllers
         public  ActionResult AttachImage(string id, IFormFile file){
                       var fileTransferUtility =
                     new TransferUtility(s3Client);
-            Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+         
     
             string fileName = (rand.ToString() + file.FileName );
             rand++;
@@ -419,7 +419,7 @@ namespace trial.Controllers
                  }
             }
              
-             fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = k.bucketname, Key =  key });
+           //  fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketname, Key =  key });
             
             IEnumerable<mAttachments> newA = am;
     
