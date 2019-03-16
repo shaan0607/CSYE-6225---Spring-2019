@@ -10,10 +10,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controllers/ValuesController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-48">
+            <state relative-caret-position="-1398">
               <caret line="403" column="116" selection-start-line="403" selection-start-column="98" selection-end-line="403" selection-end-column="116" />
               <folding>
                 <marker date="1552715553279" expanded="false" signature="6:696" ph="..." />
@@ -84,23 +84,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Migrations/20190316055252_DB.cs">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Migrations/20190316055901_DB.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="52" selection-start-line="52" selection-end-line="54" selection-end-column="46" />
+            <state relative-caret-position="-543">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding>
-                <marker date="1552715573107" expanded="false" signature="6:61" ph="..." />
-                <marker date="1552715573107" expanded="true" signature="102:3100" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="144:3098" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="220:2775" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="358:919" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="958:1055" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="1186:1385" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="1424:1524" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="1661:2122" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="2161:2570" ph="{...}" />
-                <marker date="1552715573107" expanded="true" signature="2848:3092" ph="{...}" />
+                <marker date="1552715941944" expanded="false" signature="6:61" ph="..." />
+                <marker date="1552715941944" expanded="true" signature="102:3100" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="144:3098" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="220:2775" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="358:919" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="958:1055" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="1186:1385" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="1424:1524" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="1661:2122" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="2161:2570" ph="{...}" />
+                <marker date="1552715941944" expanded="true" signature="2848:3092" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -192,11 +192,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/93/a78e0c3b/BasicAWSCredentials.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Migrations/20190316055901_DB.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/19/119759f5/ImmutableCredentials.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/fd/793d7438/EnvironmentVariablesAWSCredentials.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D50173B-AABB-4301-80FF-05DFCADF9CD5/0b/5dc328de/AWSCredentials.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Migrations/20190316055252_DB.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/127E718A-C42E-4542-A71B-54CEC3EF156B/18/1e86c897/WebHostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CLOUD_CSYEContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2066B50D-7E19-431B-8AB9-2936931EF428/b0/65e60f3a/AwsCredentials.cs" root0="SKIP_HIGHLIGHTING" />
@@ -220,7 +220,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="293" />
     <option name="y" value="47" />
     <option name="width" value="1400" />
@@ -301,12 +301,12 @@
       <workItem from="1552445961339" duration="14088000" />
       <workItem from="1552520506847" duration="1516000" />
       <workItem from="1552526508226" duration="12804000" />
-      <workItem from="1552710256787" duration="4740000" />
+      <workItem from="1552710256787" duration="6462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39701000" />
+    <option name="totallyTimeSpent" value="41423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -318,10 +318,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="925" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="925" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26342005" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26342005" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -339,7 +339,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Unit Tests" order="11" />
       <window_info anchor="bottom" id="REST Client" order="12" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.32914573" />
+      <window_info anchor="bottom" id="Terminal" order="13" visible="true" weight="0.32914573" />
       <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.32914573" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -575,9 +575,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Migrations/20190316055252_DB.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="52" selection-start-line="52" selection-end-line="54" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Migrations/20190316055901_DB.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-543">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding>
+            <marker date="1552715941944" expanded="false" signature="6:61" ph="..." />
+            <marker date="1552715941944" expanded="true" signature="102:3100" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="144:3098" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="220:2775" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="358:919" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="958:1055" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="1186:1385" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="1424:1524" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="1661:2122" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="2161:2570" ph="{...}" />
+            <marker date="1552715941944" expanded="true" signature="2848:3092" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/ValuesController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
+        <state relative-caret-position="-1398">
           <caret line="403" column="116" selection-start-line="403" selection-start-column="98" selection-end-line="403" selection-end-column="116" />
           <folding>
             <marker date="1552715553279" expanded="false" signature="6:696" ph="..." />
@@ -643,26 +670,6 @@
             <marker date="1552715553279" expanded="true" signature="19104:19567" ph="{...}" />
             <marker date="1552715553279" expanded="true" signature="19174:19261" ph="{...}" />
             <marker date="1552715553279" expanded="true" signature="19587:19715" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Migrations/20190316055252_DB.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="52" selection-start-line="52" selection-end-line="54" selection-end-column="46" />
-          <folding>
-            <marker date="1552715573107" expanded="false" signature="6:61" ph="..." />
-            <marker date="1552715573107" expanded="true" signature="102:3100" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="144:3098" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="220:2775" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="358:919" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="958:1055" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="1186:1385" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="1424:1524" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="1661:2122" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="2161:2570" ph="{...}" />
-            <marker date="1552715573107" expanded="true" signature="2848:3092" ph="{...}" />
           </folding>
         </state>
       </provider>
