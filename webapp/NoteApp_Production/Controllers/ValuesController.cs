@@ -243,7 +243,6 @@ namespace trial.Controllers
  
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
-                if(notes!=null){
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                 List<mAttachments> newat = new List<mAttachments>();
 
@@ -265,9 +264,6 @@ namespace trial.Controllers
                 {
                     return StatusCode(401, new{result = "Not Authorized"});
                 }
-                }else{
-                      return StatusCode(401, new{result = "note Absent"});
-                  }
         }   
         [HttpGet]
         [Route("/note/{id}/attachments")]
@@ -278,7 +274,6 @@ namespace trial.Controllers
  
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
-                if(notes!=null){
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                 List<mAttachments> newat = new List<mAttachments>();
 
@@ -300,9 +295,6 @@ namespace trial.Controllers
                 {
                     return StatusCode(401, new{result = "Not Authorized"});
                 }
-               }else{
-                      return StatusCode(401, new{result = "note Absent"});
-                  }
         }
 
         [HttpPut]
@@ -312,7 +304,6 @@ namespace trial.Controllers
 
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
-                  if(note!=null){
                   if(note.EMAIL == username){
                   var ID = note.noteID;
                 //IEnumerable<Attachments> a = _context.attachments.AsEnumerable();
@@ -328,9 +319,6 @@ namespace trial.Controllers
         else{
             return StatusCode(401, new{result = "Not Authorized"});
         }
-                  }else{
-                      return StatusCode(404, new{result = "No note"});
-                  }
         }
         
         [HttpDelete]
@@ -344,7 +332,6 @@ namespace trial.Controllers
                     string username = getUsername();
 
                     NOTES note = _context.notes.Find(id);
-                    
 
                     IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
                     string key = "";
