@@ -1,10 +1,10 @@
-
 echo Enter Stack name
 #read stack name
 read sn
 #create stack
 {
-  validresp=$(aws cloudformation validate-template --template-body file://csye6225-aws-cf-policies.json) &&  echo "Template validated"
+  validresp=$(aws cloudformation validate-template --template-body file://csye6225-aws-cf-policies.json) &&
+  echo "Template validated"
 } || {
   echo "$validresp"
   echo "Invalid Template"
