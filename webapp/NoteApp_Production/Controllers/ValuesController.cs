@@ -416,7 +416,7 @@ namespace trial.Controllers
                  }
             }
              
-             fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
+      //       fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
             
             IEnumerable<mAttachments> newA = am;
     
