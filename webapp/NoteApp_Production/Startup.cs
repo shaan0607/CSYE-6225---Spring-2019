@@ -85,7 +85,7 @@ namespace NoteApp_Production
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
                 
             if (env.IsDevelopment())
@@ -97,6 +97,7 @@ namespace NoteApp_Production
             app.UseExceptionHandler("/Error");
             app.UseHsts();
             }
+            loggerFactory.AddFile("logs/csye6225.log");
             UpdateDatabase(app);
              app.UseAuthentication();
        

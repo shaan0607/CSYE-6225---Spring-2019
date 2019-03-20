@@ -34,6 +34,15 @@ namespace trial.Controllers
        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
      //  static UserServices us = new UserServices();
+
+    public class ValuesController : ControllerBase
+    {
+            readonly ILogger<ValuesController> _log;
+    
+    public ValuesController(ILogger<ValuesController> log)
+    {
+        _log = log;
+    }
         private static IAmazonS3 s3Client;
       
 
@@ -70,6 +79,7 @@ namespace trial.Controllers
         public ActionResult Get()
         {   try{
           //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
+           _log.LogInformation("Hello, world!");
             return StatusCode(200, new{result =DateTime.Now});
            
         }
