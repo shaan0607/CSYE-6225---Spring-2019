@@ -3,8 +3,6 @@ os: linux
 files:
   - source: ./webapp/NoteApp_Production/aws/
     destination: /home/centos/WebApp
-  - source: cloudwatch-config.json
-    destination: /home/centos/WebApp
 hooks:
   ApplicationStop:
     - location: ./stop_service.sh
