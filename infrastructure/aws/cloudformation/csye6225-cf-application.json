@@ -76,6 +76,8 @@
                 "#!/bin/bash -xe", 
 		"pwd",
 		"mkdir /home/centos/WebApp",
+		"wget https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm",
+		"sudo rpm -U ./amazon-cloudwatch-agent.rpm"
 		"cd /usr/lib/systemd/system",
                 "touch kestrel.service",
                 "sudo echo '[Unit]' > kestrel.service",
@@ -94,7 +96,7 @@
                 "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
 		"sudo su",
 		"chown centos /usr/lib/systemd/system/kestrel.service",
-		"chown centos /home/centos/WebApp"
+		"chown centos /home/centos/WebApp",
                             ]
                         ]
                     }
