@@ -77,7 +77,7 @@
 		"pwd",
 		"mkdir /home/centos/WebApp",
 		"wget https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm",
-		"sudo rpm -U ./amazon-cloudwatch-agent.rpm"
+		"sudo rpm -U ./amazon-cloudwatch-agent.rpm",
 		"cd /usr/lib/systemd/system",
                 "touch kestrel.service",
                 "sudo echo '[Unit]' > kestrel.service",
@@ -96,7 +96,7 @@
                 "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
 		"sudo su",
 		"chown centos /usr/lib/systemd/system/kestrel.service",
-		"chown centos /home/centos/WebApp",
+		"chown centos /home/centos/WebApp"
                             ]
                         ]
                     }
@@ -299,6 +299,41 @@
             ]
          }
       },
+"CloudWatchPolicy": {
+   "Type" : "AWS::IAM::Policy",
+   "Properties" : {
+      "PolicyName" : "CloudWatchPolicy",
+      "PolicyDocument" : {
+            "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:logs:::*"
+              ]
+            },
+	   {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": "*"
+          }
+          ] 
+      },
+     "Roles" : [{
+"Ref":"CodeDeployEC2ServiceRole"
+}]
+   }
+
+},
 
       "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
@@ -331,10 +366,37 @@
 							"Effect": "Allow",
 							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
+					},
+
+      				"PolicyName" : "CloudWatchPolicy",
+      				"PolicyDocument" : {
+            					"Version": "2012-10-17",
+          					"Statement": [
+            						{
+              						"Action": [
+                						"logs:CreateLogGroup",
+                						"logs:CreateLogStream",
+                						"logs:PutLogEvents",
+                						"logs:DescribeLogStreams"
+              						],
+              						"Effect": "Allow",
+              						"Resource": [
+                					"arn:aws:logs:::*"
+             						 ]
+            						},
+	   						{
+            						"Effect": "Allow",
+            						"Action": [
+                						"cloudwatch:PutMetricAlarm",
+                						"cloudwatch:PutMetricData"
+            						],
+            						"Resource": "*"
+          						}
+          						] 
+      							}
+					       }]
 					}
-				}]
-			}
-      },
+      					},
 
 
         "CodeDeployServiceRole": {
