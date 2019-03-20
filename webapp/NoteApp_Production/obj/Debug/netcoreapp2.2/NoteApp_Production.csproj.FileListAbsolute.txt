@@ -51,3 +51,10 @@
 /home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/Debug/netcoreapp2.2/NoteApp_Production.AssemblyInfo.cs
 /home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/Debug/netcoreapp2.2/NoteApp_Production.dll
 /home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/Debug/netcoreapp2.2/NoteApp_Production.pdb
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.dll.config
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.deps.json
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.runtimeconfig.json
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.runtimeconfig.dev.json
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.dll
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/bin/Debug/netcoreapp2.2/NoteApp_Production.pdb
+/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/Debug/netcoreapp2.2/NoteApp_Production.RazorTargetAssemblyInfo.cache

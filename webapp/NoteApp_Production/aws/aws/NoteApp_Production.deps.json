@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "b3c9157b1df1edab60387e446c114acd77fc2743"
+    "signature": "ebe9b320cefebd956c04a2009d2a99ce900f5f92"
   },
   "compilationOptions": {
     "defines": [
@@ -30,14 +30,12 @@
           "Amazon.S3": "4.0.0",
           "BCrypt.Net": "0.1.0",
           "Microsoft.AspNetCore.App": "2.2.0",
-          "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.2.0",
           "Microsoft.Extensions.Configuration.CommandLine": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
           "Newtonsoft.Json": "12.0.1",
-          "Pomelo.EntityFrameworkCore.MySql": "2.2.0-preview1-final",
-          "Serilog.Extensions.Logging.File": "1.1.0"
+          "Pomelo.EntityFrameworkCore.MySql": "2.2.0-preview1-final"
         },
         "runtime": {
           "NoteApp_Production.dll": {}
@@ -414,133 +412,6 @@
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {}
         }
       },
-      "Serilog/2.5.0": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
-          "System.Collections": "4.3.0",
-          "System.Collections.NonGeneric": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Serilog.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.5.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.3/Serilog.dll": {}
-        }
-      },
-      "Serilog.Extensions.Logging/1.4.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
-          "Serilog": "2.5.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.4.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {}
-        }
-      },
-      "Serilog.Extensions.Logging.File/1.1.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
-          "NETStandard.Library": "2.0.3",
-          "Serilog": "2.5.0",
-          "Serilog.Extensions.Logging": "1.4.0",
-          "Serilog.Formatting.Compact": "1.0.0",
-          "Serilog.Sinks.Async": "1.1.0",
-          "Serilog.Sinks.RollingFile": "3.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Serilog.Extensions.Logging.File.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.3/Serilog.Extensions.Logging.File.dll": {}
-        }
-      },
-      "Serilog.Formatting.Compact/1.0.0": {
-        "dependencies": {
-          "Serilog": "2.5.0"
-        },
-        "runtime": {
-          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {}
-        }
-      },
-      "Serilog.Sinks.Async/1.1.0": {
-        "dependencies": {
-          "Serilog": "2.5.0",
-          "System.Collections.Concurrent": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.1/Serilog.Sinks.Async.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.1.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.1/Serilog.Sinks.Async.dll": {}
-        }
-      },
-      "Serilog.Sinks.File/3.2.0": {
-        "dependencies": {
-          "Serilog": "2.5.0",
-          "System.IO": "4.3.0",
-          "System.IO.FileSystem": "4.3.0",
-          "System.IO.FileSystem.Primitives": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Timer": "4.0.1"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Serilog.Sinks.File.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "3.2.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.3/Serilog.Sinks.File.dll": {}
-        }
-      },
-      "Serilog.Sinks.RollingFile/3.3.0": {
-        "dependencies": {
-          "Serilog.Sinks.File": "3.2.0",
-          "System.IO": "4.3.0",
-          "System.IO.FileSystem.Primitives": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Serilog.Sinks.RollingFile.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "3.3.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.3/Serilog.Sinks.RollingFile.dll": {}
-        }
-      },
       "System.Net.Requests/4.0.11": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.2.0",
@@ -574,13 +445,6 @@
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0"
-        }
-      },
-      "System.Threading.Timer/4.0.1": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "2.2.0",
-          "Microsoft.NETCore.Targets": "2.0.0",
-          "System.Runtime": "4.3.0"
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -702,7 +566,6 @@
           "Microsoft.AspNetCore.NodeServices": "2.2.0",
           "Microsoft.AspNetCore.Owin": "2.2.0",
           "Microsoft.AspNetCore.Razor": "2.2.0",
-          "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.AspNetCore.Razor.Language": "2.2.0",
           "Microsoft.AspNetCore.Razor.Runtime": "2.2.0",
           "Microsoft.AspNetCore.ResponseCaching": "2.2.0",
@@ -1308,7 +1171,6 @@
           "Microsoft.AspNetCore.Mvc.RazorPages": "2.2.0",
           "Microsoft.AspNetCore.Mvc.TagHelpers": "2.2.0",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
-          "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.Extensions.Caching.Memory": "2.2.0",
           "Microsoft.Extensions.DependencyInjection": "2.2.0"
         },
@@ -1512,9 +1374,6 @@
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.dll": {}
         },
-        "compileOnly": true
-      },
-      "Microsoft.AspNetCore.Razor.Design/2.2.0": {
         "compileOnly": true
       },
       "Microsoft.AspNetCore.Razor.Language/2.2.0": {
@@ -3731,55 +3590,6 @@
       "path": "pomelo.jsonobject/2.2.0-preview1-final",
       "hashPath": "pomelo.jsonobject.2.2.0-preview1-final.nupkg.sha512"
     },
-    "Serilog/2.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1uxuc49NByFrDrLszFOWqpUCL7pA9nc1SAgKPB3J7aNq6ChIvQmb64JIuY2hvK/K7YlWK/FGb3FYdxsFGWA+Mw==",
-      "path": "serilog/2.5.0",
-      "hashPath": "serilog.2.5.0.nupkg.sha512"
-    },
-    "Serilog.Extensions.Logging/1.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JoEwC3RahutmUMAduJylp5fAOmBhqaj4ZhA2uIbcEvVSWp8kuc6JEge/+o++PXg+TyUItK0Vvnjt/mM+DveqaQ==",
-      "path": "serilog.extensions.logging/1.4.0",
-      "hashPath": "serilog.extensions.logging.1.4.0.nupkg.sha512"
-    },
-    "Serilog.Extensions.Logging.File/1.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ghvejsdC/TCjlKkY20BdzrcrigI/qiCsnhRjzGZWoFqMAQcfi1I6LwV3HrgvrsmFI5ADcTZc2dSrNRkUE9q/NA==",
-      "path": "serilog.extensions.logging.file/1.1.0",
-      "hashPath": "serilog.extensions.logging.file.1.1.0.nupkg.sha512"
-    },
-    "Serilog.Formatting.Compact/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-bH6wUpIAptL0YmrTw4J+UIVOEycNl27AydJk4/KAScyoPx8DIkxx0gyjlrMiQMcLJcw+3qG6Q6bIMSQSYzifZA==",
-      "path": "serilog.formatting.compact/1.0.0",
-      "hashPath": "serilog.formatting.compact.1.0.0.nupkg.sha512"
-    },
-    "Serilog.Sinks.Async/1.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Zdv1pvh75IzYbntO8em+khkuw9BBjPbLzp9cjTQ/lGk1A+lmGc6K4bh3RM2qS/cfvS8fuoRCa7+hfdWDGIEfEA==",
-      "path": "serilog.sinks.async/1.1.0",
-      "hashPath": "serilog.sinks.async.1.1.0.nupkg.sha512"
-    },
-    "Serilog.Sinks.File/3.2.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-4MfJ2XUzkUsF6Qk8SwU9KDQxcJgcSR2bWoLIc6lEIVlr+mqblDaxYo4NRCijk4MBonwl829E7HxSud8MU5uC3g==",
-      "path": "serilog.sinks.file/3.2.0",
-      "hashPath": "serilog.sinks.file.3.2.0.nupkg.sha512"
-    },
-    "Serilog.Sinks.RollingFile/3.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-iBTJlu/YGishKRZ5SkSXkAly3zSezopfnKWbbh4eesHAacMqv7G+Cx32ytlkjbmymMWYB/nrNwS4IBSqAiF/OA==",
-      "path": "serilog.sinks.rollingfile/3.3.0",
-      "hashPath": "serilog.sinks.rollingfile.3.3.0.nupkg.sha512"
-    },
     "System.Net.Requests/4.0.11": {
       "type": "package",
       "serviceable": true,
@@ -3793,13 +3603,6 @@
       "sha512": "sha512-0aLl8yaaH+/jyI0f1Mn9xOvBWWwyOaJm/pR2SPAN2RvxhTD/yxxPaZt5d+2KXAZdPkJOafS4QQ1GaXhZcMN16g==",
       "path": "system.net.webheadercollection/4.0.1",
       "hashPath": "system.net.webheadercollection.4.0.1.nupkg.sha512"
-    },
-    "System.Threading.Timer/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
-      "path": "system.threading.timer/4.0.1",
-      "hashPath": "system.threading.timer.4.0.1.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",
@@ -4283,13 +4086,6 @@
       "sha512": "sha512-aM2aGQQh/kVOdgThej+4+ypFU8jSp2Dq/wZg9+e6/7RVAwlk8lQp8n2iYV9ltsSycE/4EU+LIMHegzaGBLOmsA==",
       "path": "microsoft.aspnetcore.razor/2.2.0",
       "hashPath": "microsoft.aspnetcore.razor.2.2.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Razor.Design/2.2.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ex8MZwgoyqHim1L6/65FnfjdSMtSKSuSU3DVoiCADZACc05T7f8uRB7SnDIP5LPQKLUBLilfNkd1p14RLyfdQA==",
-      "path": "microsoft.aspnetcore.razor.design/2.2.0",
-      "hashPath": "microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/2.2.0": {
       "type": "package",

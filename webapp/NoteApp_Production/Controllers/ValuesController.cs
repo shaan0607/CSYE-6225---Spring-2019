@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 //using trial3.Controller.Model;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using Microsoft.IdentityModel.Tokens;
@@ -33,16 +34,14 @@ namespace trial.Controllers
     {
        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
-     //  static UserServices us = new UserServices();
-
-    public class ValuesController : ControllerBase
-    {
-            readonly ILogger<ValuesController> _log;
+    readonly ILogger<ValuesController> _log;
     
     public ValuesController(ILogger<ValuesController> log)
     {
         _log = log;
     }
+    
+  
         private static IAmazonS3 s3Client;
       
 
