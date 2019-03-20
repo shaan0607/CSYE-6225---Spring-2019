@@ -39,6 +39,49 @@
           "lib/netstandard1.6/Amazon.S3.dll": {}
         }
       },
+      "AWS.Logger.Core/1.3.1": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.CloudWatchLogs": "3.3.4",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Globalization": "4.0.11",
+          "System.Runtime.Loader": "4.0.0",
+          "System.Threading.Tasks": "4.0.11",
+          "System.Threading.ThreadPool": "4.0.10",
+          "System.Threading.Timer": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.5/AWS.Logger.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/AWS.Logger.Core.dll": {}
+        }
+      },
+      "AWS.Logger.NLog/1.3.1": {
+        "type": "package",
+        "dependencies": {
+          "AWS.Logger.Core": "1.3.1",
+          "NLog": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard1.5/NLog.AWS.Logger.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/NLog.AWS.Logger.dll": {}
+        }
+      },
+      "AWSSDK.CloudWatchLogs/3.3.4": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.17, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.CloudWatchLogs.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.CloudWatchLogs.dll": {}
+        }
+      },
       "AWSSDK.Core/3.3.31.10": {
         "type": "package",
         "dependencies": {
@@ -2883,6 +2926,15 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "NLog/4.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NLog.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {}
+        }
+      },
       "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
         "type": "package",
         "dependencies": {
@@ -3999,6 +4051,20 @@
           }
         }
       },
+      "System.Runtime.Loader/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.1.0",
+          "System.Reflection": "4.1.0",
+          "System.Runtime": "4.1.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Runtime.Loader.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Runtime.Loader.dll": {}
+        }
+      },
       "System.Runtime.Numerics/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4497,6 +4563,30 @@
           "lib/netstandard1.3/System.Threading.Thread.dll": {}
         }
       },
+      "System.Threading.ThreadPool/4.0.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Handles": "4.0.1"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Threading.ThreadPool.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Threading.ThreadPool.dll": {}
+        }
+      },
+      "System.Threading.Timer/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "System.Runtime": "4.1.0"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Threading.Timer.dll": {}
+        }
+      },
       "System.ValueTuple/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4676,6 +4766,70 @@
         "amazon.s3.nuspec",
         "lib/net461/Amazon.S3.dll",
         "lib/netstandard1.6/Amazon.S3.dll"
+      ]
+    },
+    "AWS.Logger.Core/1.3.1": {
+      "sha512": "l/H/w2dhSlaTvtHXRN0N35r8o75u2sDMKP7N1zpadj2ILOeJdQzLHKuutW6UJ+Gz2lB9J/juMeWrK2BZCnGYbA==",
+      "type": "package",
+      "path": "aws.logger.core/1.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aws.logger.core.1.3.1.nupkg.sha512",
+        "aws.logger.core.nuspec",
+        "lib/net45/AWS.Logger.Core.dll",
+        "lib/net45/AWS.Logger.Core.pdb",
+        "lib/netstandard1.5/AWS.Logger.Core.dll",
+        "lib/netstandard1.5/AWS.Logger.Core.pdb"
+      ]
+    },
+    "AWS.Logger.NLog/1.3.1": {
+      "sha512": "sNhtQy3+IT22tXCVjnxSuJ1qHatU9odhTpiDKYYTpJqf2v8mY98j+GYJ9D0R3JEqd2Pt/4R39/3B6bAXWb5UTQ==",
+      "type": "package",
+      "path": "aws.logger.nlog/1.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aws.logger.nlog.1.3.1.nupkg.sha512",
+        "aws.logger.nlog.nuspec",
+        "lib/net45/NLog.AWS.Logger.dll",
+        "lib/net45/NLog.AWS.Logger.pdb",
+        "lib/netstandard1.5/NLog.AWS.Logger.dll",
+        "lib/netstandard1.5/NLog.AWS.Logger.pdb"
+      ]
+    },
+    "AWSSDK.CloudWatchLogs/3.3.4": {
+      "sha512": "eM3qUGebP5mNVyfHP8ajCfqzDPRNYnSFit6ZpjBgfl3p7JSbWtNODg/1Nd168Kcx9Pvazn/viN7TQnMz7Jhe5Q==",
+      "type": "package",
+      "path": "awssdk.cloudwatchlogs/3.3.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.CloudWatchLogs.CodeAnalysis.dll",
+        "awssdk.cloudwatchlogs.3.3.4.nupkg.sha512",
+        "awssdk.cloudwatchlogs.nuspec",
+        "lib/MonoAndroid10/AWSSDK.CloudWatchLogs.XML",
+        "lib/MonoAndroid10/AWSSDK.CloudWatchLogs.dll",
+        "lib/MonoTouch10/AWSSDK.CloudWatchLogs.XML",
+        "lib/MonoTouch10/AWSSDK.CloudWatchLogs.dll",
+        "lib/MonoTouch10/AWSSDK.CloudWatchLogs.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.CloudWatchLogs.XML",
+        "lib/Xamarin.iOS10/AWSSDK.CloudWatchLogs.dll",
+        "lib/net35/AWSSDK.CloudWatchLogs.dll",
+        "lib/net35/AWSSDK.CloudWatchLogs.pdb",
+        "lib/net35/AWSSDK.CloudWatchLogs.xml",
+        "lib/net45/AWSSDK.CloudWatchLogs.dll",
+        "lib/net45/AWSSDK.CloudWatchLogs.pdb",
+        "lib/net45/AWSSDK.CloudWatchLogs.xml",
+        "lib/netstandard1.3/AWSSDK.CloudWatchLogs.dll",
+        "lib/netstandard1.3/AWSSDK.CloudWatchLogs.pdb",
+        "lib/netstandard1.3/AWSSDK.CloudWatchLogs.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.CloudWatchLogs.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.CloudWatchLogs.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.CloudWatchLogs.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "AWSSDK.Core/3.3.31.10": {
@@ -7775,6 +7929,39 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "NLog/4.5.0": {
+      "sha512": "DNhlH3BSRaBZ57WmERhWZZOPELi2ajXOcwriHpa364aPo4KUQQcTs+h1JdSeXatKibJFsuO+0NuoEvb9ubwWlw==",
+      "type": "package",
+      "path": "nlog/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid44/NLog.dll",
+        "lib/monoandroid44/NLog.xml",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net40-client/NLog.dll",
+        "lib/net40-client/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/netstandard1.3/NLog.dll",
+        "lib/netstandard1.3/NLog.xml",
+        "lib/netstandard1.5/NLog.dll",
+        "lib/netstandard1.5/NLog.xml",
+        "lib/netstandard2.0/NLog.dll",
+        "lib/netstandard2.0/NLog.xml",
+        "lib/sl4/NLog.dll",
+        "lib/sl4/NLog.xml",
+        "lib/sl5/NLog.dll",
+        "lib/sl5/NLog.xml",
+        "lib/wp8/NLog.dll",
+        "lib/wp8/NLog.xml",
+        "lib/xamarinios10/NLog.dll",
+        "lib/xamarinios10/NLog.xml",
+        "nlog.4.5.0.nupkg.sha512",
+        "nlog.nuspec"
       ]
     },
     "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
@@ -10963,6 +11150,32 @@
         "system.runtime.interopservices.runtimeinformation.nuspec"
       ]
     },
+    "System.Runtime.Loader/4.0.0": {
+      "sha512": "AGWrywLI2B15/dnLuFnlHWFjXmq1Tl0kjWaKTHbaJ8T9kIxiQ8YGTtiMQc8rUr49l2JjfZa7QY0KKqlyzA7NNg==",
+      "type": "package",
+      "path": "system.runtime.loader/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/net462/_._",
+        "lib/netstandard1.5/System.Runtime.Loader.dll",
+        "ref/netstandard1.5/System.Runtime.Loader.dll",
+        "ref/netstandard1.5/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/de/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/es/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/fr/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/it/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ja/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ko/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ru/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hans/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hant/System.Runtime.Loader.xml",
+        "system.runtime.loader.4.0.0.nupkg.sha512",
+        "system.runtime.loader.nuspec"
+      ]
+    },
     "System.Runtime.Numerics/4.3.0": {
       "sha512": "yMH+MfdzHjy17l2KESnPiF2dwq7T+xLnSJar7slyimAkUh/gTrS9/UQOtv7xarskJ2/XDSNvfLGOBQPjL7PaHQ==",
       "type": "package",
@@ -12266,6 +12479,100 @@
         "system.threading.thread.nuspec"
       ]
     },
+    "System.Threading.ThreadPool/4.0.10": {
+      "sha512": "dupLOpVBSXb3G/Ab9utLVbOYxZ+hnq5ExVz6Dk9CBlzXm6Znw1GAIOv5HEjlkECZJz40I8zhhxaJHWVsWO484Q==",
+      "type": "package",
+      "path": "system.threading.threadpool/4.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Threading.ThreadPool.dll",
+        "lib/netcore50/_._",
+        "lib/netstandard1.3/System.Threading.ThreadPool.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Threading.ThreadPool.dll",
+        "ref/netstandard1.3/System.Threading.ThreadPool.dll",
+        "ref/netstandard1.3/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/de/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/es/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/fr/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/it/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/ja/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/ko/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/ru/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/zh-hans/System.Threading.ThreadPool.xml",
+        "ref/netstandard1.3/zh-hant/System.Threading.ThreadPool.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.threading.threadpool.4.0.10.nupkg.sha512",
+        "system.threading.threadpool.nuspec"
+      ]
+    },
+    "System.Threading.Timer/4.0.1": {
+      "sha512": "saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
+      "type": "package",
+      "path": "system.threading.timer/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net451/_._",
+        "lib/portable-net451+win81+wpa81/_._",
+        "lib/win81/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net451/_._",
+        "ref/netcore50/System.Threading.Timer.dll",
+        "ref/netcore50/System.Threading.Timer.xml",
+        "ref/netcore50/de/System.Threading.Timer.xml",
+        "ref/netcore50/es/System.Threading.Timer.xml",
+        "ref/netcore50/fr/System.Threading.Timer.xml",
+        "ref/netcore50/it/System.Threading.Timer.xml",
+        "ref/netcore50/ja/System.Threading.Timer.xml",
+        "ref/netcore50/ko/System.Threading.Timer.xml",
+        "ref/netcore50/ru/System.Threading.Timer.xml",
+        "ref/netcore50/zh-hans/System.Threading.Timer.xml",
+        "ref/netcore50/zh-hant/System.Threading.Timer.xml",
+        "ref/netstandard1.2/System.Threading.Timer.dll",
+        "ref/netstandard1.2/System.Threading.Timer.xml",
+        "ref/netstandard1.2/de/System.Threading.Timer.xml",
+        "ref/netstandard1.2/es/System.Threading.Timer.xml",
+        "ref/netstandard1.2/fr/System.Threading.Timer.xml",
+        "ref/netstandard1.2/it/System.Threading.Timer.xml",
+        "ref/netstandard1.2/ja/System.Threading.Timer.xml",
+        "ref/netstandard1.2/ko/System.Threading.Timer.xml",
+        "ref/netstandard1.2/ru/System.Threading.Timer.xml",
+        "ref/netstandard1.2/zh-hans/System.Threading.Timer.xml",
+        "ref/netstandard1.2/zh-hant/System.Threading.Timer.xml",
+        "ref/portable-net451+win81+wpa81/_._",
+        "ref/win81/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.threading.timer.4.0.1.nupkg.sha512",
+        "system.threading.timer.nuspec"
+      ]
+    },
     "System.ValueTuple/4.3.0": {
       "sha512": "cNLEvBX3d6MMQRZe3SMFNukVbitDAEpVZO17qa0/2FHxZ7Y7PpFRpr6m2615XYM/tYYYf0B+WyHNujqIw8Luwg==",
       "type": "package",
@@ -12609,6 +12916,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "AWS.Logger.NLog >= 1.3.1",
       "AWSSDK.Core >= 3.3.31.10",
       "AWSSDK.Extensions.NETCore.Setup >= 3.3.6",
       "AWSSDK.S3 >= 3.3.31.18",
@@ -12625,23 +12933,23 @@
     ]
   },
   "packageFolders": {
-    "/home/shantanu/.nuget/packages/": {},
+    "/home/sgncloud/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
+      "projectUniqueName": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
       "projectName": "NoteApp_Production",
-      "projectPath": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
-      "packagesPath": "/home/shantanu/.nuget/packages/",
-      "outputPath": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/",
+      "projectPath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
+      "packagesPath": "/home/sgncloud/.nuget/packages/",
+      "outputPath": "/home/sgncloud/cloud6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/shantanu/.nuget/NuGet/NuGet.Config"
+        "/home/sgncloud/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -12663,6 +12971,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "AWS.Logger.NLog": {
+            "target": "Package",
+            "version": "[1.3.1, )"
+          },
           "AWSSDK.Core": {
             "target": "Package",
             "version": "[3.3.31.10, )"
