@@ -36,11 +36,6 @@ namespace trial.Controllers
         // GET api/values
     readonly ILogger<ValuesController> _log;
     
-    public ValuesController(ILogger<ValuesController> log)
-    {
-        _log = log;
-    }
-    
   
         private static IAmazonS3 s3Client;
       
@@ -65,8 +60,9 @@ namespace trial.Controllers
             var username = credentials[0];
             return username;
         }
-        public ValuesController(CLOUD_CSYEContext context)
+        public ValuesController(CLOUD_CSYEContext context,ILogger<ValuesController> log)
         {
+             _log = log;
             _context = context;
             s3Client = new AmazonS3Client(bucketRegion);
              // _context.Database.EnsureCreated();
