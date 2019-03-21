@@ -6,14 +6,19 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Amazon.S3" Version="4.0.0" />
-        <PackageReference Include="AWS.Logger.NLog" Version="1.3.1" />
         <PackageReference Include="AWSSDK.Core" Version="3.3.31.10" />
         <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.6" />
         <PackageReference Include="AWSSDK.S3" Version="3.3.31.18" />
         <PackageReference Include="Bcrypt.Net" Version="0.1.0" />
+        <PackageReference Include="JustEat.Statsd" Version="4.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.2.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+        <PackageReference Include="NStatsD.Client" Version="1.5.11.0" />
+        <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+        <PackageReference Include="StatsdClient.Core" Version="0.0.2-beta" />
+        <PackageReference Include="StatsdCsharpClient" Version="1.5.0" />
+        <PackageReference Include="StatsN" Version="1.2.1" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
