@@ -298,7 +298,8 @@
          }
       },
 
-      "CodeDeployEC2ServiceRole":{
+
+       "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
          "Properties": {
 				"RoleName": "CodeDeployEC2ServiceRole",
@@ -330,10 +331,46 @@
 							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
 					}
-				}]
-			}
-      },
 
+      				
+					       }]
+					}
+      					},
+
+    "LogRolePolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:logs:*:*:*"
+              ]
+            },
+	   {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": "*"
+          }
+          ]
+        },
+        "ManagedPolicyName":"LogRolePolicy",
+	"Roles": [{
+          "Ref": "CodeDeployEC2ServiceRole"
+        }]
+      }
+    },
 
         "CodeDeployServiceRole": {
 			"Type": "AWS::IAM::Role",
@@ -353,6 +390,33 @@
 				"Path": "/"
 			}
 		},
+ "CodeDeployEC2S3": {
+   "Type" : "AWS::IAM::Policy",
+   "Properties" : {
+      "PolicyName" : "CodeDeploy-EC2S3",
+      "PolicyDocument" : {
+            "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:Get*",
+                "s3:List*",
+		"s3:Put*",
+		"s3:Delete*"
+            ],
+            "Effect": "Allow",
+            "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
+        }
+    ]
+      },
+    "Users" : [
+	{
+	"Ref":"circleci"
+	}
+	]
+   	}
+	},
+
 
       "Ec2InstanceProfile":{
          "Type":"AWS::IAM::InstanceProfile",
@@ -369,7 +433,6 @@
          }
 
       },
-
 
 
       "CodeDeployApplication":{
