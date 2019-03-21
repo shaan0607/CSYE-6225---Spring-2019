@@ -139,7 +139,7 @@ namespace trial.Controllers
             }
             }
         [HttpPost("UploadFiles")]
-        [Route("/noteShantanu")]
+        [Route("/note")]
         [Authorize]
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
