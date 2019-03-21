@@ -34,6 +34,13 @@ namespace NoteApp_Production
                     options.Listen(IPAddress.Any, 5000);
                     // options.Listen(IPAddress.Any, 443, listenOptions => {listenOptions.UseHttps("/home/dotnetuser/.ssh/seniordevops.pfx", "SuperSecret123");
                 })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                })
                 .UseStartup<Startup>();
     }
 }

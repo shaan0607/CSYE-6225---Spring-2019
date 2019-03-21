@@ -85,6 +85,7 @@ namespace trial3
                      enitityNotes.Property(e => e.EMAIL)
                     .HasColumnName("EMAIL")
                     .HasColumnType("varchar(100)");
+                    
 
             });
             modelBuilder.Entity<Attachments>(attach =>{
@@ -94,8 +95,9 @@ namespace trial3
                 attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(100)");
                 attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(100)");
                 attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(100)");
-        
+                
             });
+           
         }
     }
 }
