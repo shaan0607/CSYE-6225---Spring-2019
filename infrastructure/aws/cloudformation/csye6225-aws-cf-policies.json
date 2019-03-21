@@ -18,28 +18,7 @@
 "Resources":{
 
 
-   "CodeDeployEC2S3": {
-   "Type" : "AWS::IAM::Policy",
-   "Properties" : {
-      "PolicyName" : "CodeDeploy-EC2S3",
-      "PolicyDocument" : {
-            "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": [
-                "s3:Get*",
-                "s3:List*",
-		"s3:Put*",
-		"s3:Delete*"
-            ],
-            "Effect": "Allow",
-            "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
-        }
-    ] 
-      },
-    "Users" : ["circleci"]
-   }
-},
+
 
 
       "Circleciec2ami":{

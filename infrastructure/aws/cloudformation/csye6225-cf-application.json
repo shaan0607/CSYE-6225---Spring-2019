@@ -298,6 +298,7 @@
          }
       },
 
+
        "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
          "Properties": {
@@ -330,6 +331,8 @@
 							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
 					}
+
+      				
 					       }]
 					}
       					},

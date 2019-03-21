@@ -299,7 +299,7 @@ namespace trial.Controllers
         public  ActionResult GetNoteAttachmentbyId(string id){
 
             
- 
+            statsDPublisher.Increment("NOTE_ID_ATTACHMENTS");
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
@@ -329,7 +329,7 @@ namespace trial.Controllers
         [Route("/note/{id}")]
         [Authorize]
         public ActionResult putnote(string id,[FromBody] NOTES n){
-
+            statsDPublisher.Increment("PUT_NOTE_ID");
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
                   if(note.EMAIL == username){
@@ -356,7 +356,7 @@ namespace trial.Controllers
             
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-
+            statsDPublisher.Increment("NOTE_DELETE_BY_ID");
                     string username = getUsername();
 
                     NOTES note = _context.notes.Find(id);
@@ -397,7 +397,7 @@ namespace trial.Controllers
         public  ActionResult AttachImage(string id, IFormFile file){
                       var fileTransferUtility =
                     new TransferUtility(s3Client);
-         
+                      statsDPublisher.Increment("POST_ID_NOTE_ATTACHMENTS");
     
             string fileName = (rand.ToString() + file.FileName );
             rand++;
@@ -517,7 +517,7 @@ namespace trial.Controllers
             var fileTransferUtility =
                 new TransferUtility(s3Client);
                 string username = getUsername();
-
+                    
                     NOTES note = _context.notes.Find(id);
 
                     Attachments a = _context.attachments.Find(atid);
