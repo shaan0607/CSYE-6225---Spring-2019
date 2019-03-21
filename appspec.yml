@@ -4,12 +4,8 @@ files:
   - source: ./webapp/NoteApp_Production/aws/
     destination: /home/centos/WebApp
   - source: cloudwatch-config.json
-    destination: /home/centos/WebApp
+    destination: /home/centos/WebApp/
 hooks:
-  AfterInstall:
-   - location: ./afterInstall.sh
-     timeout: 180
-     runas: centos
   ApplicationStop:
     - location: ./stop_service.sh
       timeout: 300
