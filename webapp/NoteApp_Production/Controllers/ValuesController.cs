@@ -208,7 +208,7 @@ namespace trial.Controllers
             return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
                     }
             else{
-                var conflict = "Bad Request";
+                var conflict = "Bad Request Sorry";
                 return StatusCode(409, new{ result = conflict});
 
             }  
