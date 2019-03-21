@@ -17,7 +17,7 @@ Backend FrameWork - ASP.NET Core 2.2
 
 ## Build Instructions
 First run setup.sh using bash and provide details
-then run delete to delete.
+then run delete   to delete.
 
 ## Deploy Instructions
 
