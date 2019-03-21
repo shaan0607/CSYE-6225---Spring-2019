@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon.S3;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,7 +56,6 @@ namespace NoteApp_Production
                         services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
                         services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication", null);
-
             // Register DI for user service
             services.AddScoped<IUSerServices, UserServices>();
             services.AddAWSService<IAmazonS3>();
