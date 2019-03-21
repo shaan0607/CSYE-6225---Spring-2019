@@ -297,6 +297,41 @@
             ]
          }
       },
+"CloudWatchPolicy": {
+   "Type" : "AWS::IAM::Policy",
+   "Properties" : {
+      "PolicyName" : "CloudWatchPolicy",
+      "PolicyDocument" : {
+            "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:logs:::*"
+              ]
+            },
+	   {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": "*"
+          }
+          ] 
+      },
+     "Roles" : [{
+"Ref":"CodeDeployEC2ServiceRole"
+}]
+   }
+
+},
 
       "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
@@ -329,10 +364,37 @@
 							"Effect": "Allow",
 							"Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
 						}]
+					},
+
+      				"PolicyName" : "CloudWatchPolicy",
+      				"PolicyDocument" : {
+            					"Version": "2012-10-17",
+          					"Statement": [
+            						{
+              						"Action": [
+                						"logs:CreateLogGroup",
+                						"logs:CreateLogStream",
+                						"logs:PutLogEvents",
+                						"logs:DescribeLogStreams"
+              						],
+              						"Effect": "Allow",
+              						"Resource": [
+                					"arn:aws:logs:::*"
+             						 ]
+            						},
+	   						{
+            						"Effect": "Allow",
+            						"Action": [
+                						"cloudwatch:PutMetricAlarm",
+                						"cloudwatch:PutMetricData"
+            						],
+            						"Resource": "*"
+          						}
+          						] 
+      							}
+					       }]
 					}
-				}]
-			}
-      },
+      					},
 
 
         "CodeDeployServiceRole": {
