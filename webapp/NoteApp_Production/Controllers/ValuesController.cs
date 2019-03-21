@@ -84,7 +84,7 @@ namespace trial.Controllers
         {   try{
           //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
            _log.LogInformation("HI");
-           Console.WriteLine(("Hello, world!")
+           Console.WriteLine("Hello, world!");
             statsDPublisher.Increment("GET");
             return StatusCode(200, new{result =DateTime.Now});
            
