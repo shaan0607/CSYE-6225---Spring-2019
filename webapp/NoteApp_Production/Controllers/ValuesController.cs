@@ -42,14 +42,12 @@ namespace trial.Controllers
   
         private static IAmazonS3 s3Client;
 
-
-        public NStatsD.Client  nc;
         private static String[] arguments = Environment.GetCommandLineArgs();
 
         private string bucketName = arguments[1];
      
         
-         public StatsDConfiguration statsDConfig ;
+         public StatsDConfiguration statsDConfig;
         public IStatsDPublisher statsDPublisher;
         static int rand=  1;
         private CLOUD_CSYEContext _context;
