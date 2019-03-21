@@ -17,6 +17,7 @@
    },
 "Resources":{
 
+
    "CodeDeployEC2S3": {
    "Type" : "AWS::IAM::Policy",
    "Properties" : {
