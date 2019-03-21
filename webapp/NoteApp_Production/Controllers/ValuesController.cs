@@ -37,7 +37,7 @@ namespace trial.Controllers
     {
        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
-    readonly ILogger<ValuesController> _log;
+    readonly ILogger _log;
     
   
         private static IAmazonS3 s3Client;
@@ -115,7 +115,9 @@ namespace trial.Controllers
             Users us =  _context.Users.Find(u.Email);
             if(us == null){
                 if(ModelState.IsValid){
-                _log.LogInformation("USER is inserted");
+                 
+                 
+                _log.LogInformation("User Created");
                 statsDPublisher.Increment("_USER_API");
                 if (string.IsNullOrWhiteSpace(u.Email))
                { var baDRequest = "Email cant be blank";
@@ -141,6 +143,7 @@ namespace trial.Controllers
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
+                    
                    _log.LogInformation("NOTE is inserted");
                    statsDPublisher.Increment("_NOTE_API");
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);

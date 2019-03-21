@@ -43,6 +43,41 @@
       <_ContentIncludedByDefault Remove="aws\aws\appsettings.json" />
       <_ContentIncludedByDefault Remove="aws\aws\NoteApp_Production.deps.json" />
       <_ContentIncludedByDefault Remove="aws\aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\app.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\NoteApp_Production.dll.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\web.config" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\appsettings.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\aws\NoteApp_Production.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\NoteApp_Production.deps.json" />
+      <_ContentIncludedByDefault Remove="aws\aws\aws\NoteApp_Production.runtimeconfig.json" />
     </ItemGroup>
 
 </Project>

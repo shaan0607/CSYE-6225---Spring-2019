@@ -46,6 +46,10 @@
           "target": "Package",
           "version": "[0.1.0, )"
         },
+        "JustEat.Statsd": {
+          "target": "Package",
+          "version": "[4.0.0, )"
+        },
         "Microsoft.AspNetCore.App": {
           "target": "Package",
           "version": "[2.2.0, )"
@@ -73,6 +77,10 @@
           "version": "[2.2.0, )",
           "autoReferenced": true
         },
+        "NStatsD.Client": {
+          "target": "Package",
+          "version": "[1.5.11, )"
+        },
         "Newtonsoft.Json": {
           "target": "Package",
           "version": "[12.0.1, )"
@@ -80,6 +88,22 @@
         "Pomelo.EntityFrameworkCore.MySql": {
           "target": "Package",
           "version": "[2.2.0-preview1-final, )"
+        },
+        "Serilog.Extensions.Logging.File": {
+          "target": "Package",
+          "version": "[1.1.0, )"
+        },
+        "StatsN": {
+          "target": "Package",
+          "version": "[1.2.1, )"
+        },
+        "StatsdClient.Core": {
+          "target": "Package",
+          "version": "[0.0.2-beta, )"
+        },
+        "StatsdCsharpClient": {
+          "target": "Package",
+          "version": "[1.5.0, )"
         }
       },
       "imports": [
