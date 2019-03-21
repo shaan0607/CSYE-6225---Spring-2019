@@ -76,8 +76,6 @@
                 "#!/bin/bash -xe", 
 		"pwd",
 		"mkdir /home/centos/WebApp",
-		"wget https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm",
-		"sudo rpm -U ./amazon-cloudwatch-agent.rpm",
 		"cd /usr/lib/systemd/system",
                 "touch kestrel.service",
                 "sudo echo '[Unit]' > kestrel.service",
