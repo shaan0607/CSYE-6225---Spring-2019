@@ -35,7 +35,7 @@ namespace trial.Controllers
         // GET api/values
      //  static UserServices us = new UserServices();
         private static IAmazonS3 s3Client;
-      
+
 
         private static String[] arguments = Environment.GetCommandLineArgs();
 
@@ -94,7 +94,7 @@ namespace trial.Controllers
         }
 
         [HttpPost]
-        [Route("/usershantanu/register")]
+        [Route("/user/register")]
         public ActionResult signup([FromBody] Users u)
         {
             Users us =  _context.Users.Find(u.Email);
