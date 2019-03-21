@@ -145,8 +145,7 @@ namespace trial.Controllers
         public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
                     
-                   _log.LogInformation("NOTE is inserted");
-                   statsDPublisher.Increment("_NOTE_API");
+
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
@@ -205,8 +204,11 @@ namespace trial.Controllers
           // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
           //  string username = us.getUsername();
 
-            return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
-                    }
+          _log.LogInformation("NOTE is inserted");
+          statsDPublisher.Increment("_NOTE_API");
+          return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
+            
+               }
             else{
                 var conflict = "Bad Request Sorry";
                 return StatusCode(409, new{ result = conflict});
