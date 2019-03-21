@@ -8,8 +8,8 @@
             "files": {
                 "collect_list": [
                     {
-                        "file_path": "/home/centos/WebApp/logs/csye6225.log",
-                        "log_group_name": "csye6225_fall2018",
+                        "file_path": "/home/centos/WebApp/logs/*.log",
+                        "log_group_name": "csye6225_spring2019",
                         "log_stream_name": "webapp",
                         "timestamp_format": "%H:%M:%S %y %b %-d"
                     }
