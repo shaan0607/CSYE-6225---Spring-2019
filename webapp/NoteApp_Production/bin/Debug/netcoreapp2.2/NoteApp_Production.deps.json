@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "ebe9b320cefebd956c04a2009d2a99ce900f5f92"
+    "signature": "a6a3266435d5678a7ea76a435ac678852c743f99"
   },
   "compilationOptions": {
     "defines": [
@@ -29,14 +29,20 @@
           "AWSSDK.S3": "3.3.31.18",
           "Amazon.S3": "4.0.0",
           "BCrypt.Net": "0.1.0",
+          "JustEat.StatsD": "4.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.2.0",
           "Microsoft.Extensions.Configuration.CommandLine": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
+          "NStatsD.Client": "1.5.11",
           "Newtonsoft.Json": "12.0.1",
-          "Pomelo.EntityFrameworkCore.MySql": "2.2.0-preview1-final"
+          "Pomelo.EntityFrameworkCore.MySql": "2.2.0-preview1-final",
+          "Serilog.Extensions.Logging.File": "1.1.0",
+          "StatsN": "1.2.1",
+          "StatsdClient.Core": "0.0.2-beta",
+          "StatsdCsharpClient": "1.5.0"
         },
         "runtime": {
           "NoteApp_Production.dll": {}
@@ -187,6 +193,20 @@
         },
         "compile": {
           "lib/netstandard1.6/Carbon.Storage.dll": {}
+        }
+      },
+      "JustEat.StatsD/4.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.2/JustEat.StatsD.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.580"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.2/JustEat.StatsD.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.2.0": {
@@ -382,6 +402,17 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "NStatsD.Client/1.5.11": {
+        "runtime": {
+          "lib/net40/NStatsD.Client.dll": {
+            "assemblyVersion": "1.5.11.0",
+            "fileVersion": "1.5.11.0"
+          }
+        },
+        "compile": {
+          "lib/net40/NStatsD.Client.dll": {}
+        }
+      },
       "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "2.2.0",
@@ -411,6 +442,246 @@
         },
         "compile": {
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {}
+        }
+      },
+      "Serilog/2.5.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Collections": "4.3.0",
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.5.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.dll": {}
+        }
+      },
+      "Serilog.Extensions.Logging/1.4.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Serilog": "2.5.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.4.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {}
+        }
+      },
+      "Serilog.Extensions.Logging.File/1.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "NETStandard.Library": "2.0.3",
+          "Serilog": "2.5.0",
+          "Serilog.Extensions.Logging": "1.4.0",
+          "Serilog.Formatting.Compact": "1.0.0",
+          "Serilog.Sinks.Async": "1.1.0",
+          "Serilog.Sinks.RollingFile": "3.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.File.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.File.dll": {}
+        }
+      },
+      "Serilog.Formatting.Compact/1.0.0": {
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {}
+        }
+      },
+      "Serilog.Sinks.Async/1.1.0": {
+        "dependencies": {
+          "Serilog": "2.5.0",
+          "System.Collections.Concurrent": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Serilog.Sinks.Async.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.1/Serilog.Sinks.Async.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/3.2.0": {
+        "dependencies": {
+          "Serilog": "2.5.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Timer": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Sinks.File.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "3.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Sinks.File.dll": {}
+        }
+      },
+      "Serilog.Sinks.RollingFile/3.3.0": {
+        "dependencies": {
+          "Serilog.Sinks.File": "3.2.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Sinks.RollingFile.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Sinks.RollingFile.dll": {}
+        }
+      },
+      "StatsdClient.Core/0.0.2-beta": {
+        "runtime": {
+          "lib/net451/StatsdClient.Core.dll": {
+            "assemblyVersion": "0.0.2.0",
+            "fileVersion": "0.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/net451/StatsdClient.Core.dll": {}
+        }
+      },
+      "StatsdCsharpClient/1.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/StatsdClient.dll": {
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.5.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/StatsdClient.dll": {}
+        }
+      },
+      "StatsN/1.2.1": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3",
+          "StatsN.Contracts": "1.2.1",
+          "System.ComponentModel.EventBasedAsync": "4.0.11",
+          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Net.NameResolution": "4.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/StatsN.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/StatsN.dll": {}
+        }
+      },
+      "StatsN.Contracts/1.2.1": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.3/StatsN.Contracts.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/StatsN.Contracts.dll": {}
+        }
+      },
+      "System.ComponentModel.EventBasedAsync/4.0.11": {
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.Diagnostics.TraceSource/4.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.2.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "runtimeTargets": {
+          "runtime/unix/lib/_._": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtime/win/lib/_._": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      },
+      "System.Net.NameResolution/4.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.2.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Principal.Windows": "4.5.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "runtimeTargets": {
+          "runtime/unix/lib/_._": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtime/win/lib/_._": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
         }
       },
       "System.Net.Requests/4.0.11": {
@@ -446,6 +717,13 @@
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0"
+        }
+      },
+      "System.Threading.Timer/4.0.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.2.0",
+          "Microsoft.NETCore.Targets": "2.0.0",
+          "System.Runtime": "4.3.0"
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3519,6 +3797,13 @@
       "path": "carbon.storage/1.0.0",
       "hashPath": "carbon.storage.1.0.0.nupkg.sha512"
     },
+    "JustEat.StatsD/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LEK0PxeGiYLYSGbO8REmUBs5qECTHxo2uJ7UI+WBwkWz7HYLXVXa/2MFp5YpzJZH7If+4rsKjWpuxALFKvlgHw==",
+      "path": "justeat.statsd/4.0.0",
+      "hashPath": "justeat.statsd.4.0.0.nupkg.sha512"
+    },
     "Microsoft.NETCore.App/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -3582,6 +3867,13 @@
       "path": "newtonsoft.json/12.0.1",
       "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
     },
+    "NStatsD.Client/1.5.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K1QSNQCsaCqG3THQGSq9IapPNC/OsxxiBOP37t1PHKzHsV/15plTH3xw02e734wDwgBnT1kgp6UnrQHyVsrUZA==",
+      "path": "nstatsd.client/1.5.11",
+      "hashPath": "nstatsd.client.1.5.11.nupkg.sha512"
+    },
     "Pomelo.EntityFrameworkCore.MySql/2.2.0-preview1-final": {
       "type": "package",
       "serviceable": true,
@@ -3596,6 +3888,104 @@
       "path": "pomelo.jsonobject/2.2.0-preview1-final",
       "hashPath": "pomelo.jsonobject.2.2.0-preview1-final.nupkg.sha512"
     },
+    "Serilog/2.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1uxuc49NByFrDrLszFOWqpUCL7pA9nc1SAgKPB3J7aNq6ChIvQmb64JIuY2hvK/K7YlWK/FGb3FYdxsFGWA+Mw==",
+      "path": "serilog/2.5.0",
+      "hashPath": "serilog.2.5.0.nupkg.sha512"
+    },
+    "Serilog.Extensions.Logging/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JoEwC3RahutmUMAduJylp5fAOmBhqaj4ZhA2uIbcEvVSWp8kuc6JEge/+o++PXg+TyUItK0Vvnjt/mM+DveqaQ==",
+      "path": "serilog.extensions.logging/1.4.0",
+      "hashPath": "serilog.extensions.logging.1.4.0.nupkg.sha512"
+    },
+    "Serilog.Extensions.Logging.File/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ghvejsdC/TCjlKkY20BdzrcrigI/qiCsnhRjzGZWoFqMAQcfi1I6LwV3HrgvrsmFI5ADcTZc2dSrNRkUE9q/NA==",
+      "path": "serilog.extensions.logging.file/1.1.0",
+      "hashPath": "serilog.extensions.logging.file.1.1.0.nupkg.sha512"
+    },
+    "Serilog.Formatting.Compact/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bH6wUpIAptL0YmrTw4J+UIVOEycNl27AydJk4/KAScyoPx8DIkxx0gyjlrMiQMcLJcw+3qG6Q6bIMSQSYzifZA==",
+      "path": "serilog.formatting.compact/1.0.0",
+      "hashPath": "serilog.formatting.compact.1.0.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.Async/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zdv1pvh75IzYbntO8em+khkuw9BBjPbLzp9cjTQ/lGk1A+lmGc6K4bh3RM2qS/cfvS8fuoRCa7+hfdWDGIEfEA==",
+      "path": "serilog.sinks.async/1.1.0",
+      "hashPath": "serilog.sinks.async.1.1.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.File/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4MfJ2XUzkUsF6Qk8SwU9KDQxcJgcSR2bWoLIc6lEIVlr+mqblDaxYo4NRCijk4MBonwl829E7HxSud8MU5uC3g==",
+      "path": "serilog.sinks.file/3.2.0",
+      "hashPath": "serilog.sinks.file.3.2.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.RollingFile/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iBTJlu/YGishKRZ5SkSXkAly3zSezopfnKWbbh4eesHAacMqv7G+Cx32ytlkjbmymMWYB/nrNwS4IBSqAiF/OA==",
+      "path": "serilog.sinks.rollingfile/3.3.0",
+      "hashPath": "serilog.sinks.rollingfile.3.3.0.nupkg.sha512"
+    },
+    "StatsdClient.Core/0.0.2-beta": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QQXeuLvRRjqTcEkRynPndTVodUNHb/wJMXLUdjtWLfYUuT+4JdhQRN1FdDUO1uJjCqtLr+AA0YBRE2ZHKJqtig==",
+      "path": "statsdclient.core/0.0.2-beta",
+      "hashPath": "statsdclient.core.0.0.2-beta.nupkg.sha512"
+    },
+    "StatsdCsharpClient/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7DacNU0eeUFee6D2T+C1QpBmXevm6zl8yPoOLazB1TXsRnwTS2LzZBcewGyVKrWzWyElpncnWn0jttrQ8T7ZMw==",
+      "path": "statsdcsharpclient/1.5.0",
+      "hashPath": "statsdcsharpclient.1.5.0.nupkg.sha512"
+    },
+    "StatsN/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kXlP3ksDNT1wfD/adqt/in5Nd7I3js1QDNfk6fBG8PorH51ezFDMNJCIXG3AySLf5a6BcxHnJjOtPRzjRJGxvQ==",
+      "path": "statsn/1.2.1",
+      "hashPath": "statsn.1.2.1.nupkg.sha512"
+    },
+    "StatsN.Contracts/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V69q9syJCY5gWqZ5lStVG+jmDIf35bCLzBQGdYTaOiAbglHGb4POYIv7TdPs41wWCQougFwfOnC+LbZHwYqz1g==",
+      "path": "statsn.contracts/1.2.1",
+      "hashPath": "statsn.contracts.1.2.1.nupkg.sha512"
+    },
+    "System.ComponentModel.EventBasedAsync/4.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EvcCeJf2fcsfOVr+3Vt+2xxi1TJIc8EVq/grEWroowjFsEJc7FUAsyQ95H+CvAElv3lv233SO+ZCo7/ciaQSqQ==",
+      "path": "system.componentmodel.eventbasedasync/4.0.11",
+      "hashPath": "system.componentmodel.eventbasedasync.4.0.11.nupkg.sha512"
+    },
+    "System.Diagnostics.TraceSource/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q5bGzzvXVi+dIMiPWRhXZV7r+Os3TEOuRW5LHsAUDGpqJHol8XiLokVpsgAfPqHHNkyx1bbv5lRZqRkRrGZKxQ==",
+      "path": "system.diagnostics.tracesource/4.0.0",
+      "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
+    },
+    "System.Net.NameResolution/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tzeTP0r8uMf10LVrbwujDiQSTXNJzjlo2LquRV3b5FHeE2ONwe+EZX9xVmG+KFYaJyFNb2sTNBHA1k1tfSUglw==",
+      "path": "system.net.nameresolution/4.0.0",
+      "hashPath": "system.net.nameresolution.4.0.0.nupkg.sha512"
+    },
     "System.Net.Requests/4.0.11": {
       "type": "package",
       "serviceable": true,
@@ -3609,6 +3999,13 @@
       "sha512": "sha512-0aLl8yaaH+/jyI0f1Mn9xOvBWWwyOaJm/pR2SPAN2RvxhTD/yxxPaZt5d+2KXAZdPkJOafS4QQ1GaXhZcMN16g==",
       "path": "system.net.webheadercollection/4.0.1",
       "hashPath": "system.net.webheadercollection.4.0.1.nupkg.sha512"
+    },
+    "System.Threading.Timer/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
+      "path": "system.threading.timer/4.0.1",
+      "hashPath": "system.threading.timer.4.0.1.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",

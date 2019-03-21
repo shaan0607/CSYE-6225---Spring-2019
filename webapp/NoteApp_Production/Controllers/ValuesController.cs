@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 //using trial3.Controller.Model;
+using StatsdClient;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +27,8 @@ using Amazon;
 using Amazon.Runtime;
 using Amazon.S3.Model;
 using trial3;
+using StatsN;
+using JustEat.StatsD;
 
 namespace trial.Controllers
 {
@@ -33,16 +37,20 @@ namespace trial.Controllers
     {
        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
-     //  static UserServices us = new UserServices();
+    readonly ILogger<ValuesController> _log;
+    
+  
         private static IAmazonS3 s3Client;
       
 
+        public NStatsD.Client  nc;
         private static String[] arguments = Environment.GetCommandLineArgs();
 
         private string bucketName = arguments[1];
      
         
-        
+         public StatsDConfiguration statsDConfig ;
+        public IStatsDPublisher statsDPublisher;
         static int rand=  1;
         private CLOUD_CSYEContext _context;
          private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
@@ -55,13 +63,20 @@ namespace trial.Controllers
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
             var username = credentials[0];
+            
             return username;
         }
-        public ValuesController(CLOUD_CSYEContext context)
+        public ValuesController(CLOUD_CSYEContext context,ILogger<ValuesController> log)
         {
+
+             _log = log;
             _context = context;
             s3Client = new AmazonS3Client(bucketRegion);
-             // _context.Database.EnsureCreated();
+            
+            statsDConfig = new  StatsDConfiguration{ Host = "localhost", Port = 8125 };
+            statsDPublisher = new StatsDPublisher(statsDConfig);
+            
+             
         }
         
         [HttpGet]
@@ -70,6 +85,8 @@ namespace trial.Controllers
         public ActionResult Get()
         {   try{
           //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
+           _log.LogInformation("Hello, world!");
+            statsDPublisher.Increment("GET");
             return StatusCode(200, new{result =DateTime.Now});
            
         }
@@ -100,7 +117,8 @@ namespace trial.Controllers
             Users us =  _context.Users.Find(u.Email);
             if(us == null){
                 if(ModelState.IsValid){
-                
+                _log.LogInformation("USER is inserted");
+                statsDPublisher.Increment("_USER_API");
                 if (string.IsNullOrWhiteSpace(u.Email))
                { var baDRequest = "Email cant be blank";
                 return StatusCode(400,  new{result = baDRequest} );}
@@ -125,6 +143,8 @@ namespace trial.Controllers
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
+                   _log.LogInformation("NOTE is inserted");
+                   statsDPublisher.Increment("_NOTE_API");
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
@@ -199,6 +219,8 @@ namespace trial.Controllers
             IEnumerable<NOTES> notes = _context.notes.AsEnumerable();
 
             List<NOTE> note = new List<NOTE>();
+                    _log.LogInformation("Getting the node");
+                   statsDPublisher.Increment("_NOTE_GET_API");
 
             string username = getUsername();
             IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
@@ -241,7 +263,8 @@ namespace trial.Controllers
         [Route("/note/{id}")]
         [Authorize]
         public  ActionResult GetNotebyId(string id){
-
+                    _log.LogInformation("NOTE is inserted");
+                   statsDPublisher.Increment("_NOTE_GETBYID_API");
             
  
                 string username = getUsername();

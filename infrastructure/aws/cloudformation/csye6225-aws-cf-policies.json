@@ -16,6 +16,7 @@
 	"Bucket1":{"Type": "String"}
    },
 "Resources":{
+
    "CodeDeployEC2S3": {
    "Type" : "AWS::IAM::Policy",
    "Properties" : {
@@ -33,11 +34,13 @@
             "Effect": "Allow",
             "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
         }
-    ]
+    ] 
       },
     "Users" : ["circleci"]
    }
 },
+
+
       "Circleciec2ami":{
          "Type":"AWS::IAM::ManagedPolicy",
          "Properties":{
