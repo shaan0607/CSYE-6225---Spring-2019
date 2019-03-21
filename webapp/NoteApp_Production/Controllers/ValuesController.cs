@@ -469,6 +469,7 @@ namespace trial.Controllers
         public ActionResult putnoteAttachent(string id,IFormFile file, string aid){
             var fileTransferUtility =
                 new TransferUtility(s3Client);
+	  statsDPublisher.Increment("PUT_ID_NOTE_ATTACHMENTS");
             string fileName = (rand.ToString() + file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
@@ -518,6 +519,7 @@ namespace trial.Controllers
         public ActionResult Deletenoteattchment(string id,string atid){
             var fileTransferUtility =
                 new TransferUtility(s3Client);
+		statsDPublisher.Increment("DELETE_ID_NOTE_ATTACHMENTS");
                 string username = getUsername();
                     
                     NOTES note = _context.notes.Find(id);
