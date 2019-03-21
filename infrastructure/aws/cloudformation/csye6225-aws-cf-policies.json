@@ -16,9 +16,7 @@
 	"Bucket1":{"Type": "String"}
    },
 "Resources":{
-<<<<<<< HEAD
- 
-=======
+
 
    "CodeDeployEC2S3": {
    "Type" : "AWS::IAM::Policy",
@@ -44,7 +42,6 @@
 },
 
 
->>>>>>> 96f29094986b97ae6b10b700e858c4d1c2119207
       "Circleciec2ami":{
          "Type":"AWS::IAM::ManagedPolicy",
          "Properties":{
