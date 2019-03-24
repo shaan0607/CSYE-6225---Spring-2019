@@ -60,7 +60,7 @@ namespace NoteApp_Production.Migrations
                 name: "IX_Attachments_NoteID",
                 table: "Attachments",
                 column: "NoteID",
-                unique: true);
+                unique: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
