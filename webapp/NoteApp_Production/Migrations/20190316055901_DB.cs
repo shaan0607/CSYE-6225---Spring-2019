@@ -56,11 +56,6 @@ namespace NoteApp_Production.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Attachments_NoteID",
-                table: "Attachments",
-                column: "NoteID",
-                unique: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
