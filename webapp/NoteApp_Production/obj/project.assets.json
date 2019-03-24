@@ -82,6 +82,18 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "AWSSDK.SimpleNotificationService/3.3.100.1": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.100.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
+        }
+      },
       "BCrypt.Net/0.1.0": {
         "type": "package",
         "compile": {
@@ -5039,6 +5051,46 @@
         "tools/uninstall.ps1"
       ]
     },
+    "AWSSDK.SimpleNotificationService/3.3.100.1": {
+      "sha512": "XNIdW0s4JLgLvZ/ShnOh/PipCP8O/Z5oQUmc82BfR5Ovt9a/Z/UX/noQcUPbklw5T0tiGkRL0I6rBh7gQdBTUA==",
+      "type": "package",
+      "path": "awssdk.simplenotificationservice/3.3.100.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.SimpleNotificationService.CodeAnalysis.dll",
+        "awssdk.simplenotificationservice.3.3.100.1.nupkg.sha512",
+        "awssdk.simplenotificationservice.nuspec",
+        "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.XML",
+        "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.dll",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.XML",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.dll",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.SimpleNotificationService.XML",
+        "lib/Xamarin.iOS10/AWSSDK.SimpleNotificationService.dll",
+        "lib/net35/AWSSDK.SimpleNotificationService.dll",
+        "lib/net35/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net35/AWSSDK.SimpleNotificationService.xml",
+        "lib/net45/AWSSDK.SimpleNotificationService.dll",
+        "lib/net45/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net45/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.pdb",
+        "lib/uap/AWSSDK.SimpleNotificationService.XML",
+        "lib/uap/AWSSDK.SimpleNotificationService.dll",
+        "lib/uap/AWSSDK.SimpleNotificationService.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "BCrypt.Net/0.1.0": {
       "sha512": "oj+aPQXqkSW+tNBi2f0YeMpap23RSVLbLcqJjeS8wPzRsv/wZ+az4oZdsDyKQqUnuQsdv3+Gzm6BsirgJLMX1Q==",
       "type": "package",
@@ -8966,7 +9018,7 @@
       ]
     },
     "System.ComponentModel.EventBasedAsync/4.0.11": {
-      "sha512": "Z7SO6vvQIR84daPE4uhaNdef9CjgjDMGYkas8epUhf0U3WGuaGgZ0Mm4QuNycMdbHUY8KEdZrtgxonkAiJaAlA==",
+      "sha512": "EvcCeJf2fcsfOVr+3Vt+2xxi1TJIc8EVq/grEWroowjFsEJc7FUAsyQ95H+CvAElv3lv233SO+ZCo7/ciaQSqQ==",
       "type": "package",
       "path": "system.componentmodel.eventbasedasync/4.0.11",
       "files": [
@@ -13289,6 +13341,7 @@
       "AWSSDK.Core >= 3.3.31.10",
       "AWSSDK.Extensions.NETCore.Setup >= 3.3.6",
       "AWSSDK.S3 >= 3.3.31.18",
+      "AWSSDK.SimpleNotificationService >= 3.3.100.1",
       "Amazon.S3 >= 4.0.0",
       "Bcrypt.Net >= 0.1.0",
       "JustEat.Statsd >= 4.0.0",
@@ -13308,23 +13361,23 @@
     ]
   },
   "packageFolders": {
-    "/home/shantanu/.nuget/packages/": {},
+    "/home/arjit/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
+      "projectUniqueName": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
       "projectName": "NoteApp_Production",
-      "projectPath": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
-      "packagesPath": "/home/shantanu/.nuget/packages/",
-      "outputPath": "/home/shantanu/Desktop/csye6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/",
+      "projectPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/NoteApp_Production.csproj",
+      "packagesPath": "/home/arjit/.nuget/packages/",
+      "outputPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/NoteApp_Production/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/shantanu/.config/NuGet/NuGet.Config"
+        "/home/arjit/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -13357,6 +13410,10 @@
           "AWSSDK.S3": {
             "target": "Package",
             "version": "[3.3.31.18, )"
+          },
+          "AWSSDK.SimpleNotificationService": {
+            "target": "Package",
+            "version": "[3.3.100.1, )"
           },
           "Amazon.S3": {
             "target": "Package",
@@ -13461,6 +13518,15 @@
       "warningLevel": 1,
       "message": "Package 'StatsdClient.Core 0.0.2-beta' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
       "libraryId": "StatsdClient.Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: AWSSDK.Core from 3.3.100.1 to 3.3.31.10. Reference the package directly from the project to select a different version. \n NoteApp_Production -> AWSSDK.SimpleNotificationService 3.3.100.1 -> AWSSDK.Core (>= 3.3.100.1 && < 3.4.0) \n NoteApp_Production -> AWSSDK.Core (>= 3.3.31.10)",
+      "libraryId": "AWSSDK.Core",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"
       ]

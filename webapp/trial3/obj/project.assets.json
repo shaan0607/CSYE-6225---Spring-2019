@@ -12625,23 +12625,23 @@
     ]
   },
   "packageFolders": {
-    "/home/shantanu/.nuget/packages/": {},
+    "/home/arjit/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "projectUniqueName": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
       "projectName": "trial3",
-      "projectPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
-      "packagesPath": "/home/shantanu/.nuget/packages/",
-      "outputPath": "/home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
+      "projectPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/trial3.csproj",
+      "packagesPath": "/home/arjit/.nuget/packages/",
+      "outputPath": "/home/arjit/CSYE-6225/CSYE-6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/shantanu/.nuget/NuGet/NuGet.Config"
+        "/home/arjit/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -12728,12 +12728,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/shantanu/csye6225/dev/CSYE-6225---Spring-2019/webapp/trial3/obj/trial3.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
