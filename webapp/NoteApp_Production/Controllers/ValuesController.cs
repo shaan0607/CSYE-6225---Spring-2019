@@ -551,7 +551,7 @@ namespace trial.Controllers
            Users a =  _context.Users.Find(u.Email);
             
             Console.WriteLine("Hello");
-             var client = new AmazonSimpleNotificationServiceClient();
+             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
                         
@@ -562,13 +562,13 @@ namespace trial.Controllers
              Console.WriteLine("Topic: {0}", topic.TopicArn);
     
                 }
-             var respose = new PublishRequest
-            {
-                TopicArn = "",
-                Message = "Test Message"
-            };
+            //  var respose = new PublishRequest
+            // {
+            //     TopicArn = "",
+            //     Message = "Test Message"
+            // };
 
-             client.PublishAsync(respose);
+            //  client.PublishAsync(respose);
           
         }
  }
