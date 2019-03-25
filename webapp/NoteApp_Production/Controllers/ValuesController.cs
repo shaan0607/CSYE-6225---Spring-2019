@@ -521,25 +521,25 @@ namespace trial.Controllers {
                 Console.WriteLine (item.TopicArn);
             }
 
-            CreateTopicRequest createTopicReq = new CreateTopicRequest("password_reset");
-                CreateTopicResponse createTopicRes = sns.CreateTopicAsync(createTopicReq).Result;
-                Console.WriteLine("Topic ARN: {0}", createTopicRes.TopicArn);
+            CreateTopicRequest createTopicReq = new CreateTopicRequest ("password_reset");
+            CreateTopicResponse createTopicRes = sns.CreateTopicAsync (createTopicReq).Result;
+            Console.WriteLine ("Topic ARN: {0}", createTopicRes.TopicArn);
 
-                //subscribe to an SNS topic
-                SubscribeRequest subscribeRequest = new SubscribeRequest(createTopicRes.TopicArn, "email", "garhwal.a@husky.neu.edu");
-                SubscribeResponse subscribeResponse = sns.SubscribeAsync(subscribeRequest).Result;
-                Console.WriteLine("Subscribe RequestId: {0}", subscribeResponse.ResponseMetadata.RequestId);
-                Console.WriteLine("Check your email and confirm subscription.");
+            //subscribe to an SNS topic
+            SubscribeRequest subscribeRequest = new SubscribeRequest (createTopicRes.TopicArn, "email", u.Email);
+            SubscribeResponse subscribeResponse = sns.SubscribeAsync (subscribeRequest).Result;
+            Console.WriteLine ("Subscribe RequestId: {0}", subscribeResponse.ResponseMetadata.RequestId);
+            Console.WriteLine ("Check your email and confirm subscription.");
 
-                //publish to an SNS topic
-                PublishRequest publishRequest = new PublishRequest(createTopicRes.TopicArn, "My text published to SNS topic with email endpoint");
-                PublishResponse publishResponse =  sns.PublishAsync(publishRequest).Result;
-                Console.WriteLine("Publish MessageId: {0}", publishResponse.MessageId);
+            //publish to an SNS topic
+            PublishRequest publishRequest = new PublishRequest (createTopicRes.TopicArn, "My text published to SNS topic with email endpoint");
+            PublishResponse publishResponse = sns.PublishAsync (publishRequest).Result;
+            Console.WriteLine ("Publish MessageId: {0}", publishResponse.MessageId);
 
-                //delete an SNS topic
-                // DeleteTopicRequest deleteTopicRequest = new DeleteTopicRequest(createTopicRes.TopicArn);
-                // DeleteTopicResponse deleteTopicResponse = await client.DeleteTopicAsync(deleteTopicRequest);
-                // Console.WriteLine("DeleteTopic RequestId: {0}", deleteTopicResponse.ResponseMetadata.RequestId);
+            //delete an SNS topic
+            // DeleteTopicRequest deleteTopicRequest = new DeleteTopicRequest(createTopicRes.TopicArn);
+            // DeleteTopicResponse deleteTopicResponse = await client.DeleteTopicAsync(deleteTopicRequest);
+            // Console.WriteLine("DeleteTopic RequestId: {0}", deleteTopicResponse.ResponseMetadata.RequestId);
 
             return StatusCode (200, new { message = "You will recieve a email" });
         }

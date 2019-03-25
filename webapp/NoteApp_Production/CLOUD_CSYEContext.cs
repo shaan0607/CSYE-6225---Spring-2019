@@ -10,7 +10,7 @@ namespace trial3
     public partial class CLOUD_CSYEContext : DbContext
     {
         private static String[] arguments = Environment.GetCommandLineArgs();
-/*
+
         private string server = arguments[2];
 
         private string database = arguments[3];
@@ -18,14 +18,7 @@ namespace trial3
         private string username = arguments[4];
 
         private string password = arguments[5];
-*/
-private string server = "localhost";
-        //private string database = arguments[3];
-        private string database = "CSYE";
-        //private string username = arguments[4];
-        private string username = "deosthale";
-        //private string password = arguments[5];
-        private string password = "NikonD%100";
+
 
         public CLOUD_CSYEContext()
         {

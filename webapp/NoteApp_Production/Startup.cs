@@ -22,14 +22,14 @@ namespace NoteApp_Production {
     public class Startup {
         private static String[] arguments = Environment.GetCommandLineArgs ();
 
-        //private string server = arguments[2];
-        private string server = "localhost";
-        //private string database = arguments[3];
-        private string database = "CSYE";
-        //private string username = arguments[4];
-        private string username = "deosthale";
-        //private string password = arguments[5];
-        private string password = "NikonD%100";
+        private string server = arguments[2];
+        
+        private string database = arguments[3];
+        
+        private string username = arguments[4];
+        
+        private string password = arguments[5];
+        
         public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
