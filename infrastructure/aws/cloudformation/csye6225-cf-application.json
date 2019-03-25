@@ -274,12 +274,19 @@
                {
                   "AttributeName":"Id",
                   "AttributeType":"S"
+               },
+  	       {
+                  "AttributeName":"Email",
+                  "AttributeType":"S"
                }
             ],
             "KeySchema":[
                {
                   "AttributeName":"Id",
                   "KeyType":"HASH"
+               }, {
+                  "AttributeName":"Email",
+                  "KeyType":"RANGE"
                }
             ],
             "ProvisionedThroughput":{
@@ -298,7 +305,27 @@
          }
       },
 
-
+ "SNSAccess": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "sns:*"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ]
+        },
+        "ManagedPolicyName": "SNSAccess",
+        "Roles": [{
+          "Ref": "CodeDeployEC2ServiceRole"
+        }]
+      }
+    },
        "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
          "Properties": {

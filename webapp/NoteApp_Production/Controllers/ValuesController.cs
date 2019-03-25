@@ -30,6 +30,7 @@ using trial3;
 using StatsN;
 using JustEat.StatsD;
 using Amazon.SimpleNotificationService;
+
 using Amazon.SimpleNotificationService.Model;
 
 namespace trial.Controllers
@@ -546,35 +547,29 @@ namespace trial.Controllers
 
         [HttpPost]
         [Route("/reset")]
-        public ActionResult passwordreset([FromBody] Users u){
+        public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
-            var snsClient = new AmazonSimpleNotificationClient();
             
-
-
-            var sns = new AmazonSimpleNotificationServiceClient();
-            var listTopicRequest = new ListTopicsRequest();
-            ListTopicsResponse listTopicsReponse;
- 
-            listTopicsReponse = sns.ListTopics(listTopicRequest);
- 
-            foreach (var item in listTopicsReponse.Topics)
-            {
-                Console.WriteLine(item.TopicArn);
-            }
-          
-
-
-
-
-             var request = new PublishRequest
+            Console.WriteLine("Hello");
+             var client = new AmazonSimpleNotificationServiceClient();
+            var request = new ListTopicsRequest();
+            var response = new ListTopicsResponse();
+                        
+                    
+                response = await client.ListTopicsAsync();
+                 foreach (var topic in response.Topics)
+                {
+             Console.WriteLine("Topic: {0}", topic.TopicArn);
+    
+                }
+             var respose = new PublishRequest
             {
                 TopicArn = "",
                 Message = "Test Message"
             };
 
-             snsClient.PublishAsync(request);
-           return StatusCode(200, new{message = "You will recieve a email"});
+             client.PublishAsync(respose);
+          
         }
  }
 }

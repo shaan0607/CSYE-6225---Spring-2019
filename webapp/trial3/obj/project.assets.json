@@ -39,20 +39,13 @@
           "lib/netstandard1.6/Amazon.S3.dll": {}
         }
       },
-      "AWSSDK.Core/3.3.31.10": {
+      "AWSSDK.Core/3.3.100": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.1",
-          "System.Net.Requests": "4.0.11",
-          "System.Reflection.TypeExtensions": "4.1.0",
-          "System.Security.Cryptography.Csp": "4.0.0",
-          "System.Threading.Thread": "4.0.0"
-        },
         "compile": {
-          "lib/netstandard1.3/AWSSDK.Core.dll": {}
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/AWSSDK.Core.dll": {}
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
         }
       },
       "AWSSDK.Extensions.NETCore.Setup/3.3.6": {
@@ -80,6 +73,18 @@
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "AWSSDK.SimpleNotificationService/3.3.100": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.100, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
         }
       },
       "BCrypt.Net/0.1.0": {
@@ -3684,52 +3689,6 @@
           "ref/netstandard1.3/System.Net.Primitives.dll": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.Net.Http": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Net.Requests.dll": {}
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll": {
-            "assetType": "runtime",
-            "rid": "unix"
-          },
-          "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll": {
-            "assetType": "runtime",
-            "rid": "win"
-          }
-        }
-      },
-      "System.Net.WebHeaderCollection/4.0.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
-        }
-      },
       "System.Net.WebSockets.WebSocketProtocol/4.5.1": {
         "type": "package",
         "compile": {
@@ -4150,7 +4109,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/System.Security.Cryptography.Csp.dll": {}
+          "ref/netstandard1.3/_._": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/System.Security.Cryptography.Csp.dll": {
@@ -4491,7 +4450,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/System.Threading.Thread.dll": {}
+          "ref/netstandard1.3/_._": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Threading.Thread.dll": {}
@@ -4678,15 +4637,15 @@
         "lib/netstandard1.6/Amazon.S3.dll"
       ]
     },
-    "AWSSDK.Core/3.3.31.10": {
-      "sha512": "nRxZIU3PPFAExvCvRotpnvsW/jMfjT5ZTJ59ofxRh97zostILnlablcHf4YrevUn9urs/ozhrK28uTHR6wyuMA==",
+    "AWSSDK.Core/3.3.100": {
+      "sha512": "Dt7Jfkh8ggw9TgKm+9CbALlRZPVER4shpFtWggKL40O2t0uhldBltaOW4nvXN0SE3HocaRtbZUmvMkGfWld4mw==",
       "type": "package",
-      "path": "awssdk.core/3.3.31.10",
+      "path": "awssdk.core/3.3.100",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.3.31.10.nupkg.sha512",
+        "awssdk.core.3.3.100.nupkg.sha512",
         "awssdk.core.nuspec",
         "lib/MonoAndroid10/AWSSDK.Core.XML",
         "lib/MonoAndroid10/AWSSDK.Core.dll",
@@ -4706,6 +4665,9 @@
         "lib/netstandard1.3/AWSSDK.Core.dll",
         "lib/netstandard1.3/AWSSDK.Core.pdb",
         "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.XML",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.dll",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.pdb",
@@ -4770,6 +4732,46 @@
         "lib/uap/AWSSDK.S3.XML",
         "lib/uap/AWSSDK.S3.dll",
         "lib/uap/AWSSDK.S3.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "AWSSDK.SimpleNotificationService/3.3.100": {
+      "sha512": "BWjsLkoNsCgl4yIwKnqXfdCx74Qf3FMLVZ9xIHKkKpqqpcV1rZR/nEpbTfcNa9obVP/3sW1AyhHJS4v9g3QIPQ==",
+      "type": "package",
+      "path": "awssdk.simplenotificationservice/3.3.100",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.SimpleNotificationService.CodeAnalysis.dll",
+        "awssdk.simplenotificationservice.3.3.100.nupkg.sha512",
+        "awssdk.simplenotificationservice.nuspec",
+        "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.XML",
+        "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.dll",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.XML",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.dll",
+        "lib/MonoTouch10/AWSSDK.SimpleNotificationService.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.SimpleNotificationService.XML",
+        "lib/Xamarin.iOS10/AWSSDK.SimpleNotificationService.dll",
+        "lib/net35/AWSSDK.SimpleNotificationService.dll",
+        "lib/net35/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net35/AWSSDK.SimpleNotificationService.xml",
+        "lib/net45/AWSSDK.SimpleNotificationService.dll",
+        "lib/net45/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net45/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard1.3/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.pdb",
+        "lib/uap/AWSSDK.SimpleNotificationService.XML",
+        "lib/uap/AWSSDK.SimpleNotificationService.dll",
+        "lib/uap/AWSSDK.SimpleNotificationService.pdb",
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
@@ -9887,128 +9889,6 @@
         "system.net.primitives.nuspec"
       ]
     },
-    "System.Net.Requests/4.0.11": {
-      "sha512": "IvOLGTTzJ2y5GpSn0ewgypC52TCCD6tYU8MdLedtZQW0VcP241b6sRJ2rLhFFPn5n+biTXXuYGfaTyT3CVUf8Q==",
-      "type": "package",
-      "path": "system.net.requests/4.0.11",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/net46/_._",
-        "ref/netcore50/System.Net.Requests.dll",
-        "ref/netcore50/System.Net.Requests.xml",
-        "ref/netcore50/de/System.Net.Requests.xml",
-        "ref/netcore50/es/System.Net.Requests.xml",
-        "ref/netcore50/fr/System.Net.Requests.xml",
-        "ref/netcore50/it/System.Net.Requests.xml",
-        "ref/netcore50/ja/System.Net.Requests.xml",
-        "ref/netcore50/ko/System.Net.Requests.xml",
-        "ref/netcore50/ru/System.Net.Requests.xml",
-        "ref/netcore50/zh-hans/System.Net.Requests.xml",
-        "ref/netcore50/zh-hant/System.Net.Requests.xml",
-        "ref/netstandard1.0/System.Net.Requests.dll",
-        "ref/netstandard1.0/System.Net.Requests.xml",
-        "ref/netstandard1.0/de/System.Net.Requests.xml",
-        "ref/netstandard1.0/es/System.Net.Requests.xml",
-        "ref/netstandard1.0/fr/System.Net.Requests.xml",
-        "ref/netstandard1.0/it/System.Net.Requests.xml",
-        "ref/netstandard1.0/ja/System.Net.Requests.xml",
-        "ref/netstandard1.0/ko/System.Net.Requests.xml",
-        "ref/netstandard1.0/ru/System.Net.Requests.xml",
-        "ref/netstandard1.0/zh-hans/System.Net.Requests.xml",
-        "ref/netstandard1.0/zh-hant/System.Net.Requests.xml",
-        "ref/netstandard1.1/System.Net.Requests.dll",
-        "ref/netstandard1.1/System.Net.Requests.xml",
-        "ref/netstandard1.1/de/System.Net.Requests.xml",
-        "ref/netstandard1.1/es/System.Net.Requests.xml",
-        "ref/netstandard1.1/fr/System.Net.Requests.xml",
-        "ref/netstandard1.1/it/System.Net.Requests.xml",
-        "ref/netstandard1.1/ja/System.Net.Requests.xml",
-        "ref/netstandard1.1/ko/System.Net.Requests.xml",
-        "ref/netstandard1.1/ru/System.Net.Requests.xml",
-        "ref/netstandard1.1/zh-hans/System.Net.Requests.xml",
-        "ref/netstandard1.1/zh-hant/System.Net.Requests.xml",
-        "ref/netstandard1.3/System.Net.Requests.dll",
-        "ref/netstandard1.3/System.Net.Requests.xml",
-        "ref/netstandard1.3/de/System.Net.Requests.xml",
-        "ref/netstandard1.3/es/System.Net.Requests.xml",
-        "ref/netstandard1.3/fr/System.Net.Requests.xml",
-        "ref/netstandard1.3/it/System.Net.Requests.xml",
-        "ref/netstandard1.3/ja/System.Net.Requests.xml",
-        "ref/netstandard1.3/ko/System.Net.Requests.xml",
-        "ref/netstandard1.3/ru/System.Net.Requests.xml",
-        "ref/netstandard1.3/zh-hans/System.Net.Requests.xml",
-        "ref/netstandard1.3/zh-hant/System.Net.Requests.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll",
-        "runtimes/win/lib/net46/_._",
-        "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll",
-        "system.net.requests.4.0.11.nupkg.sha512",
-        "system.net.requests.nuspec"
-      ]
-    },
-    "System.Net.WebHeaderCollection/4.0.1": {
-      "sha512": "0aLl8yaaH+/jyI0f1Mn9xOvBWWwyOaJm/pR2SPAN2RvxhTD/yxxPaZt5d+2KXAZdPkJOafS4QQ1GaXhZcMN16g==",
-      "type": "package",
-      "path": "system.net.webheadercollection/4.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net46/_._",
-        "lib/netstandard1.3/System.Net.WebHeaderCollection.dll",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net46/_._",
-        "ref/netstandard1.3/System.Net.WebHeaderCollection.dll",
-        "ref/netstandard1.3/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/de/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/es/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/fr/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/it/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/ja/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/ko/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/ru/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/zh-hans/System.Net.WebHeaderCollection.xml",
-        "ref/netstandard1.3/zh-hant/System.Net.WebHeaderCollection.xml",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "system.net.webheadercollection.4.0.1.nupkg.sha512",
-        "system.net.webheadercollection.nuspec"
-      ]
-    },
     "System.Net.WebSockets.WebSocketProtocol/4.5.1": {
       "sha512": "ME9tj5H/VM0SJW1Qq9zGcUxILhR+OBCNQEmEocoVxRwh5Y/H+Azob2dCP/7Tfk1ag7PmKZ1f5Iqv1ptgDYTHlQ==",
       "type": "package",
@@ -12609,9 +12489,10 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "AWSSDK.Core >= 3.3.31.10",
+      "AWSSDK.Core >= 3.3.100",
       "AWSSDK.Extensions.NETCore.Setup >= 3.3.6",
       "AWSSDK.S3 >= 3.3.31.18",
+      "AWSSDK.SimpleNotificationService >= 3.3.100",
       "Amazon.S3 >= 4.0.0",
       "Bcrypt.Net >= 0.1.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
@@ -12665,7 +12546,7 @@
         "dependencies": {
           "AWSSDK.Core": {
             "target": "Package",
-            "version": "[3.3.31.10, )"
+            "version": "[3.3.100, )"
           },
           "AWSSDK.Extensions.NETCore.Setup": {
             "target": "Package",
@@ -12674,6 +12555,10 @@
           "AWSSDK.S3": {
             "target": "Package",
             "version": "[3.3.31.18, )"
+          },
+          "AWSSDK.SimpleNotificationService": {
+            "target": "Package",
+            "version": "[3.3.100, )"
           },
           "Amazon.S3": {
             "target": "Package",
