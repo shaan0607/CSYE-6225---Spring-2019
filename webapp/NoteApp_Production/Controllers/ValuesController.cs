@@ -559,7 +559,7 @@ namespace trial.Controllers
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
-             Console.WriteLine("Topic: q{0}", topic.TopicArn);
+             Console.WriteLine("Topic: aaq{0}", topic.TopicArn);
     
                 }
             //  var respose = new PublishRequest
