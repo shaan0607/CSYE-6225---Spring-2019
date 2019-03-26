@@ -524,12 +524,7 @@ namespace trial.Controllers
                 
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
-             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-            var request = new ListTopicsRequest();
-            var response = new ListTopicsResponse();
-           _log.LogInformation( "going inside for");
-                    
-                response = await client.ListTopicsAsync();
+             var clientSNS = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
 
              var respose = new PublishRequest
             {
@@ -538,7 +533,7 @@ namespace trial.Controllers
                
             };
             _log.LogInformation( "!!!!!!!!!!!!!!!!outside if");
-             await client.PublishAsync(respose);
+            clientSNS.PublishAsync(respose);
                   }
                    _log.LogInformation( "outside if");
                 
