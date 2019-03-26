@@ -561,7 +561,7 @@ namespace trial.Controllers
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
-                    _log.LogInformation( "inside for");
+                    _log.LogInformation( "inside uufor");
                     _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
                   if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
                        _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
