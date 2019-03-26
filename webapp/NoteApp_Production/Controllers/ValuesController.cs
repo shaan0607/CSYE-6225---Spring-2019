@@ -558,6 +558,7 @@ namespace trial.Controllers
                 _log.LogInformation( "going inside for");
                     
                 response = await client.ListTopicsAsync();
+                _log.LogInformation( "going inside for !!!!!!!!!!");
                 foreach (var topic in response.Topics)
                 {
                     _log.LogInformation( "inside for");
