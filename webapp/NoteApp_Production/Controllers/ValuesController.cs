@@ -29,6 +29,9 @@ using Amazon.S3.Model;
 using trial3;
 using StatsN;
 using JustEat.StatsD;
+using Amazon.SimpleNotificationService;
+
+using Amazon.SimpleNotificationService.Model;
 
 namespace trial.Controllers
 {
@@ -541,5 +544,32 @@ namespace trial.Controllers
                     }
 
         }
+        [HttpPost]
+        [Route("/reset")]
+        public async void passwordreset([FromBody] Users u){
+            Users a =  _context.Users.Find(u.Email);
+            
+            Console.WriteLine("Hello inside reset");
+            if(a!=null){
+                var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+                var response = new ListTopicsResponse();
+                        
+                    
+                response = await client.ListTopicsAsync();
+                foreach (var topic in response.Topics)
+                {
+                    if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                        var respose = new PublishRequest
+                        {
+                            TopicArn =topic.TopicArn,
+                            Message = a.Email
+                        };
+
+                        await client.PublishAsync(respose);
+                    }
+                } 
+            }  
+        }
+       
  }
 }
