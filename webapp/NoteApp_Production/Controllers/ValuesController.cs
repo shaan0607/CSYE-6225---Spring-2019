@@ -521,11 +521,11 @@ namespace trial.Controllers
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
            _log.LogInformation( "Listing all items");
-                
+            _log.LogInformation(a.ToString());_
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
              var clientSNS = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-  _log.LogInformation( "!!!!!!!!!!!!!!!!inside if");
+             _log.LogInformation( "!!!!!!!!!!!!!!!!inside if");
              var respose = new PublishRequest
             {
                 TopicArn ="arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword",
