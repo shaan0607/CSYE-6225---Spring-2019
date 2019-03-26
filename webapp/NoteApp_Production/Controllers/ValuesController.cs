@@ -549,13 +549,14 @@ namespace trial.Controllers
         [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
-            
+           _log.LogInformation( "Listing all items");
+                
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
              var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
-                        
+                            _log.LogInformation( "inside if");
                     
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
