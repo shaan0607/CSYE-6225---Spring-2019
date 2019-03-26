@@ -533,7 +533,7 @@ namespace trial.Controllers
                
             };
             _log.LogInformation( "!!!!!!!!!!!!!!!!outside if");
-            clientSNS.PublishAsync(respose);
+            await clientSNS.PublishAsync(respose);
                   }
                    _log.LogInformation( "outside if");
                 
