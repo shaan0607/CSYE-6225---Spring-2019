@@ -556,14 +556,15 @@ namespace trial.Controllers
              var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
-                            _log.LogInformation( "inside if");
+                            _log.LogInformation( "going inside for");
                     
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
-
+                    _log.LogInformation( "inside for");
+                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
                   if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                       _log.LogInformation( "inside if"+"-----"+topic.TopicArn);
+                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
              var respose = new PublishRequest
             {
                 TopicArn =topic.TopicArn,
@@ -572,6 +573,7 @@ namespace trial.Controllers
 
              await client.PublishAsync(respose);
                   }
+                   _log.LogInformation( "outside if");
                 } 
             }  
         }
