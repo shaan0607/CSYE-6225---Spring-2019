@@ -516,6 +516,38 @@ namespace trial.Controllers
             return StatusCode(401, new{result = "Not Authorized"});
         }
         }
+         [HttpPost]
+        [Route("/reset")]
+        public async void passwordreset([FromBody] Users u){
+           Users a =  _context.Users.Find(u.Email);
+           _log.LogInformation( "Listing all items");
+                
+            Console.WriteLine("Hello inside the reset");
+            if(a!=null){
+             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+            var request = new ListTopicsRequest();
+            var response = new ListTopicsResponse();
+           _log.LogInformation( "going inside for");
+                    
+                response = await client.ListTopicsAsync();
+                 foreach (var topic in response.Topics)
+                {
+                    _log.LogInformation( "inside uufor");
+                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
+                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+             var respose = new PublishRequest
+            {
+                TopicArn =topic.TopicArn,
+                Message = a.Email
+            };
+
+             await client.PublishAsync(respose);
+                  }
+                   _log.LogInformation( "outside if");
+                } 
+            }  
+        }
        
         [HttpDelete]
         [Route("/note/{id}/attachments/{atid}")]
@@ -545,38 +577,7 @@ namespace trial.Controllers
                     }
 
         }
-        [HttpPost]
-        [Route("/reset")]
-        public async void passwordreset([FromBody] Users u){
-            Users a =  _context.Users.Find(u.Email);
-            _log.LogInformation( "Listing all items");
-                
-            Console.WriteLine("Hello inside the reset");
-            if(a!=null){
-                var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-                var response = new ListTopicsResponse();
-                _log.LogInformation( "going inside for");
-                    
-                response = await client.ListTopicsAsync();
-                _log.LogInformation( "going inside for !!!!!!!!!!");
-                foreach (var topic in response.Topics)
-                {
-                    _log.LogInformation( "inside for");
-                    _log.LogInformation( "inside if"+"-----"+topic.TopicArn);
-                    if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                        _log.LogInformation( "inside if Yay"+"-----"+topic.TopicArn);
-                        var respose = new PublishRequest
-                        {
-                            TopicArn =topic.TopicArn,
-                            Message = a.Email
-                        };
-
-                        await client.PublishAsync(respose);
-                    }
-                    _log.LogInformation( "outside if");
-                } 
-            }  
-        }
+       
        
  }
 }

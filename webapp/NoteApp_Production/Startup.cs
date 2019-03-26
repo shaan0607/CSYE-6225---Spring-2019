@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon.S3;
-
+using Amazon.SimpleNotificationService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -59,6 +59,7 @@ namespace NoteApp_Production
             // Register DI for user service
             services.AddScoped<IUSerServices, UserServices>();
             services.AddAWSService<IAmazonS3>();
+            services.AddAWSService<IAmazonSimpleNotificationService>();
             services.Configure<FormOptions>(
                 options =>
                 {
