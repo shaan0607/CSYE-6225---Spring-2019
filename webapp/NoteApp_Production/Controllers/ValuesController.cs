@@ -550,7 +550,8 @@ namespace trial.Controllers
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
             
-            Console.WriteLine("Hello inside reset");
+            Console.WriteLine("Hello inside the reset");
+            if(a!=null){
              var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
@@ -568,15 +569,8 @@ namespace trial.Controllers
 
              await client.PublishAsync(respose);
                   }
-                }
-            //  var respose = new PublishRequest
-            // {
-            //     TopicArn = "",
-            //     Message = "Test Message"
-            // };
-
-            
-          
+                } 
+            }  
         }
  }
 }
