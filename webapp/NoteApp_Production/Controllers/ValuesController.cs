@@ -550,31 +550,20 @@ namespace trial.Controllers
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
            _log.LogInformation( "Listing all items");
-                
+                // Publish a message to an Amazon SNS topic.
+
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
              var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
-                            _log.LogInformation( "going inside for");
-                    
-                response = await client.ListTopicsAsync();
-                 foreach (var topic in response.Topics)
-                {
-                    _log.LogInformation( "inside uufor");
-                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
-                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
-             var respose = new PublishRequest
-            {
-                TopicArn =topic.TopicArn,
-                Message = a.Email
-            };
-
-             await client.PublishAsync(respose);
-                  }
-                   _log.LogInformation( "outside if");
-                } 
+          _log.LogInformation( "going inside for");
+          
+ String msg = a.Email;
+ string topic  = "arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword";
+ PublishRequest publishRequest = new PublishRequest(topic, msg);
+  PublishResponse publishResponse = await client.PublishAsync(publishRequest);
+  _log.LogInformation("MessageId: " + publishResponse.MessageId);
             }  
         }
  }
