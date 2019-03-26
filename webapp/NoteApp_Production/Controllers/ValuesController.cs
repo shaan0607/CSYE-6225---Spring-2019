@@ -561,7 +561,9 @@ namespace trial.Controllers
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
+
                   if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                       _log.LogInformation( "inside if"+"-----"+topic.TopicArn);
              var respose = new PublishRequest
             {
                 TopicArn =topic.TopicArn,
