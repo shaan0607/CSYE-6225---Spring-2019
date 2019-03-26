@@ -57,6 +57,7 @@ namespace NoteApp_Production
                         services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication", null);
             // Register DI for user service
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
             services.AddScoped<IUSerServices, UserServices>();
             services.AddAWSService<IAmazonS3>();
             services.AddAWSService<IAmazonSimpleNotificationService>();

@@ -516,7 +516,7 @@ namespace trial.Controllers
             return StatusCode(401, new{result = "Not Authorized"});
         }
         }
-         [HttpPost]
+        [HttpPost]
         [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
@@ -530,24 +530,20 @@ namespace trial.Controllers
            _log.LogInformation( "going inside for");
                     
                 response = await client.ListTopicsAsync();
-                 foreach (var topic in response.Topics)
-                {
-                    _log.LogInformation( "inside uufor");
-                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
-                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+
              var respose = new PublishRequest
             {
-                TopicArn =topic.TopicArn,
+                TopicArn ="arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword",
                 Message = a.Email
+               
             };
-
+            _log.LogInformation( "!!!!!!!!!!!!!!!!outside if");
              await client.PublishAsync(respose);
                   }
                    _log.LogInformation( "outside if");
-                } 
+                
             }  
-        }
+        
        
         [HttpDelete]
         [Route("/note/{id}/attachments/{atid}")]
