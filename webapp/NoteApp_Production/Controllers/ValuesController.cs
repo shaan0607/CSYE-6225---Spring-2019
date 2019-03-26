@@ -550,7 +550,7 @@ namespace trial.Controllers
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
             
-            Console.WriteLine("Hello");
+            Console.WriteLine("Hello inside reset");
              var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
@@ -559,8 +559,15 @@ namespace trial.Controllers
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
-             Console.WriteLine("Topic: aq{0}", topic.TopicArn);
-    
+                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+             var respose = new PublishRequest
+            {
+                TopicArn =topic.TopicArn,
+                Message = a.Email
+            };
+
+             await client.PublishAsync(respose);
+                  }
                 }
             //  var respose = new PublishRequest
             // {
@@ -568,7 +575,7 @@ namespace trial.Controllers
             //     Message = "Test Message"
             // };
 
-            //  client.PublishAsync(respose);
+            
           
         }
  }
