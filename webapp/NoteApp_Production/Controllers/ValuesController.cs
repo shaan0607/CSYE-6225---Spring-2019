@@ -548,9 +548,10 @@ namespace trial.Controllers
         [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
             Users a =  _context.Users.Find(u.Email);
-            
+            _log.LogInformation("Enter");
             Console.WriteLine("Hello inside reset");
             if(a!=null){
+                
                 var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
                 var response = new ListTopicsResponse();
                         
