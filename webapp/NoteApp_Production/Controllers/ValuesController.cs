@@ -559,11 +559,11 @@ namespace trial.Controllers
             var response = new ListTopicsResponse();
           _log.LogInformation( "going inside for");
           
- String msg = a.Email;
- string topic  = "arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword";
- PublishRequest publishRequest = new PublishRequest(topic, msg);
-  PublishResponse publishResponse = await client.PublishAsync(publishRequest);
-  _log.LogInformation("MessageId: " + publishResponse.MessageId);
+        String msg = a.Email;
+        string topic  = "arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword";
+        PublishRequest publishRequest = new PublishRequest(topic, msg);
+        PublishResponse publishResponse = await client.PublishAsync(publishRequest);
+        _log.LogInformation("MessageId: " + publishResponse.MessageId);
             }  
         }
  }
