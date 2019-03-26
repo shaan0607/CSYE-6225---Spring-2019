@@ -563,7 +563,7 @@ namespace trial.Controllers
                     _log.LogInformation( "inside for");
                     _log.LogInformation( "inside if"+"-----"+topic.TopicArn);
                     if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                        _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+                        _log.LogInformation( "inside if Yay"+"-----"+topic.TopicArn);
                         var respose = new PublishRequest
                         {
                             TopicArn =topic.TopicArn,
