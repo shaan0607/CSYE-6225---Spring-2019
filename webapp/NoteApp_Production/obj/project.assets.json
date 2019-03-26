@@ -75,16 +75,16 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
-      "AWSSDK.SimpleNotificationService/3.3.2": {
+      "AWSSDK.SimpleNotificationService/3.3.100.1": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[3.3.28, 3.4.0)"
+          "AWSSDK.Core": "[3.3.100.1, 3.4.0)"
         },
         "compile": {
-          "lib/netstandard1.3/AWSSDK.SimpleNotificationService.dll": {}
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/AWSSDK.SimpleNotificationService.dll": {}
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
         }
       },
       "BCrypt.Net/0.1.0": {
@@ -5001,16 +5001,16 @@
         "tools/uninstall.ps1"
       ]
     },
-    "AWSSDK.SimpleNotificationService/3.3.2": {
-      "sha512": "8UhSp3pfgCcNCRy1Gu2aJvrOiPKEMGRjj4YtnDasO7VBDVoWSCZqXQA0DQUt84iNvqNdLekUQImKdSReyQv8zg==",
+    "AWSSDK.SimpleNotificationService/3.3.100.1": {
+      "sha512": "XNIdW0s4JLgLvZ/ShnOh/PipCP8O/Z5oQUmc82BfR5Ovt9a/Z/UX/noQcUPbklw5T0tiGkRL0I6rBh7gQdBTUA==",
       "type": "package",
-      "path": "awssdk.simplenotificationservice/3.3.2",
+      "path": "awssdk.simplenotificationservice/3.3.100.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.SimpleNotificationService.CodeAnalysis.dll",
-        "awssdk.simplenotificationservice.3.3.2.nupkg.sha512",
+        "awssdk.simplenotificationservice.3.3.100.1.nupkg.sha512",
         "awssdk.simplenotificationservice.nuspec",
         "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.XML",
         "lib/MonoAndroid10/AWSSDK.SimpleNotificationService.dll",
@@ -5028,6 +5028,9 @@
         "lib/netstandard1.3/AWSSDK.SimpleNotificationService.dll",
         "lib/netstandard1.3/AWSSDK.SimpleNotificationService.pdb",
         "lib/netstandard1.3/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.xml",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.XML",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.dll",
         "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SimpleNotificationService.pdb",
@@ -13166,7 +13169,7 @@
       "AWSSDK.Core >= 3.3.100.1",
       "AWSSDK.Extensions.NETCore.Setup >= 3.3.6",
       "AWSSDK.S3 >= 3.3.31.18",
-      "AWSSDK.SimpleNotificationService >= 3.3.2",
+      "AWSSDK.SimpleNotificationService >= 3.3.100.1",
       "Amazon.S3 >= 4.0.0",
       "Bcrypt.Net >= 0.1.0",
       "JustEat.Statsd >= 4.0.0",
@@ -13238,7 +13241,7 @@
           },
           "AWSSDK.SimpleNotificationService": {
             "target": "Package",
-            "version": "[3.3.2, )"
+            "version": "[3.3.100.1, )"
           },
           "Amazon.S3": {
             "target": "Package",
