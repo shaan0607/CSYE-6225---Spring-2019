@@ -554,7 +554,6 @@ namespace trial.Controllers
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
                 var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-                var request = new ListTopicsRequest();
                 var response = new ListTopicsResponse();
                 _log.LogInformation( "going inside for");
                     
@@ -562,7 +561,7 @@ namespace trial.Controllers
                 foreach (var topic in response.Topics)
                 {
                     _log.LogInformation( "inside for");
-                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
+                    _log.LogInformation( "inside if"+"-----"+topic.TopicArn);
                     if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
                         _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
                         var respose = new PublishRequest
