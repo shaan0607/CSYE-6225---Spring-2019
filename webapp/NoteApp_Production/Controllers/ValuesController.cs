@@ -563,7 +563,7 @@ namespace trial.Controllers
         string topic  = "arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword";
         PublishRequest publishRequest = new PublishRequest(topic, msg);
         PublishResponse publishResponse = await client.PublishAsync(publishRequest);
-        _log.LogInformation("MessageId: " + publishResponse.MessageId);
+        _log.LogInformation("MessageId: IS " + publishResponse.MessageId);
             }  
         }
  }
