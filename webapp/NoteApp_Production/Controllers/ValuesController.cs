@@ -560,8 +560,10 @@ namespace trial.Controllers
                 foreach (var topic in response.Topics)
                 {
                     if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                        _log.LogInformation("Enter IF");
                         var respose = new PublishRequest
                         {
+                         
                             TopicArn =topic.TopicArn,
                             Message = a.Email
                         };
