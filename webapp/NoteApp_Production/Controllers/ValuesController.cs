@@ -51,6 +51,7 @@ namespace trial.Controllers
      
         
          public StatsDConfiguration statsDConfig;
+         public AmazonSimpleNotificationServiceClient clientSNS;
         public IStatsDPublisher statsDPublisher;
         static int rand=  1;
         private CLOUD_CSYEContext _context;
@@ -552,11 +553,12 @@ namespace trial.Controllers
             Console.WriteLine("Hello inside reset");
             if(a!=null){
                 
-                var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+                var clientSNS = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
                 var response = new ListTopicsResponse();
                         
                     
-                response = await client.ListTopicsAsync();
+                response = await clientSNS.ListTopicsAsync();
+                _log.LogInformation(response.ToString());
                 foreach (var topic in response.Topics)
                 {
                     if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
@@ -568,7 +570,7 @@ namespace trial.Controllers
                             Message = a.Email
                         };
 
-                        await client.PublishAsync(respose);
+                        await clientSNS.PublishAsync(respose);
                     }
                 } 
             }  
