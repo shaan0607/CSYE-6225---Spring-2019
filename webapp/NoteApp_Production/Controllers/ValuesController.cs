@@ -525,7 +525,7 @@ namespace trial.Controllers
             Console.WriteLine("Hello inside the reset");
             if(a!=null){
              var clientSNS = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-
+  _log.LogInformation( "!!!!!!!!!!!!!!!!inside if");
              var respose = new PublishRequest
             {
                 TopicArn ="arn:aws:sns:us-east-1:981038083167:SNSTopicResetPassword",
