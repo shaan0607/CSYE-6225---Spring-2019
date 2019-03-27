@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +21,7 @@ using Amazon.S3.Transfer;
 using Amazon.SimpleNotificationService;
 using BCrypt.Net;
 using JustEat.StatsD;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -34,16 +35,32 @@ using trial3;
 using Amazon.SimpleNotificationService.Model;
 
 namespace trial.Controllers {
+=======
+using Amazon.SimpleNotificationService;
+
+using Amazon.SimpleNotificationService.Model;
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
     public class ValuesController : ControllerBase {
         // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
         private readonly ILogger<ValuesController> _log;
+<<<<<<< HEAD
 
+=======
+    
+  
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
         private static IAmazonS3 s3Client;
+      
 
+<<<<<<< HEAD
         public NStatsD.Client nc;
         private static String[] arguments = Environment.GetCommandLineArgs ();
+=======
+        public NStatsD.Client  nc;
+        private static String[] arguments = Environment.GetCommandLineArgs();
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
         private string bucketName = arguments[1];
 
@@ -51,6 +68,7 @@ namespace trial.Controllers {
         public IStatsDPublisher statsDPublisher;
         static int rand = 1;
         private CLOUD_CSYEContext _context;
+<<<<<<< HEAD
         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
 
         private readonly AWSCredentials credentials;
@@ -60,6 +78,18 @@ namespace trial.Controllers {
             var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
             var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
+=======
+         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+
+         private readonly AWSCredentials credentials;
+         
+         
+        public string getUsername(){
+            
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
             var username = credentials[0];
 
             return username;
@@ -68,19 +98,47 @@ namespace trial.Controllers {
 
             _log = log;
             _context = context;
+<<<<<<< HEAD
             s3Client = new AmazonS3Client (bucketRegion);
 
             statsDConfig = new StatsDConfiguration { Host = "localhost", Port = 8125 };
             statsDPublisher = new StatsDPublisher (statsDConfig);
 
+=======
+            s3Client = new AmazonS3Client(bucketRegion);
+           
+            statsDConfig = new  StatsDConfiguration{ Host = "localhost", Port = 8125 };
+            statsDPublisher = new StatsDPublisher(statsDConfig);
+            
+             
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
         }
 
         [HttpGet]
+<<<<<<< HEAD
         //  [Authorize]
         [Route ("/")]
         public ActionResult Get () {
             try {
                 //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
+=======
+      //  [Authorize]
+        [Route("/")]
+        public ActionResult Get()
+        {   try{
+          //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
+  
+                _log.LogInformation( "Listing all items");
+                
+
+            statsDPublisher.Increment("GET");
+            return StatusCode(200, new{result =DateTime.Now});
+           
+        }
+        catch{
+            throw new Exception("Opps");
+       }
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
                 _log.LogInformation ("Listing all items");
 
@@ -105,6 +163,7 @@ namespace trial.Controllers {
         }
 
         [HttpPost]
+<<<<<<< HEAD
         [Route ("/user/register")]
         public ActionResult signup ([FromBody] Users u) {
             Users us = _context.Users.Find (u.Email);
@@ -124,6 +183,27 @@ namespace trial.Controllers {
                     _context.SaveChanges ();
                     var Created = "User Created Successfully";
                     return StatusCode (201, new { result = Created });
+=======
+        [Route("/user/register")]
+        public ActionResult signup([FromBody] Users u)
+        {
+            Users us =  _context.Users.Find(u.Email);
+            if(us == null){
+                if(ModelState.IsValid){
+                _log.LogInformation("USER is inserted");
+                Console.WriteLine("User is registered");
+                
+                statsDPublisher.Increment("_USER_API");
+                if (string.IsNullOrWhiteSpace(u.Email))
+               { var baDRequest = "Email cant be blank";
+                return StatusCode(400,  new{result = baDRequest} );}
+                var s = HashPassword(u.Password);
+                var user = new Users{Email= u.Email, Password = s};
+                _context.Add(user);
+                _context.SaveChanges();
+                var Created = "User Created Successfully";
+                return StatusCode(201, new {result = Created});
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
                 }
                 var badRequest = "Either Email or Password was not in correct format, Please try again";
                 return StatusCode (400, new { result = badRequest });
@@ -131,7 +211,35 @@ namespace trial.Controllers {
                 var conflict = "Email Already exists";
                 return StatusCode (409, new { result = conflict });
             }
+<<<<<<< HEAD
         }
+=======
+        [HttpPost("UploadFiles")]
+        [Route("/note")]
+        [Authorize]
+        [Consumes("multipart/form-data")]
+        public ActionResult createNotes(NOTES n, IFormFile file){
+               if(ModelState.IsValid){
+                   _log.LogInformation("NOTE is inserted");
+                   statsDPublisher.Increment("_NOTE_API");
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
+            var username = credentials[0];
+            var fileTransferUtility =
+                new TransferUtility(s3Client);
+   
+            string fileName = ( rand.ToString() +file.FileName );
+            rand++;
+           // var uniqueFileName = GetUniqueFileName(file.FileName);
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
+
+            var filePath = Path.Combine(uploads);
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
         [HttpPost ("UploadFiles")]
         [Route ("/note")]
@@ -190,7 +298,20 @@ namespace trial.Controllers {
 
                     }
                 }
+<<<<<<< HEAD
                 string Json = JsonConvert.SerializeObject (notes, Formatting.Indented);
+=======
+            string Json = JsonConvert.SerializeObject(notes, Formatting.Indented);
+   
+          // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
+          //  string username = us.getUsername();
+
+            return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
+                    }
+            else{
+                var conflict = "Bad Request";
+                return StatusCode(409, new{ result = conflict});
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
                 // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
                 //  string username = us.getUsername();
@@ -294,6 +415,33 @@ namespace trial.Controllers {
                     m.url = attachments.url;
                     newat.Add (m);
 
+<<<<<<< HEAD
+=======
+            
+ 
+                string username = getUsername();
+                NOTES notes =  _context.notes.Find(id);
+                IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
+                List<mAttachments> newat = new List<mAttachments>();
+
+                foreach(Attachments attachments in at){
+                    if(attachments.noteID==notes.noteID){
+                        mAttachments m = new mAttachments();
+                        m.AID = attachments.AID;
+                        m.url = attachments.url;
+                        newat.Add(m);
+
+                       
+                    }
+                }
+                if(notes.EMAIL == username)
+                {
+                    return StatusCode(200, new{attachments= newat});
+                }
+                else
+                {
+                    return StatusCode(401, new{result = "Not Authorized"});
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
                 }
             }
             if (notes.EMAIL == username) {
@@ -306,12 +454,21 @@ namespace trial.Controllers {
         [HttpPut]
         [Route ("/note/{id}")]
         [Authorize]
+<<<<<<< HEAD
         public ActionResult putnote (string id, [FromBody] NOTES n) {
 
             string username = getUsername ();
             NOTES note = _context.notes.Find (id);
             if (note.EMAIL == username) {
                 var ID = note.noteID;
+=======
+        public ActionResult putnote(string id,[FromBody] NOTES n){
+
+                  string username = getUsername();
+                  NOTES note = _context.notes.Find(id);
+                  if(note.EMAIL == username){
+                  var ID = note.noteID;
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
                 //IEnumerable<Attachments> a = _context.attachments.AsEnumerable();
                 var created = note.created_on;
                 _context.notes.Remove (note);
@@ -332,7 +489,35 @@ namespace trial.Controllers {
         public ActionResult Deletenote (string id) {
 
             var fileTransferUtility =
+<<<<<<< HEAD
                 new TransferUtility (s3Client);
+=======
+                new TransferUtility(s3Client);
+
+                    string username = getUsername();
+
+                    NOTES note = _context.notes.Find(id);
+
+                    IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
+                    string key = "";
+                    if(note.EMAIL == username)
+                    {
+                        
+                    foreach(Attachments atchm in at){
+                        if(atchm.noteID == id)
+                        {
+                            key = atchm.FileName;
+                            
+                            fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
+                            _context.attachments.Remove(atchm);
+                            
+                        }
+                    }
+                   
+                    _context.notes.Remove(note);
+                   
+                    _context.SaveChanges();
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
             string username = getUsername ();
 
@@ -367,11 +552,20 @@ namespace trial.Controllers {
         [Route ("/note/{id}/attachments")]
         //[Consumes("multipart/form-data")]
         [Authorize]
+<<<<<<< HEAD
         public ActionResult AttachImage (string id, IFormFile file) {
             var fileTransferUtility =
                 new TransferUtility (s3Client);
 
             string fileName = (rand.ToString () + file.FileName);
+=======
+        public  ActionResult AttachImage(string id, IFormFile file){
+                      var fileTransferUtility =
+                    new TransferUtility(s3Client);
+         
+    
+            string fileName = (rand.ToString() + file.FileName );
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
             rand++;
             // var uniqueFileName = GetUniqueFileName(file.FileName);
             var filePath = Path.Combine (file.FileName);
@@ -435,8 +629,13 @@ namespace trial.Controllers {
         [Authorize]
         public ActionResult putnoteAttachent (string id, IFormFile file, string aid) {
             var fileTransferUtility =
+<<<<<<< HEAD
                 new TransferUtility (s3Client);
             string fileName = (rand.ToString () + file.FileName);
+=======
+                new TransferUtility(s3Client);
+            string fileName = (rand.ToString() + file.FileName );
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
             rand++;
             // var uniqueFileName = GetUniqueFileName(file.FileName);
             var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
@@ -482,8 +681,24 @@ namespace trial.Controllers {
         [Authorize]
         public ActionResult Deletenoteattchment (string id, string atid) {
             var fileTransferUtility =
+<<<<<<< HEAD
                 new TransferUtility (s3Client);
             string username = getUsername ();
+=======
+                new TransferUtility(s3Client);
+                string username = getUsername();
+
+                    NOTES note = _context.notes.Find(id);
+
+                    Attachments a = _context.attachments.Find(atid);
+                    string key = a.FileName;
+                    if(note.EMAIL == username){
+                        if(a.noteID == note.noteID && a.AID == atid){
+                            _context.attachments.Remove(a);
+                        }
+                        fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
+                    _context.SaveChanges();
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
             NOTES note = _context.notes.Find (id);
 
@@ -545,5 +760,42 @@ namespace trial.Controllers {
 
             return StatusCode (200, new { message = "You will recieve a email" });
         }
+<<<<<<< HEAD
     }
+=======
+
+ [HttpPost]
+        [Route("/reset")]
+        public async void passwordreset([FromBody] Users u){
+           Users a =  _context.Users.Find(u.Email);
+           _log.LogInformation( "Listing all items");
+                
+            Console.WriteLine("Hello inside the reset");
+            if(a!=null){
+             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+            var request = new ListTopicsRequest();
+            var response = new ListTopicsResponse();
+                            _log.LogInformation( "going inside for");
+                    
+                response = await client.ListTopicsAsync();
+                 foreach (var topic in response.Topics)
+                {
+                    _log.LogInformation( "inside uufor");
+                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
+                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+             var respose = new PublishRequest
+            {
+                TopicArn =topic.TopicArn,
+                Message = a.Email
+            };
+
+             await client.PublishAsync(respose);
+                  }
+                   _log.LogInformation( "outside if");
+                } 
+            }  
+        }
+ }
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 }

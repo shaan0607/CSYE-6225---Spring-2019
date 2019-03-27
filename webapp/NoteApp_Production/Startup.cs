@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon.S3;
+<<<<<<< HEAD
+=======
+using Amazon.SimpleNotificationService;
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,10 +56,20 @@ namespace NoteApp_Production {
             services.AddAuthentication ("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler> ("BasicAuthentication", null);
             // Register DI for user service
+<<<<<<< HEAD
             services.AddScoped<IUSerServices, UserServices> ();
             services.AddAWSService<IAmazonS3> ();
             services.Configure<FormOptions> (
                 options => {
+=======
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            services.AddScoped<IUSerServices, UserServices>();
+            services.AddAWSService<IAmazonS3>();
+            services.AddAWSService<IAmazonSimpleNotificationService>();
+            services.Configure<FormOptions>(
+                options =>
+                {
+>>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
                     options.MultipartBodyLengthLimit = 80000000;
                     options.ValueLengthLimit = int.MaxValue;
                     options.MultipartHeadersLengthLimit = int.MaxValue;
