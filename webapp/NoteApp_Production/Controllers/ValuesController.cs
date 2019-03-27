@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -164,7 +164,7 @@ namespace trial.Controllers
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
 
             var filePath = Path.Combine(uploads);
             if (file.Length > 0)
@@ -410,7 +410,7 @@ namespace trial.Controllers
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
             var filePath = Path.Combine(file.FileName);
-              var uploads = Path.Combine(Directory.GetCurrentDirectory(),file.FileName);
+              var uploads = Path.Combine(Directory.GetCurrentDirectory(),fileName );
                      using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                    // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
