@@ -164,7 +164,7 @@ namespace trial.Controllers
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
 
             var filePath = Path.Combine(uploads);
             if (file.Length > 0)
@@ -410,7 +410,7 @@ namespace trial.Controllers
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
             var filePath = Path.Combine(file.FileName);
-              var uploads = Path.Combine(Directory.GetCurrentDirectory(),file.FileName);
+              var uploads = Path.Combine(Directory.GetCurrentDirectory(),fileName );
                      using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                    // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
@@ -545,7 +545,11 @@ namespace trial.Controllers
 
         }
 
+<<<<<<< HEAD
         [HttpPost]
+=======
+ [HttpPost]
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
         [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);

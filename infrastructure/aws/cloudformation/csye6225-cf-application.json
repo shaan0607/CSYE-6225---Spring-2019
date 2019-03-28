@@ -289,6 +289,7 @@
                   "KeyType":"RANGE"
                }
             ],
+
             "ProvisionedThroughput":{
                "ReadCapacityUnits":"1",
                "WriteCapacityUnits":"1"
@@ -364,6 +365,7 @@
 					}
       					},
 
+
     "LogRolePolicy": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
@@ -382,6 +384,7 @@
                 "arn:aws:logs:*:*:*"
               ]
             },
+
 	   {
             "Effect": "Allow",
             "Action": [

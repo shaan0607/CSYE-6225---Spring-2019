@@ -11,7 +11,11 @@ DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output
 DOMAIN_NAME="${DOMAIN_NAME%?}"
 echo "DOMAIN_NAME:- $DOMAIN_NAME"
 
+<<<<<<< HEAD
 LAMBDABUCKET="lambda-$DOMAIN_NAME"
+=======
+LAMBDABUCKET="code-deploy."${DOMAIN_NAME}
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
 echo "LAMBDA_BUCKET:- $LAMBDABUCKET"
 
 AccountId=$(aws iam get-user|python -c "import json as j,sys;o=j.load(sys.stdin);print o['User']['Arn'].split(':')[4]")
