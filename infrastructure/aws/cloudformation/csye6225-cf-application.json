@@ -280,15 +280,15 @@
                   "AttributeType":"S"
                }
             ],
-            "KeySchema":[ {
+            "KeySchema":[
+               {
                   "AttributeName":"Id",
                   "KeyType":"HASH"
-               },{
+               }, {
                   "AttributeName":"Email",
                   "KeyType":"RANGE"
                }
             ],
-
             "ProvisionedThroughput":{
                "ReadCapacityUnits":"1",
                "WriteCapacityUnits":"1"
