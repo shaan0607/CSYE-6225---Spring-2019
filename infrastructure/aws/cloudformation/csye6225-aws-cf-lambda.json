@@ -58,7 +58,7 @@
 		"LambdaFunction": {
 		  "Type": "AWS::Lambda::Function",
 		  "Properties": {
-			"Handler": "testlambda::testlambda.Function::FunctionHandler",
+			"Handler": "trialLambda::trialLambda.Function::myFunction",
 			"Role": { "Fn::GetAtt" : ["LambdaExecRole", "Arn"] },
 			"Code": {
 			  "S3Bucket": { "Ref" : "LAMBDABUCKET" },
