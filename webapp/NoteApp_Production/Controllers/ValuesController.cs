@@ -561,10 +561,10 @@ namespace trial.Controllers
                 response = await client.ListTopicsAsync();
                  foreach (var topic in response.Topics)
                 {
-                    _log.LogInformation( "inside uufor");
-                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
+                   
+                    _log.LogInformation( topic.TopicArn);
                   if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+                       _log.LogInformation( topic.TopicArn);
              var respose = new PublishRequest
             {
                 TopicArn =topic.TopicArn,
@@ -573,7 +573,7 @@ namespace trial.Controllers
 
              await client.PublishAsync(respose);
                   }
-                   _log.LogInformation( "outside if");
+                  
                 } 
             }  
         }
