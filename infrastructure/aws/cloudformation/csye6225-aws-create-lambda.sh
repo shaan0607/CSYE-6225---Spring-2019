@@ -11,7 +11,15 @@ DOMAINNAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output 
 DOMAINNAME="${DOMAINNAME%?}"
 echo "DOMAIN_NAME:- $DOMAINNAME"
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+LAMBDABUCKET="lambda-$DOMAIN_NAME"
+=======
+LAMBDABUCKET="code-deploy."${DOMAIN_NAME}
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
+=======
 LAMBDABUCKET="code-deploy."${DOMAINNAME}
+>>>>>>> 6269fc17ca52c9ecca5ebdbeab07fe4c19b1b68c
 echo "LAMBDA_BUCKET:- $LAMBDABUCKET"
 
 

@@ -545,7 +545,11 @@ namespace trial.Controllers
 
         }
 
+<<<<<<< HEAD
+        [HttpPost]
+=======
  [HttpPost]
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
         [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);

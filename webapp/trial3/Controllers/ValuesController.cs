@@ -22,6 +22,8 @@ using System.IO;
 using Amazon.S3;
 using Amazon.S3.Transfer;
 using Amazon;
+using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
 
 namespace trial.Controllers
 {
@@ -496,5 +498,38 @@ namespace trial.Controllers
                       return StatusCode(401, new{result = "note Absent"});
                   }
         }
+
+
+        [HttpPost]
+        [Route("/reset")]
+     public async void passwordreset([FromBody] Users u){
+           Users a =  _context.Users.Find(u.Email);
+            
+            
+             var client = new AmazonSimpleNotificationServiceClient();
+            var request = new ListTopicsRequest();
+            var response = new ListTopicsResponse();
+                        
+                    
+                response = await client.ListTopicsAsync();
+           
+
+  foreach (var topic in response.Topics)
+  {
+    Console.WriteLine("Topic: \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\{0}", topic.TopicArn);
+
+  }
+
+            //  var request = new PublishRequest
+            // {
+            //     TopicArn = "",
+            //     Message = "Test Message"
+            // };
+
+            //  snsClient.PublishAsync(request);
+          
+        }
+    
+
  }
 }

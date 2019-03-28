@@ -21,10 +21,14 @@
 		  "Properties": {
 		    "FunctionName" : { "Ref" : "LambdaFunction" },
 		    "Principal": "sns.amazonaws.com",
+<<<<<<< HEAD
+		    "Action": "lambda:*",
+=======
 		   "Action": 
 
                 "lambda:InvokeFunction"
             ,
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
 		    "SourceArn" : { "Ref": "SNSTOPICARN" }
 		  }
 		},
@@ -65,7 +69,11 @@
 			"Role": { "Fn::GetAtt" : ["LambdaExecRole", "Arn"] },
 			"Code": {
 			  "S3Bucket": { "Ref" : "LAMBDABUCKET" },
+<<<<<<< HEAD
+			  "S3Key": "BlogFunction.zip"
+=======
 			  "S3Key": "csye6225-spring2019-lambda-636891496833632797.zip"
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
 			},
 			"Runtime": "dotnetcore2.1",
 			"FunctionName" : "csye6225-spring2019-lambda",
