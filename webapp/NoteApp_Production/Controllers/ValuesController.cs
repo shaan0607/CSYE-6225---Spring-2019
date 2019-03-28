@@ -546,8 +546,11 @@ namespace trial.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         [HttpPost]
 =======
+=======
+>>>>>>> d36205d90d547c7df58b2f8b69cfad366bb287d9
  [HttpPost]
 >>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
         [Route("/reset")]
