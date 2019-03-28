@@ -70,7 +70,10 @@
 			"Runtime": "dotnetcore2.1",
 			"FunctionName" : "csye6225-spring2019-lambda",
 			"MemorySize" : 128,
-			"Timeout": 180
+			"Timeout": 180,
+			"Environment": {"Variables" : {
+           					 "DomainName" : { "Ref" : "DOMAINNAME" }
+          				} }
 			
 		  }
 		}
@@ -80,6 +83,9 @@
 	      "Type": "String"
 	    },
 	    "SNSTOPICARN": {
+	      "Type": "String"
+	    },
+	    "DOMAINNAME": {
 	      "Type": "String"
 	    }
 	  }

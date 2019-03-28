@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,783 +19,654 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
 using BCrypt.Net;
 using JustEat.StatsD;
-<<<<<<< HEAD
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using NoteApp_Production;
-using NoteApp_Production;
-using StatsdClient;
-using StatsN;
-using trial3;
-//using Amazon.RegionEndpoint;
-using Amazon.SimpleNotificationService.Model;
 
-namespace trial.Controllers {
-=======
-using Amazon.SimpleNotificationService;
+public class ValuesController : ControllerBase {
+    // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
+    // GET api/values
+    private readonly ILogger<ValuesController> _log;
 
-using Amazon.SimpleNotificationService.Model;
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+    private static IAmazonS3 s3Client;
 
-    public class ValuesController : ControllerBase {
-        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
-        // GET api/values
-        private readonly ILogger<ValuesController> _log;
-<<<<<<< HEAD
+    public NStatsD.Client nc;
+    private static String[] arguments = Environment.GetCommandLineArgs ();
 
-=======
-    
-  
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-        private static IAmazonS3 s3Client;
-      
+    private string bucketName = arguments[1];
 
-<<<<<<< HEAD
-        public NStatsD.Client nc;
-        private static String[] arguments = Environment.GetCommandLineArgs ();
-=======
-        public NStatsD.Client  nc;
-        private static String[] arguments = Environment.GetCommandLineArgs();
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+    public StatsDConfiguration statsDConfig;
+    public IStatsDPublisher statsDPublisher;
+    static int rand = 1;
+    private CLOUD_CSYEContext _context;
+    private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
 
-        private string bucketName = arguments[1];
+    private readonly AWSCredentials credentials;
 
-        public StatsDConfiguration statsDConfig;
-        public IStatsDPublisher statsDPublisher;
-        static int rand = 1;
-        private CLOUD_CSYEContext _context;
-<<<<<<< HEAD
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+    public string getUsername () {
 
-        private readonly AWSCredentials credentials;
+        var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
+        var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
+        var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
+        var username = credentials[0];
 
-        public string getUsername () {
+        return username;
+    }
+    public ValuesController (CLOUD_CSYEContext context, ILogger<ValuesController> log) {
 
-            var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
-            var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
-            var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
-=======
-         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+        _log = log;
+        _context = context;
+        s3Client = new AmazonS3Client (bucketRegion);
 
-         private readonly AWSCredentials credentials;
-         
-         
-        public string getUsername(){
-            
-            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
-            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
-            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-            var username = credentials[0];
+        statsDConfig = new StatsDConfiguration { Host = "localhost", Port = 8125 };
+        statsDPublisher = new StatsDPublisher (statsDConfig);
 
-            return username;
-        }
-        public ValuesController (CLOUD_CSYEContext context, ILogger<ValuesController> log) {
+    }
 
-            _log = log;
-            _context = context;
-<<<<<<< HEAD
-            s3Client = new AmazonS3Client (bucketRegion);
+    [HttpGet]
+    //  [Authorize]
+    [Route ("/")]
+    public ActionResult Get () {
+        try {
+            //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
 
-            statsDConfig = new StatsDConfiguration { Host = "localhost", Port = 8125 };
-            statsDPublisher = new StatsDPublisher (statsDConfig);
+            _log.LogInformation ("Listing all items");
 
-=======
-            s3Client = new AmazonS3Client(bucketRegion);
-           
-            statsDConfig = new  StatsDConfiguration{ Host = "localhost", Port = 8125 };
-            statsDPublisher = new StatsDPublisher(statsDConfig);
-            
-             
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+            statsDPublisher.Increment ("GET");
+            return StatusCode (200, new { result = DateTime.Now });
+
+        } catch {
+            throw new Exception ("Opps");
         }
 
-        [HttpGet]
-<<<<<<< HEAD
-        //  [Authorize]
-        [Route ("/")]
-        public ActionResult Get () {
-            try {
-                //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
-=======
-      //  [Authorize]
-        [Route("/")]
-        public ActionResult Get()
-        {   try{
-          //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
-  
-                _log.LogInformation( "Listing all items");
-                
+        _log.LogInformation ("Listing all items");
 
-            statsDPublisher.Increment("GET");
-            return StatusCode(200, new{result =DateTime.Now});
-           
-        }
-        catch{
-            throw new Exception("Opps");
-       }
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+        statsDPublisher.Increment ("GET");
+        return StatusCode (200, new { result = DateTime.Now });
 
-                _log.LogInformation ("Listing all items");
+    } catch {
+        throw new Exception ("Opps");
+    }
 
-                statsDPublisher.Increment ("GET");
-                return StatusCode (200, new { result = DateTime.Now });
+}
+public string GetRandomSalt () {
 
-            } catch {
-                throw new Exception ("Opps");
-            }
+    return BCrypt.Net.BCrypt.GenerateSalt (12);;
+}
+public string HashPassword (string password) {
 
-        }
-        public string GetRandomSalt () {
+    return BCrypt.Net.BCrypt.HashPassword (password, GetRandomSalt ());
 
-            return BCrypt.Net.BCrypt.GenerateSalt (12);;
-        }
-        public string HashPassword (string password) {
+    //return hashedPassword;
+    // return BCrypt.HashPassword(password, GetRandomSalt());
+}
 
-            return BCrypt.Net.BCrypt.HashPassword (password, GetRandomSalt ());
+[HttpPost]
+[Route ("/user/register")]
+public ActionResult signup ([FromBody] Users u) {
+        Users us = _context.Users.Find (u.Email);
+        if (us == null) {
+            if (ModelState.IsValid) {
+                _log.LogInformation ("USER is inserted");
+                Console.WriteLine ("User is registered");
 
-            //return hashedPassword;
-            // return BCrypt.HashPassword(password, GetRandomSalt());
-        }
-
-        [HttpPost]
-<<<<<<< HEAD
-        [Route ("/user/register")]
-        public ActionResult signup ([FromBody] Users u) {
-            Users us = _context.Users.Find (u.Email);
-            if (us == null) {
-                if (ModelState.IsValid) {
-                    _log.LogInformation ("USER is inserted");
-                    Console.WriteLine ("User is registered");
-
-                    statsDPublisher.Increment ("_USER_API");
-                    if (string.IsNullOrWhiteSpace (u.Email)) {
-                        var baDRequest = "Email cant be blank";
-                        return StatusCode (400, new { result = baDRequest });
-                    }
-                    var s = HashPassword (u.Password);
-                    var user = new Users { Email = u.Email, Password = s };
-                    _context.Add (user);
-                    _context.SaveChanges ();
-                    var Created = "User Created Successfully";
-                    return StatusCode (201, new { result = Created });
-=======
-        [Route("/user/register")]
-        public ActionResult signup([FromBody] Users u)
-        {
-            Users us =  _context.Users.Find(u.Email);
-            if(us == null){
-                if(ModelState.IsValid){
-                _log.LogInformation("USER is inserted");
-                Console.WriteLine("User is registered");
-                
-                statsDPublisher.Increment("_USER_API");
-                if (string.IsNullOrWhiteSpace(u.Email))
-               { var baDRequest = "Email cant be blank";
-                return StatusCode(400,  new{result = baDRequest} );}
-                var s = HashPassword(u.Password);
-                var user = new Users{Email= u.Email, Password = s};
-                _context.Add(user);
-                _context.SaveChanges();
-                var Created = "User Created Successfully";
-                return StatusCode(201, new {result = Created});
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+                statsDPublisher.Increment ("_USER_API");
+                if (string.IsNullOrWhiteSpace (u.Email)) {
+                    var baDRequest = "Email cant be blank";
+                    return StatusCode (400, new { result = baDRequest });
                 }
-                var badRequest = "Either Email or Password was not in correct format, Please try again";
-                return StatusCode (400, new { result = badRequest });
-            } else {
-                var conflict = "Email Already exists";
-                return StatusCode (409, new { result = conflict });
+                var s = HashPassword (u.Password);
+                var user = new Users { Email = u.Email, Password = s };
+                _context.Add (user);
+                _context.SaveChanges ();
+                var Created = "User Created Successfully";
+                return StatusCode (201, new { result = Created });
             }
-<<<<<<< HEAD
+            var badRequest = "Either Email or Password was not in correct format, Please try again";
+            return StatusCode (400, new { result = badRequest });
+        } else {
+            var conflict = "Email Already exists";
+            return StatusCode (409, new { result = conflict });
         }
-=======
-        [HttpPost("UploadFiles")]
-        [Route("/note")]
-        [Authorize]
-        [Consumes("multipart/form-data")]
-        public ActionResult createNotes(NOTES n, IFormFile file){
-               if(ModelState.IsValid){
-                   _log.LogInformation("NOTE is inserted");
-                   statsDPublisher.Increment("_NOTE_API");
-            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
-            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
-            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
-            var username = credentials[0];
-            var fileTransferUtility =
-                new TransferUtility(s3Client);
-   
-            string fileName = ( rand.ToString() +file.FileName );
-            rand++;
-           // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
-
-            var filePath = Path.Combine(uploads);
-            if (file.Length > 0)
-            {
-                using (var stream = new FileStream(filePath, FileMode.Create))
-
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
         [HttpPost ("UploadFiles")]
         [Route ("/note")]
         [Authorize]
         [Consumes ("multipart/form-data")]
         public ActionResult createNotes (NOTES n, IFormFile file) {
-            if (ModelState.IsValid) {
-                _log.LogInformation ("NOTE is inserted");
-                statsDPublisher.Increment ("_NOTE_API");
-                var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
-                var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
-                var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
-                var username = credentials[0];
-                var fileTransferUtility =
-                    new TransferUtility (s3Client);
+                if (ModelState.IsValid) {
+                    _log.LogInformation ("NOTE is inserted");
+                    statsDPublisher.Increment ("_NOTE_API");
+                    var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
+                    var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
+                    var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
+                    var username = credentials[0];
+                    var fileTransferUtility =
+                        new TransferUtility (s3Client);
 
-                string fileName = (rand.ToString () + file.FileName);
-                rand++;
-                // var uniqueFileName = GetUniqueFileName(file.FileName);
-                var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
+                    string fileName = (rand.ToString () + file.FileName);
+                    rand++;
+                    // var uniqueFileName = GetUniqueFileName(file.FileName);
+                    var uploads = Path.Combine (Directory.GetCurrentDirectory (), file.FileName);
 
-                var filePath = Path.Combine (uploads);
-                if (file.Length > 0) {
-                    using (var stream = new FileStream (filePath, FileMode.Create))
+                    var filePath = Path.Combine (uploads);
+                    if (file.Length > 0) {
+                        using (var stream = new FileStream (filePath, FileMode.Create))
 
-                    file.CopyToAsync (stream);
-                }
+                        [HttpPost ("UploadFiles")]
+                        [Route ("/note")]
+                        [Authorize]
+                        [Consumes ("multipart/form-data")]
+                        public ActionResult createNotes (NOTES n, IFormFile file) {
+                            if (ModelState.IsValid) {
+                                _log.LogInformation ("NOTE is inserted");
+                                statsDPublisher.Increment ("_NOTE_API");
+                                var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
+                                var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
+                                var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
+                                var username = credentials[0];
+                                var fileTransferUtility =
+                                    new TransferUtility (s3Client);
 
-                fileTransferUtility.UploadAsync (filePath, bucketName, fileName);
-                GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
-                request.BucketName = bucketName;
-                request.Key = fileName;
-                request.Expires = DateTime.Now.AddYears (2);
-                request.Protocol = Protocol.HTTP;
-                string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
+                                string fileName = (rand.ToString () + file.FileName);
+                                rand++;
+                                // var uniqueFileName = GetUniqueFileName(file.FileName);
+                                var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
 
-                var Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = n.noteID };
-                _context.Add (Attachment);
-                mAttachments att = new mAttachments ();
-                att.AID = Attachment.AID;
-                att.url = Attachment.url;
-                _context.SaveChanges ();
-                var notes = new NOTES { EMAIL = username, attachments = Attachment, content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now };
-                _context.Add (notes);
-                // _context.Add(Attachment);
-                _context.SaveChanges ();
+                                var filePath = Path.Combine (uploads);
+                                if (file.Length > 0) {
+                                    using (var stream = new FileStream (filePath, FileMode.Create))
 
-                IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-                List<mAttachments> newat = new List<mAttachments> ();
-                foreach (Attachments attachment in at) {
-                    if (attachment.noteID == n.noteID) {
-                        mAttachments m = new mAttachments ();
-                        m.AID = attachment.AID;
-                        m.url = attachment.url;
-                        newat.Add (m);
+                                    file.CopyToAsync (stream);
+                                }
 
-                    }
-                }
-<<<<<<< HEAD
-                string Json = JsonConvert.SerializeObject (notes, Formatting.Indented);
-=======
-            string Json = JsonConvert.SerializeObject(notes, Formatting.Indented);
-   
-          // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
-          //  string username = us.getUsername();
+                                fileTransferUtility.UploadAsync (filePath, bucketName, fileName);
+                                GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
+                                request.BucketName = bucketName;
+                                request.Key = fileName;
+                                request.Expires = DateTime.Now.AddYears (2);
+                                request.Protocol = Protocol.HTTP;
+                                string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
 
-            return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
-                    }
-            else{
-                var conflict = "Bad Request";
-                return StatusCode(409, new{ result = conflict});
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
+                                var Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = n.noteID };
+                                _context.Add (Attachment);
+                                mAttachments att = new mAttachments ();
+                                att.AID = Attachment.AID;
+                                att.url = Attachment.url;
+                                _context.SaveChanges ();
+                                var notes = new NOTES { EMAIL = username, attachments = Attachment, content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now };
+                                _context.Add (notes);
+                                // _context.Add(Attachment);
+                                _context.SaveChanges ();
 
-                // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
-                //  string username = us.getUsername();
+                                IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                                List<mAttachments> newat = new List<mAttachments> ();
+                                foreach (Attachments attachment in at) {
+                                    if (attachment.noteID == n.noteID) {
+                                        mAttachments m = new mAttachments ();
+                                        m.AID = attachment.AID;
+                                        m.url = attachment.url;
+                                        newat.Add (m);
 
-                return StatusCode (201, new { noteId = notes.noteID, content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now, attachments = att });
-            } else {
-                var conflict = "Bad Request";
-                return StatusCode (409, new { result = conflict });
+                                    }
+                                }
+                                string Json = JsonConvert.SerializeObject (notes, Formatting.Indented);
 
-            }
-        }
+                                // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
+                                //  string username = us.getUsername();
 
-        [HttpGet]
-        [Route ("/note")]
-        [Authorize]
-        public ActionResult getNote () {
-            IEnumerable<NOTES> notes = _context.notes.AsEnumerable ();
+                                return StatusCode (201, new { noteId = notes.noteID, content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now, attachments = att });
+                            } else {
+                                var conflict = "Bad Request";
+                                return StatusCode (409, new { result = conflict });
 
-            List<NOTE> note = new List<NOTE> ();
-            _log.LogInformation ("Getting the node");
-            statsDPublisher.Increment ("_NOTE_GET_API");
+                                // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
+                                //  string username = us.getUsername();
 
-            string username = getUsername ();
-            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-            foreach (NOTES item in notes) {
-                if (item.EMAIL == username) {
-                    NOTE n = new NOTE ();
+                                return StatusCode (201, new { noteId = notes.noteID, content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now, attachments = att });
+                            } else {
+                                var conflict = "Bad Request";
+                                return StatusCode (409, new { result = conflict });
 
-                    n.noteID = item.noteID;
-                    n.content = item.content;
-                    n.created_on = item.created_on;
-                    n.title = item.title;
-                    n.last_updated_on = item.last_updated_on;
-
-                    List<mAttachments> newat = new List<mAttachments> ();
-
-                    foreach (Attachments attachment in at) {
-                        if (attachment.noteID == n.noteID) {
-                            mAttachments m = new mAttachments ();
-                            m.AID = attachment.AID;
-                            m.url = attachment.url;
-                            newat.Add (m);
-
+                            }
                         }
-                    }
-                    n.attachments = newat;
-                    note.Add (n);
-                }
-            }
-            if (note.Capacity != 0) {
-                IEnumerable<NOTE> newnote = note;
-                string Json = JsonConvert.SerializeObject (newnote, Formatting.Indented);
-                return StatusCode (200, Json);
-            } else {
-                return StatusCode (200, new { result = "You Don't have any notes" });
-            }
-        }
 
-        [HttpGet]
-        [Route ("/note/{id}")]
-        [Authorize]
-        public ActionResult GetNotebyId (string id) {
-            _log.LogInformation ("NOTE is inserted");
-            statsDPublisher.Increment ("_NOTE_GETBYID_API");
+                        [HttpGet]
+                        [Route ("/note")]
+                        [Authorize]
+                        public ActionResult getNote () {
+                            IEnumerable<NOTES> notes = _context.notes.AsEnumerable ();
 
-            string username = getUsername ();
-            NOTES notes = _context.notes.Find (id);
-            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-            List<mAttachments> newat = new List<mAttachments> ();
+                            List<NOTE> note = new List<NOTE> ();
+                            _log.LogInformation ("Getting the node");
+                            statsDPublisher.Increment ("_NOTE_GET_API");
 
-            foreach (Attachments attachments in at) {
-                if (attachments.noteID == notes.noteID) {
-                    mAttachments m = new mAttachments ();
-                    m.AID = attachments.AID;
-                    m.url = attachments.url;
-                    newat.Add (m);
+                            string username = getUsername ();
+                            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                            foreach (NOTES item in notes) {
+                                if (item.EMAIL == username) {
+                                    NOTE n = new NOTE ();
 
-                }
-            }
-            if (notes.EMAIL == username) {
-                return StatusCode (200, new { ID = notes.noteID, Content = notes.content, Title = notes.title, Created_On = notes.created_on, last_updated_on = notes.last_updated_on, attachments = newat });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
-        }
+                                    n.noteID = item.noteID;
+                                    n.content = item.content;
+                                    n.created_on = item.created_on;
+                                    n.title = item.title;
+                                    n.last_updated_on = item.last_updated_on;
 
-        [HttpGet]
-        [Route ("/note/{id}/attachments")]
-        [Authorize]
-        public ActionResult GetNoteAttachmentbyId (string id) {
+                                    List<mAttachments> newat = new List<mAttachments> ();
 
-            string username = getUsername ();
-            NOTES notes = _context.notes.Find (id);
-            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-            List<mAttachments> newat = new List<mAttachments> ();
+                                    foreach (Attachments attachment in at) {
+                                        if (attachment.noteID == n.noteID) {
+                                            mAttachments m = new mAttachments ();
+                                            m.AID = attachment.AID;
+                                            m.url = attachment.url;
+                                            newat.Add (m);
 
-            foreach (Attachments attachments in at) {
-                if (attachments.noteID == notes.noteID) {
-                    mAttachments m = new mAttachments ();
-                    m.AID = attachments.AID;
-                    m.url = attachments.url;
-                    newat.Add (m);
-
-<<<<<<< HEAD
-=======
-            
- 
-                string username = getUsername();
-                NOTES notes =  _context.notes.Find(id);
-                IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
-                List<mAttachments> newat = new List<mAttachments>();
-
-                foreach(Attachments attachments in at){
-                    if(attachments.noteID==notes.noteID){
-                        mAttachments m = new mAttachments();
-                        m.AID = attachments.AID;
-                        m.url = attachments.url;
-                        newat.Add(m);
-
-                       
-                    }
-                }
-                if(notes.EMAIL == username)
-                {
-                    return StatusCode(200, new{attachments= newat});
-                }
-                else
-                {
-                    return StatusCode(401, new{result = "Not Authorized"});
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-                }
-            }
-            if (notes.EMAIL == username) {
-                return StatusCode (200, new { attachments = newat });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
-        }
-
-        [HttpPut]
-        [Route ("/note/{id}")]
-        [Authorize]
-<<<<<<< HEAD
-        public ActionResult putnote (string id, [FromBody] NOTES n) {
-
-            string username = getUsername ();
-            NOTES note = _context.notes.Find (id);
-            if (note.EMAIL == username) {
-                var ID = note.noteID;
-=======
-        public ActionResult putnote(string id,[FromBody] NOTES n){
-
-                  string username = getUsername();
-                  NOTES note = _context.notes.Find(id);
-                  if(note.EMAIL == username){
-                  var ID = note.noteID;
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-                //IEnumerable<Attachments> a = _context.attachments.AsEnumerable();
-                var created = note.created_on;
-                _context.notes.Remove (note);
-                _context.SaveChanges ();
-
-                var notes = new NOTES { noteID = ID, created_on = created, content = n.content, title = n.title, last_updated_on = DateTime.Now, EMAIL = username };
-                _context.Add (notes);
-                _context.SaveChanges ();
-                return StatusCode (204, new { Result = "Note Updated Successfully" });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
-        }
-
-        [HttpDelete]
-        [Route ("/note/{id}")]
-        [Authorize]
-        public ActionResult Deletenote (string id) {
-
-            var fileTransferUtility =
-<<<<<<< HEAD
-                new TransferUtility (s3Client);
-=======
-                new TransferUtility(s3Client);
-
-                    string username = getUsername();
-
-                    NOTES note = _context.notes.Find(id);
-
-                    IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
-                    string key = "";
-                    if(note.EMAIL == username)
-                    {
-                        
-                    foreach(Attachments atchm in at){
-                        if(atchm.noteID == id)
-                        {
-                            key = atchm.FileName;
-                            
-                            fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
-                            _context.attachments.Remove(atchm);
-                            
+                                        }
+                                    }
+                                    n.attachments = newat;
+                                    note.Add (n);
+                                }
+                            }
+                            if (note.Capacity != 0) {
+                                IEnumerable<NOTE> newnote = note;
+                                string Json = JsonConvert.SerializeObject (newnote, Formatting.Indented);
+                                return StatusCode (200, Json);
+                            } else {
+                                return StatusCode (200, new { result = "You Don't have any notes" });
+                            }
                         }
-                    }
-                   
-                    _context.notes.Remove(note);
-                   
-                    _context.SaveChanges();
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
-            string username = getUsername ();
+                        [HttpGet]
+                        [Route ("/note/{id}")]
+                        [Authorize]
+                        public ActionResult GetNotebyId (string id) {
+                            _log.LogInformation ("NOTE is inserted");
+                            statsDPublisher.Increment ("_NOTE_GETBYID_API");
 
-            NOTES note = _context.notes.Find (id);
+                            string username = getUsername ();
+                            NOTES notes = _context.notes.Find (id);
+                            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                            List<mAttachments> newat = new List<mAttachments> ();
 
-            IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-            string key = "";
-            if (note.EMAIL == username) {
+                            foreach (Attachments attachments in at) {
+                                if (attachments.noteID == notes.noteID) {
+                                    mAttachments m = new mAttachments ();
+                                    m.AID = attachments.AID;
+                                    m.url = attachments.url;
+                                    newat.Add (m);
 
-                foreach (Attachments atchm in at) {
-                    if (atchm.noteID == id) {
-                        key = atchm.FileName;
-
-                        fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
-                        _context.attachments.Remove (atchm);
-
-                    }
-                }
-
-                _context.notes.Remove (note);
-
-                _context.SaveChanges ();
-
-                return StatusCode (204, new { Result = "Note Deleted Successfully" });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
-
-        }
-
-        [HttpPost]
-        [Route ("/note/{id}/attachments")]
-        //[Consumes("multipart/form-data")]
-        [Authorize]
-<<<<<<< HEAD
-        public ActionResult AttachImage (string id, IFormFile file) {
-            var fileTransferUtility =
-                new TransferUtility (s3Client);
-
-            string fileName = (rand.ToString () + file.FileName);
-=======
-        public  ActionResult AttachImage(string id, IFormFile file){
-                      var fileTransferUtility =
-                    new TransferUtility(s3Client);
-         
-    
-            string fileName = (rand.ToString() + file.FileName );
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-            rand++;
-            // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var filePath = Path.Combine (file.FileName);
-            var uploads = Path.Combine (Directory.GetCurrentDirectory (), file.FileName);
-            using (var stream = new FileStream (filePath, FileMode.Create)) {
-                // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
-                file.CopyToAsync (stream);
-            }
-
-            fileTransferUtility.UploadAsync (uploads, bucketName, fileName);
-            GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
-            request.BucketName = bucketName;
-            request.Key = fileName;
-            request.Expires = DateTime.Now.AddYears ((2));
-            request.Protocol = Protocol.HTTP;
-            string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
-            string username = getUsername ();
-            // Console.WriteLine(arguments[1]);
-            Console.WriteLine ("Upload 1 completed");
-            if (file.Length > 0) {
-
-            }
-
-            NOTES note = _context.notes.Find (id);
-
-            var Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = note.noteID };
-            _context.attachments.Add (Attachment);
-            _context.SaveChanges ();
-
-            IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable ();
-            List<mAttachments> am = new List<mAttachments> ();
-            string key = "";
-            foreach (Attachments at in a1) {
-                if (at.noteID == id) {
-                    key = at.FileName;
-                    mAttachments mA = new mAttachments ();
-                    mA.AID = at.AID;
-                    mA.url = at.url;
-                    am.Add (mA);
-                }
-            }
-
-            //  fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketname, Key =  key });
-
-            IEnumerable<mAttachments> newA = am;
-
-            if (ModelState.IsValid) {
-                var a11 = new mAttachments { AID = Attachment.AID, url = Attachment.url };
-                //  string username = us.getUsername();
-
-                return StatusCode (201, new { a11 });
-            } else {
-                var conflict = "Bad Request";
-                return StatusCode (409, new { result = conflict });
-
-            }
-        }
-
-        [HttpPut]
-        [Route ("/note/{id}/attachments/{aid}")]
-        [Authorize]
-        public ActionResult putnoteAttachent (string id, IFormFile file, string aid) {
-            var fileTransferUtility =
-<<<<<<< HEAD
-                new TransferUtility (s3Client);
-            string fileName = (rand.ToString () + file.FileName);
-=======
-                new TransferUtility(s3Client);
-            string fileName = (rand.ToString() + file.FileName );
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-            rand++;
-            // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
-
-            var filePath = Path.Combine (uploads);
-            if (file.Length > 0)
-                using (var stream = new FileStream (filePath, FileMode.Create))
-
-            file.CopyToAsync (stream);
-
-            Attachments a1 = _context.attachments.Find (aid);
-            string key = a1.FileName;
-            fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
-            fileTransferUtility.UploadAsync (uploads, bucketName, fileName);
-
-            GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
-            request.BucketName = bucketName;
-            request.Key = fileName;
-            request.Expires = DateTime.Now.AddYears (4);
-            request.Protocol = Protocol.HTTP;
-            string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
-
-            string username = getUsername ();
-            NOTES note = _context.notes.Find (id);
-            if (note.EMAIL == username) {
-                Attachments a = _context.attachments.Find (aid);
-                var newaid = a.AID;
-                var noteid = a.noteID;
-                _context.attachments.Remove (a);
-                _context.SaveChanges ();
-                var newa = new Attachments { AID = newaid, noteID = noteid, url = url, FileName = fileName, length = file.Length };
-                _context.Add (newa);
-                _context.SaveChanges ();
-
-                return StatusCode (204, new { Result = "Note Updated Successfully" });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
-        }
-
-        [HttpDelete]
-        [Route ("/note/{id}/attachments/{atid}")]
-        [Authorize]
-        public ActionResult Deletenoteattchment (string id, string atid) {
-            var fileTransferUtility =
-<<<<<<< HEAD
-                new TransferUtility (s3Client);
-            string username = getUsername ();
-=======
-                new TransferUtility(s3Client);
-                string username = getUsername();
-
-                    NOTES note = _context.notes.Find(id);
-
-                    Attachments a = _context.attachments.Find(atid);
-                    string key = a.FileName;
-                    if(note.EMAIL == username){
-                        if(a.noteID == note.noteID && a.AID == atid){
-                            _context.attachments.Remove(a);
+                                }
+                            }
+                            if (notes.EMAIL == username) {
+                                return StatusCode (200, new { ID = notes.noteID, Content = notes.content, Title = notes.title, Created_On = notes.created_on, last_updated_on = notes.last_updated_on, attachments = newat });
+                            } else {
+                                return StatusCode (401, new { result = "Not Authorized" });
+                            }
                         }
-                        fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketName, Key =  key });
-                    _context.SaveChanges();
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
 
-            NOTES note = _context.notes.Find (id);
+                        [HttpGet]
+                        [Route ("/note/{id}/attachments")]
+                        [Authorize]
+                        public ActionResult GetNoteAttachmentbyId (string id) {
 
-            Attachments a = _context.attachments.Find (atid);
-            string key = a.FileName;
-            if (note.EMAIL == username) {
-                if (a.noteID == note.noteID && a.AID == atid) {
-                    _context.attachments.Remove (a);
-                }
-                fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
-                _context.SaveChanges ();
+                                string username = getUsername ();
+                                NOTES notes = _context.notes.Find (id);
+                                IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                                List<mAttachments> newat = new List<mAttachments> ();
 
-                return StatusCode (204, new { Result = "Note Deleted Successfully" });
-            } else {
-                return StatusCode (401, new { result = "Not Authorized" });
-            }
+                                foreach (Attachments attachments in at) {
+                                    if (attachments.noteID == notes.noteID) {
+                                        mAttachments m = new mAttachments ();
+                                        m.AID = attachments.AID;
+                                        m.url = attachments.url;
+                                        newat.Add (m);
 
-        }
+                                        string username = getUsername ();
+                                        NOTES notes = _context.notes.Find (id);
+                                        IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                                        List<mAttachments> newat = new List<mAttachments> ();
 
-        [HttpPost]
-        [Route ("/reset")]
-        public ActionResult passwordreset ([FromBody] Users u) {
-            Users a = _context.Users.Find (u.Email);
-            //var snsClient = new AmazonSimpleNotificationClient();
-            //var region = new ;
+                                        foreach (Attachments attachments in at) {
+                                            if (attachments.noteID == notes.noteID) {
+                                                mAttachments m = new mAttachments ();
+                                                m.AID = attachments.AID;
+                                                m.url = attachments.url;
+                                                newat.Add (m);
 
-            var sns = new AmazonSimpleNotificationServiceClient (Amazon.RegionEndpoint.USEast1);
-            var listTopicRequest = new ListTopicsRequest ();
-            //var listTopicsResponse = new ListTopicsRequest();
+                                            }
+                                        }
+                                        if (notes.EMAIL == username) {
+                                            return StatusCode (200, new { attachments = newat });
+                                        } else {
+                                            return StatusCode (401, new { result = "Not Authorized" });
+                                        }
+                                    }
+                                    if (notes.EMAIL == username) {
+                                        return StatusCode (200, new { attachments = newat });
+                                    } else {
+                                        return StatusCode (401, new { result = "Not Authorized" });
+                                    }
+                                }
 
-            var listTopicsResponse = sns.ListTopicsAsync (listTopicRequest).Result;
-            //var result = listTopicsResponse.Result;
+                                [HttpPut]
+                                [Route ("/note/{id}")]
+                                [Authorize]
+                                public ActionResult putnote (string id, [FromBody] NOTES n) {
 
-            foreach (var item in listTopicsResponse.Topics) {
-                Console.WriteLine (item.TopicArn);
-            }
+                                    string username = getUsername ();
+                                    NOTES note = _context.notes.Find (id);
+                                    if (note.EMAIL == username) {
+                                        var ID = note.noteID;
+                                        //IEnumerable<Attachments> a = _context.attachments.AsEnumerable();
+                                        var created = note.created_on;
+                                        _context.notes.Remove (note);
+                                        _context.SaveChanges ();
 
-            // CreateTopicRequest createTopicReq = new CreateTopicRequest ("password_reset");
-            // CreateTopicResponse createTopicRes = sns.CreateTopicAsync (createTopicReq).Result;
-            // Console.WriteLine ("Topic ARN: {0}", createTopicRes.TopicArn);
+                                        var notes = new NOTES { noteID = ID, created_on = created, content = n.content, title = n.title, last_updated_on = DateTime.Now, EMAIL = username };
+                                        _context.Add (notes);
+                                        _context.SaveChanges ();
+                                        return StatusCode (204, new { Result = "Note Updated Successfully" });
+                                    } else {
+                                        return StatusCode (401, new { result = "Not Authorized" });
+                                    }
+                                }
 
-            //subscribe to an SNS topic
-            // SubscribeRequest subscribeRequest = new SubscribeRequest (createTopicRes.TopicArn, "email", u.Email);
-            // SubscribeResponse subscribeResponse = sns.SubscribeAsync (subscribeRequest).Result;
-            // Console.WriteLine ("Subscribe RequestId: {0}", subscribeResponse.ResponseMetadata.RequestId);
-            // Console.WriteLine ("Check your email and confirm subscription.");
+                                [HttpDelete]
+                                [Route ("/note/{id}")]
+                                [Authorize]
+                                public ActionResult Deletenote (string id) {
 
-            
+                                    var fileTransferUtility =
+                                        new TransferUtility (s3Client);
 
-            //publish to an SNS topic
-            // PublishRequest publishRequest = new PublishRequest (createTopicRes.TopicArn, "My text published to SNS topic with email endpoint");
-            // PublishResponse publishResponse = sns.PublishAsync (publishRequest).Result;
-            // Console.WriteLine ("Publish MessageId: {0}", publishResponse.MessageId);
+                                    string username = getUsername ();
 
-            //delete an SNS topic
-            // DeleteTopicRequest deleteTopicRequest = new DeleteTopicRequest(createTopicRes.TopicArn);
-            // DeleteTopicResponse deleteTopicResponse = await client.DeleteTopicAsync(deleteTopicRequest);
-            // Console.WriteLine("DeleteTopic RequestId: {0}", deleteTopicResponse.ResponseMetadata.RequestId);
+                                    NOTES note = _context.notes.Find (id);
 
-            return StatusCode (200, new { message = "You will recieve a email" });
-        }
-<<<<<<< HEAD
-    }
-=======
+                                    IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                                    string key = "";
+                                    if (note.EMAIL == username) {
 
- [HttpPost]
-        [Route("/reset")]
-        public async void passwordreset([FromBody] Users u){
-           Users a =  _context.Users.Find(u.Email);
-           _log.LogInformation( "Listing all items");
-                
-            Console.WriteLine("Hello inside the reset");
-            if(a!=null){
-             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-            var request = new ListTopicsRequest();
-            var response = new ListTopicsResponse();
-                            _log.LogInformation( "going inside for");
-                    
-                response = await client.ListTopicsAsync();
-                 foreach (var topic in response.Topics)
-                {
-                    _log.LogInformation( "inside uufor");
-                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
-                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
-                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
-             var respose = new PublishRequest
-            {
-                TopicArn =topic.TopicArn,
-                Message = a.Email
-            };
+                                        foreach (Attachments atchm in at) {
+                                            if (atchm.noteID == id) {
+                                                key = atchm.FileName;
 
-             await client.PublishAsync(respose);
-                  }
-                   _log.LogInformation( "outside if");
-                } 
-            }  
-        }
- }
->>>>>>> 4c84b4a5cf09ea152c45b91bc9096b9bbbb5f24a
-}
+                                                fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
+                                                _context.attachments.Remove (atchm);
+
+                                            }
+                                        }
+
+                                        _context.notes.Remove (note);
+
+                                        _context.SaveChanges ();
+
+                                        string username = getUsername ();
+
+                                        NOTES note = _context.notes.Find (id);
+
+                                        IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
+                                        string key = "";
+                                        if (note.EMAIL == username) {
+
+                                            foreach (Attachments atchm in at) {
+                                                if (atchm.noteID == id) {
+                                                    key = atchm.FileName;
+
+                                                    fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
+                                                    _context.attachments.Remove (atchm);
+
+                                                }
+                                            }
+
+                                            _context.notes.Remove (note);
+
+                                            _context.SaveChanges ();
+
+                                            return StatusCode (204, new { Result = "Note Deleted Successfully" });
+                                        } else {
+                                            return StatusCode (401, new { result = "Not Authorized" });
+                                        }
+
+                                    }
+
+                                    [HttpPost]
+                                    [Route ("/note/{id}/attachments")]
+                                    //[Consumes("multipart/form-data")]
+                                    [Authorize]
+                                    public ActionResult AttachImage (string id, IFormFile file) {
+                                        var fileTransferUtility =
+                                            new TransferUtility (s3Client);
+
+                                        string fileName = (rand.ToString () + file.FileName);
+                                        rand++;
+                                        // var uniqueFileName = GetUniqueFileName(file.FileName);
+                                        var filePath = Path.Combine (file.FileName);
+                                        var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
+                                        using (var stream = new FileStream (filePath, FileMode.Create)) {
+                                            // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
+                                            file.CopyToAsync (stream);
+                                        }
+
+                                        fileTransferUtility.UploadAsync (uploads, bucketName, fileName);
+                                        GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
+                                        request.BucketName = bucketName;
+                                        request.Key = fileName;
+                                        request.Expires = DateTime.Now.AddYears ((2));
+                                        request.Protocol = Protocol.HTTP;
+                                        string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
+                                        string username = getUsername ();
+                                        // Console.WriteLine(arguments[1]);
+                                        Console.WriteLine ("Upload 1 completed");
+                                        if (file.Length > 0) {
+
+                                        }
+
+                                        fileTransferUtility.UploadAsync (uploads, bucketName, fileName);
+                                        GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
+                                        request.BucketName = bucketName;
+                                        request.Key = fileName;
+                                        request.Expires = DateTime.Now.AddYears ((2));
+                                        request.Protocol = Protocol.HTTP;
+                                        string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
+                                        string username = getUsername ();
+                                        // Console.WriteLine(arguments[1]);
+                                        Console.WriteLine ("Upload 1 completed");
+                                        if (file.Length > 0) {
+
+                                        }
+
+                                        NOTES note = _context.notes.Find (id);
+
+                                        var Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = note.noteID };
+                                        _context.attachments.Add (Attachment);
+                                        _context.SaveChanges ();
+
+                                        IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable ();
+                                        List<mAttachments> am = new List<mAttachments> ();
+                                        string key = "";
+                                        foreach (Attachments at in a1) {
+                                            if (at.noteID == id) {
+                                                key = at.FileName;
+                                                mAttachments mA = new mAttachments ();
+                                                mA.AID = at.AID;
+                                                mA.url = at.url;
+                                                am.Add (mA);
+                                            }
+                                        }
+
+                                        //  fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketname, Key =  key });
+
+                                        IEnumerable<mAttachments> newA = am;
+
+                                        if (ModelState.IsValid) {
+                                            var a11 = new mAttachments { AID = Attachment.AID, url = Attachment.url };
+                                            //  string username = us.getUsername();
+
+                                            return StatusCode (201, new { a11 });
+                                        } else {
+                                            var conflict = "Bad Request";
+                                            return StatusCode (409, new { result = conflict });
+
+                                        }
+                                    }
+
+                                    [HttpPut]
+                                    [Route ("/note/{id}/attachments/{aid}")]
+                                    [Authorize]
+                                    public ActionResult putnoteAttachent (string id, IFormFile file, string aid) {
+                                        var fileTransferUtility =
+                                            new TransferUtility (s3Client);
+                                        string fileName = (rand.ToString () + file.FileName);
+                                        rand++;
+                                        // var uniqueFileName = GetUniqueFileName(file.FileName);
+                                        var uploads = Path.Combine (Directory.GetCurrentDirectory (), fileName);
+
+                                        var filePath = Path.Combine (uploads);
+                                        if (file.Length > 0)
+                                            using (var stream = new FileStream (filePath, FileMode.Create))
+
+                                        file.CopyToAsync (stream);
+
+                                        Attachments a1 = _context.attachments.Find (aid);
+                                        string key = a1.FileName;
+                                        fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
+                                        fileTransferUtility.UploadAsync (uploads, bucketName, fileName);
+
+                                        GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
+                                        request.BucketName = bucketName;
+                                        request.Key = fileName;
+                                        request.Expires = DateTime.Now.AddYears (4);
+                                        request.Protocol = Protocol.HTTP;
+                                        string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
+
+                                        string username = getUsername ();
+                                        NOTES note = _context.notes.Find (id);
+                                        if (note.EMAIL == username) {
+                                            Attachments a = _context.attachments.Find (aid);
+                                            var newaid = a.AID;
+                                            var noteid = a.noteID;
+                                            _context.attachments.Remove (a);
+                                            _context.SaveChanges ();
+                                            var newa = new Attachments { AID = newaid, noteID = noteid, url = url, FileName = fileName, length = file.Length };
+                                            _context.Add (newa);
+                                            _context.SaveChanges ();
+
+                                            return StatusCode (204, new { Result = "Note Updated Successfully" });
+                                        } else {
+                                            return StatusCode (401, new { result = "Not Authorized" });
+                                        }
+                                    }
+
+                                    [HttpDelete]
+                                    [Route ("/note/{id}/attachments/{atid}")]
+                                    [Authorize]
+                                    public ActionResult Deletenoteattchment (string id, string atid) {
+                                        var fileTransferUtility =
+                                            new TransferUtility (s3Client);
+                                        string username = getUsername ();
+
+                                        NOTES note = _context.notes.Find (id);
+
+                                        Attachments a = _context.attachments.Find (atid);
+                                        string key = a.FileName;
+                                        if (note.EMAIL == username) {
+                                            if (a.noteID == note.noteID && a.AID == atid) {
+                                                _context.attachments.Remove (a);
+                                            }
+                                            fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
+                                            _context.SaveChanges ();
+
+                                            NOTES note = _context.notes.Find (id);
+
+                                            Attachments a = _context.attachments.Find (atid);
+                                            string key = a.FileName;
+                                            if (note.EMAIL == username) {
+                                                if (a.noteID == note.noteID && a.AID == atid) {
+                                                    _context.attachments.Remove (a);
+                                                }
+                                                fileTransferUtility.S3Client.DeleteObjectAsync (new Amazon.S3.Model.DeleteObjectRequest () { BucketName = bucketName, Key = key });
+                                                _context.SaveChanges ();
+
+                                                return StatusCode (204, new { Result = "Note Deleted Successfully" });
+                                            } else {
+                                                return StatusCode (401, new { result = "Not Authorized" });
+                                            }
+
+                                        }
+
+                                        [HttpPost]
+                                        [Route ("/reset")]
+                                        public ActionResult passwordreset ([FromBody] Users u) {
+                                            Users a = _context.Users.Find (u.Email);
+                                            //var snsClient = new AmazonSimpleNotificationClient();
+                                            //var region = new ;
+
+                                            var sns = new AmazonSimpleNotificationServiceClient (Amazon.RegionEndpoint.USEast1);
+                                            var listTopicRequest = new ListTopicsRequest ();
+                                            //var listTopicsResponse = new ListTopicsRequest();
+
+                                            var listTopicsResponse = sns.ListTopicsAsync (listTopicRequest).Result;
+                                            //var result = listTopicsResponse.Result;
+
+                                            foreach (var item in listTopicsResponse.Topics) {
+                                                Console.WriteLine (item.TopicArn);
+                                            }
+
+                                            // CreateTopicRequest createTopicReq = new CreateTopicRequest ("password_reset");
+                                            // CreateTopicResponse createTopicRes = sns.CreateTopicAsync (createTopicReq).Result;
+                                            // Console.WriteLine ("Topic ARN: {0}", createTopicRes.TopicArn);
+
+                                            //subscribe to an SNS topic
+                                            // SubscribeRequest subscribeRequest = new SubscribeRequest (createTopicRes.TopicArn, "email", u.Email);
+                                            // SubscribeResponse subscribeResponse = sns.SubscribeAsync (subscribeRequest).Result;
+                                            // Console.WriteLine ("Subscribe RequestId: {0}", subscribeResponse.ResponseMetadata.RequestId);
+                                            // Console.WriteLine ("Check your email and confirm subscription.");
+
+                                            //publish to an SNS topic
+                                            // PublishRequest publishRequest = new PublishRequest (createTopicRes.TopicArn, "My text published to SNS topic with email endpoint");
+                                            // PublishResponse publishResponse = sns.PublishAsync (publishRequest).Result;
+                                            // Console.WriteLine ("Publish MessageId: {0}", publishResponse.MessageId);
+
+                                            //delete an SNS topic
+                                            // DeleteTopicRequest deleteTopicRequest = new DeleteTopicRequest(createTopicRes.TopicArn);
+                                            // DeleteTopicResponse deleteTopicResponse = await client.DeleteTopicAsync(deleteTopicRequest);
+                                            // Console.WriteLine("DeleteTopic RequestId: {0}", deleteTopicResponse.ResponseMetadata.RequestId);
+
+                                            return StatusCode (200, new { message = "You will recieve a email" });
+                                        }
+
+                                        [HttpPost]
+                                        [Route ("/reset")]
+                                        public async void passwordreset ([FromBody] Users u) {
+                                            Users a = _context.Users.Find (u.Email);
+                                            _log.LogInformation ("Listing all items");
+
+                                            Console.WriteLine ("Hello inside the reset");
+                                            if (a != null) {
+                                                var client = new AmazonSimpleNotificationServiceClient (RegionEndpoint.USEast1);
+                                                var request = new ListTopicsRequest ();
+                                                var response = new ListTopicsResponse ();
+                                                _log.LogInformation ("going inside for");
+
+                                                response = await client.ListTopicsAsync ();
+                                                foreach (var topic in response.Topics) {
+
+                                                    _log.LogInformation (topic.TopicArn);
+                                                    if (topic.TopicArn.EndsWith ("SNSTopicResetPassword")) {
+                                                        _log.LogInformation (topic.TopicArn);
+                                                        var respose = new PublishRequest {
+                                                            TopicArn = topic.TopicArn,
+                                                            Message = a.Email
+                                                        };
+
+                                                        await client.PublishAsync (respose);
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
