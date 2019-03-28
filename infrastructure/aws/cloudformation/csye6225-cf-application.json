@@ -280,11 +280,10 @@
                   "AttributeType":"S"
                }
             ],
-            "KeySchema":[
-               {
+            "KeySchema":[ {
                   "AttributeName":"Id",
                   "KeyType":"HASH"
-               }, {
+               },{
                   "AttributeName":"Email",
                   "KeyType":"RANGE"
                }
