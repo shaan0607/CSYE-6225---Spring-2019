@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "ebe9b320cefebd956c04a2009d2a99ce900f5f92"
+    "signature": "2a8178236b15251f8fc76af900b5bd2ab73da190"
   },
   "compilationOptions": {
     "defines": [
@@ -24,9 +24,10 @@
     ".NETCoreApp,Version=v2.2": {
       "trial3/1.0.0": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.31.10",
+          "AWSSDK.Core": "3.3.100",
           "AWSSDK.Extensions.NETCore.Setup": "3.3.6",
           "AWSSDK.S3": "3.3.31.18",
+          "AWSSDK.SimpleNotificationService": "3.3.100",
           "Amazon.S3": "4.0.0",
           "BCrypt.Net": "0.1.0",
           "Microsoft.AspNetCore.App": "2.2.0",
@@ -86,27 +87,20 @@
           "lib/netstandard1.6/Amazon.S3.dll": {}
         }
       },
-      "AWSSDK.Core/3.3.31.10": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
-          "System.Net.Requests": "4.0.11",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Security.Cryptography.Csp": "4.3.0",
-          "System.Threading.Thread": "4.3.0"
-        },
+      "AWSSDK.Core/3.3.100": {
         "runtime": {
-          "lib/netstandard1.3/AWSSDK.Core.dll": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.3.31.10"
+            "fileVersion": "3.3.100.0"
           }
         },
         "compile": {
-          "lib/netstandard1.3/AWSSDK.Core.dll": {}
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
         }
       },
       "AWSSDK.Extensions.NETCore.Setup/3.3.6": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.31.10",
+          "AWSSDK.Core": "3.3.100",
           "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging.Abstractions": "2.2.0"
@@ -123,7 +117,7 @@
       },
       "AWSSDK.S3/3.3.31.18": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.31.10"
+          "AWSSDK.Core": "3.3.100"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {
@@ -133,6 +127,20 @@
         },
         "compile": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "AWSSDK.SimpleNotificationService/3.3.100": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.100"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.100.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll": {}
         }
       },
       "BCrypt.Net/0.1.0": {
@@ -411,41 +419,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {}
-        }
-      },
-      "System.Net.Requests/4.0.11": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "2.2.0",
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
-        },
-        "runtimeTargets": {
-          "runtime/unix/lib/_._": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtime/win/lib/_._": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        }
-      },
-      "System.Net.WebHeaderCollection/4.0.1": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3477,12 +3450,12 @@
       "path": "amazon.s3/4.0.0",
       "hashPath": "amazon.s3.4.0.0.nupkg.sha512"
     },
-    "AWSSDK.Core/3.3.31.10": {
+    "AWSSDK.Core/3.3.100": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nRxZIU3PPFAExvCvRotpnvsW/jMfjT5ZTJ59ofxRh97zostILnlablcHf4YrevUn9urs/ozhrK28uTHR6wyuMA==",
-      "path": "awssdk.core/3.3.31.10",
-      "hashPath": "awssdk.core.3.3.31.10.nupkg.sha512"
+      "sha512": "sha512-Dt7Jfkh8ggw9TgKm+9CbALlRZPVER4shpFtWggKL40O2t0uhldBltaOW4nvXN0SE3HocaRtbZUmvMkGfWld4mw==",
+      "path": "awssdk.core/3.3.100",
+      "hashPath": "awssdk.core.3.3.100.nupkg.sha512"
     },
     "AWSSDK.Extensions.NETCore.Setup/3.3.6": {
       "type": "package",
@@ -3497,6 +3470,13 @@
       "sha512": "sha512-lFzBDLKCPLIAxyXtcYqoiXDRmhbUddntYSABlFXLNeMNi1hO83vJQP9r91MZW98iDzU+hmIAdCJ9DLtHNoSXxg==",
       "path": "awssdk.s3/3.3.31.18",
       "hashPath": "awssdk.s3.3.3.31.18.nupkg.sha512"
+    },
+    "AWSSDK.SimpleNotificationService/3.3.100": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BWjsLkoNsCgl4yIwKnqXfdCx74Qf3FMLVZ9xIHKkKpqqpcV1rZR/nEpbTfcNa9obVP/3sW1AyhHJS4v9g3QIPQ==",
+      "path": "awssdk.simplenotificationservice/3.3.100",
+      "hashPath": "awssdk.simplenotificationservice.3.3.100.nupkg.sha512"
     },
     "BCrypt.Net/0.1.0": {
       "type": "package",
@@ -3595,20 +3575,6 @@
       "sha512": "sha512-B0YsUgrtI5L3wbWiecOB+SyEdnXrmj/jaXkoaqSQ4E/Us1L97wGGHseR6zfV1zzjv+prSRXw+Rktat2G9llsRw==",
       "path": "pomelo.jsonobject/2.2.0-preview1-final",
       "hashPath": "pomelo.jsonobject.2.2.0-preview1-final.nupkg.sha512"
-    },
-    "System.Net.Requests/4.0.11": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-IvOLGTTzJ2y5GpSn0ewgypC52TCCD6tYU8MdLedtZQW0VcP241b6sRJ2rLhFFPn5n+biTXXuYGfaTyT3CVUf8Q==",
-      "path": "system.net.requests/4.0.11",
-      "hashPath": "system.net.requests.4.0.11.nupkg.sha512"
-    },
-    "System.Net.WebHeaderCollection/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-0aLl8yaaH+/jyI0f1Mn9xOvBWWwyOaJm/pR2SPAN2RvxhTD/yxxPaZt5d+2KXAZdPkJOafS4QQ1GaXhZcMN16g==",
-      "path": "system.net.webheadercollection/4.0.1",
-      "hashPath": "system.net.webheadercollection.4.0.1.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",

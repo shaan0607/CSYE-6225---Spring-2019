@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Amazon.S3;
+using Amazon.SimpleNotificationService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -46,11 +47,22 @@ namespace trial3 {
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler> ("BasicAuthentication", null);
 
             // Register DI for user service
+<<<<<<< HEAD
+            services.AddScoped<IUSerServices, UserServices>();
+                    services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            services.AddAWSService<IAmazonSimpleNotificationService>();
+            services.AddAWSService<IAmazonS3>();
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+                });
+=======
             services.AddScoped<IUSerServices, UserServices> ();
             services.AddAWSService<IAmazonS3> ();
             services.Configure<ForwardedHeadersOptions> (options => {
                 options.KnownProxies.Add (IPAddress.Parse ("10.0.0.100"));
             });
+>>>>>>> d36205d90d547c7df58b2f8b69cfad366bb287d9
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

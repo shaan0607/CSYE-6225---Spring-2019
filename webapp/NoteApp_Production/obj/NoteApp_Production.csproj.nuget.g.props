@@ -25,8 +25,20 @@
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/usr/share/dotnet/sdk/NuGetFallbackFolder/microsoft.entityframeworkcore.tools/2.2.0</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/usr/share/dotnet/sdk/NuGetFallbackFolder/microsoft.codeanalysis.analyzers/1.1.0</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgMicrosoft_AspNetCore_Razor_Design Condition=" '$(PkgMicrosoft_AspNetCore_Razor_Design)' == '' ">/usr/share/dotnet/sdk/NuGetFallbackFolder/microsoft.aspnetcore.razor.design/2.2.0</PkgMicrosoft_AspNetCore_Razor_Design>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/home/arjit/.nuget/packages/awssdk.core/3.3.100.1</PkgAWSSDK_Core>
+    <PkgAWSSDK_SimpleNotificationService Condition=" '$(PkgAWSSDK_SimpleNotificationService)' == '' ">/home/arjit/.nuget/packages/awssdk.simplenotificationservice/3.3.100.1</PkgAWSSDK_SimpleNotificationService>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">/home/arjit/.nuget/packages/awssdk.s3/3.3.31.18</PkgAWSSDK_S3>
+=======
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/home/shantanu/.nuget/packages/awssdk.core/3.3.100.1</PkgAWSSDK_Core>
+    <PkgAWSSDK_SimpleNotificationService Condition=" '$(PkgAWSSDK_SimpleNotificationService)' == '' ">/home/shantanu/.nuget/packages/awssdk.simplenotificationservice/3.3.100.1</PkgAWSSDK_SimpleNotificationService>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">/home/shantanu/.nuget/packages/awssdk.s3/3.3.31.18</PkgAWSSDK_S3>
+>>>>>>> 9d3fbe54fc9a371571e5006069d0281b6c758a69
+=======
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/home/amish132/.nuget/packages/awssdk.core/3.3.0</PkgAWSSDK_Core>
     <PkgAWSSDK_SimpleNotificationService Condition=" '$(PkgAWSSDK_SimpleNotificationService)' == '' ">/home/amish132/.nuget/packages/awssdk.simplenotificationservice/3.3.0</PkgAWSSDK_SimpleNotificationService>
     <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">/home/amish132/.nuget/packages/awssdk.s3/3.3.0</PkgAWSSDK_S3>
+>>>>>>> d36205d90d547c7df58b2f8b69cfad366bb287d9
   </PropertyGroup>
 </Project>

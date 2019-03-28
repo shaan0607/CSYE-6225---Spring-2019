@@ -59,6 +59,8 @@ namespace NoteApp_Production
             // Register DI for user service
             services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
             services.AddScoped<IUSerServices, UserServices>();
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            services.AddAWSService<IAmazonSimpleNotificationService>();
             services.AddAWSService<IAmazonS3>();
             services.AddAWSService<IAmazonSimpleNotificationService>();
             services.Configure<FormOptions>(
