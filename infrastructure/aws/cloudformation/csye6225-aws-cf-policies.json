@@ -93,9 +93,21 @@
                      "Resource":[
                       {"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}
                      ]
-                  }
+                  }, {
+            "Action": [
+                "lambda:GetFunction",
+                "lambda:GetFunctionConfiguration",
+                "lambda:UpdateFunctionCode",
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect": "Allow"
+        }
                ]
             },
+
             "Users":[
                {
                   "Ref":"circleci"
@@ -103,6 +115,7 @@
             ]
          }
       },
+   
       "CirlceCICodeDeploy":{
          "Type":"AWS::IAM::ManagedPolicy",
          "Properties":{

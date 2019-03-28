@@ -29,6 +29,9 @@ using Amazon.S3.Model;
 using trial3;
 using StatsN;
 using JustEat.StatsD;
+using Amazon.SimpleNotificationService;
+
+using Amazon.SimpleNotificationService.Model;
 
 namespace trial.Controllers
 {
@@ -37,11 +40,13 @@ namespace trial.Controllers
     {
        // public static Dictionary<String,User> userDetails = new Dictionary<String, User>();
         // GET api/values
-    readonly ILogger _log;
+        private readonly ILogger<ValuesController> _log;
     
   
         private static IAmazonS3 s3Client;
+      
 
+        public NStatsD.Client  nc;
         private static String[] arguments = Environment.GetCommandLineArgs();
 
         private string bucketName = arguments[1];
@@ -52,6 +57,7 @@ namespace trial.Controllers
         static int rand=  1;
         private CLOUD_CSYEContext _context;
          private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+
          private readonly AWSCredentials credentials;
          
          
@@ -70,7 +76,7 @@ namespace trial.Controllers
              _log = log;
             _context = context;
             s3Client = new AmazonS3Client(bucketRegion);
-            
+           
             statsDConfig = new  StatsDConfiguration{ Host = "localhost", Port = 8125 };
             statsDPublisher = new StatsDPublisher(statsDConfig);
             
@@ -83,8 +89,10 @@ namespace trial.Controllers
         public ActionResult Get()
         {   try{
           //   Console.WriteLine((EnvironmentVariablesAWSCredentials.ENVIRONMENT_VARIABLE_SECRETKEY));
-           _log.LogInformation("HI");
-           Console.WriteLine("Hello, world!");
+  
+                _log.LogInformation( "Listing all items");
+                
+
             statsDPublisher.Increment("GET");
             return StatusCode(200, new{result =DateTime.Now});
            
@@ -116,9 +124,9 @@ namespace trial.Controllers
             Users us =  _context.Users.Find(u.Email);
             if(us == null){
                 if(ModelState.IsValid){
-                 
-                 
-                _log.LogInformation("User Created");
+                _log.LogInformation("USER is inserted");
+                Console.WriteLine("User is registered");
+                
                 statsDPublisher.Increment("_USER_API");
                 if (string.IsNullOrWhiteSpace(u.Email))
                { var baDRequest = "Email cant be blank";
@@ -144,8 +152,8 @@ namespace trial.Controllers
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
-                    
-
+                   _log.LogInformation("NOTE is inserted");
+                   statsDPublisher.Increment("_NOTE_API");
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
@@ -156,7 +164,7 @@ namespace trial.Controllers
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
-            var uploads = Path.Combine(Directory.GetCurrentDirectory(), fileName );
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
 
             var filePath = Path.Combine(uploads);
             if (file.Length > 0)
@@ -204,13 +212,10 @@ namespace trial.Controllers
           // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
           //  string username = us.getUsername();
 
-          _log.LogInformation("NOTE is inserted");
-          statsDPublisher.Increment("_NOTE_API");
-          return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
-            
-               }
+            return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
+                    }
             else{
-                var conflict = "Bad Request Sorry";
+                var conflict = "Bad Request";
                 return StatusCode(409, new{ result = conflict});
 
             }  
@@ -301,7 +306,7 @@ namespace trial.Controllers
         public  ActionResult GetNoteAttachmentbyId(string id){
 
             
-            statsDPublisher.Increment("NOTE_ID_ATTACHMENTS");
+ 
                 string username = getUsername();
                 NOTES notes =  _context.notes.Find(id);
                 IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
@@ -331,7 +336,7 @@ namespace trial.Controllers
         [Route("/note/{id}")]
         [Authorize]
         public ActionResult putnote(string id,[FromBody] NOTES n){
-            statsDPublisher.Increment("PUT_NOTE_ID");
+
                   string username = getUsername();
                   NOTES note = _context.notes.Find(id);
                   if(note.EMAIL == username){
@@ -358,7 +363,7 @@ namespace trial.Controllers
             
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-            statsDPublisher.Increment("NOTE_DELETE_BY_ID");
+
                     string username = getUsername();
 
                     NOTES note = _context.notes.Find(id);
@@ -399,13 +404,13 @@ namespace trial.Controllers
         public  ActionResult AttachImage(string id, IFormFile file){
                       var fileTransferUtility =
                     new TransferUtility(s3Client);
-                      statsDPublisher.Increment("POST_ID_NOTE_ATTACHMENTS");
+         
     
             string fileName = (rand.ToString() + file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
             var filePath = Path.Combine(file.FileName);
-              var uploads = Path.Combine(Directory.GetCurrentDirectory(),file.FileName);
+              var uploads = Path.Combine(Directory.GetCurrentDirectory(),fileName );
                      using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                    // fileTransferUtility.UploadAsync(stream,bucketName, keyName);
@@ -469,7 +474,6 @@ namespace trial.Controllers
         public ActionResult putnoteAttachent(string id,IFormFile file, string aid){
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-	  statsDPublisher.Increment("PUT_ID_NOTE_ATTACHMENTS");
             string fileName = (rand.ToString() + file.FileName );
             rand++;
            // var uniqueFileName = GetUniqueFileName(file.FileName);
@@ -519,9 +523,8 @@ namespace trial.Controllers
         public ActionResult Deletenoteattchment(string id,string atid){
             var fileTransferUtility =
                 new TransferUtility(s3Client);
-		statsDPublisher.Increment("DELETE_ID_NOTE_ATTACHMENTS");
                 string username = getUsername();
-                    
+
                     NOTES note = _context.notes.Find(id);
 
                     Attachments a = _context.attachments.Find(atid);
@@ -540,6 +543,39 @@ namespace trial.Controllers
                         return StatusCode(401, new{result = "Not Authorized"});
                     }
 
+        }
+
+ [HttpPost]
+        [Route("/reset")]
+        public async void passwordreset([FromBody] Users u){
+           Users a =  _context.Users.Find(u.Email);
+           _log.LogInformation( "Listing all items");
+                
+            Console.WriteLine("Hello inside the reset");
+            if(a!=null){
+             var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+            var request = new ListTopicsRequest();
+            var response = new ListTopicsResponse();
+                            _log.LogInformation( "going inside for");
+                    
+                response = await client.ListTopicsAsync();
+                 foreach (var topic in response.Topics)
+                {
+                    _log.LogInformation( "inside uufor");
+                    _log.LogInformation( "111inside if"+"-----"+topic.TopicArn);
+                  if( topic.TopicArn.EndsWith("SNSTopicResetPassword")){
+                       _log.LogInformation( "22222inside if"+"-----"+topic.TopicArn);
+             var respose = new PublishRequest
+            {
+                TopicArn =topic.TopicArn,
+                Message = a.Email
+            };
+
+             await client.PublishAsync(respose);
+                  }
+                   _log.LogInformation( "outside if");
+                } 
+            }  
         }
  }
 }

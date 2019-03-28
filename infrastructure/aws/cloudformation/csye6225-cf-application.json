@@ -274,14 +274,22 @@
                {
                   "AttributeName":"Id",
                   "AttributeType":"S"
+               },
+  	       {
+                  "AttributeName":"Email",
+                  "AttributeType":"S"
                }
             ],
             "KeySchema":[
                {
                   "AttributeName":"Id",
                   "KeyType":"HASH"
+               }, {
+                  "AttributeName":"Email",
+                  "KeyType":"RANGE"
                }
             ],
+
             "ProvisionedThroughput":{
                "ReadCapacityUnits":"1",
                "WriteCapacityUnits":"1"
@@ -298,7 +306,27 @@
          }
       },
 
-
+ "SNSAccess": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "sns:*"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ]
+        },
+        "ManagedPolicyName": "SNSAccess",
+        "Roles": [{
+          "Ref": "CodeDeployEC2ServiceRole"
+        }]
+      }
+    },
        "CodeDeployEC2ServiceRole":{
          "Type":"AWS::IAM::Role",
          "Properties": {
@@ -337,6 +365,7 @@
 					}
       					},
 
+
     "LogRolePolicy": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
@@ -355,6 +384,7 @@
                 "arn:aws:logs:*:*:*"
               ]
             },
+
 	   {
             "Effect": "Allow",
             "Action": [
