@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon.S3;
-
+using Amazon.SimpleNotificationService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -57,8 +57,10 @@ namespace NoteApp_Production
                         services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication", null);
             // Register DI for user service
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
             services.AddScoped<IUSerServices, UserServices>();
             services.AddAWSService<IAmazonS3>();
+            services.AddAWSService<IAmazonSimpleNotificationService>();
             services.Configure<FormOptions>(
                 options =>
                 {
