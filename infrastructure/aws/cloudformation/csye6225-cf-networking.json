@@ -33,7 +33,7 @@
             "Properties": {
                 "CidrBlock": "191.0.1.0/24",
                 "AvailabilityZone": "us-east-1b",
-"MapPublicIpOnLaunch" : "true",
+		"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",
@@ -50,7 +50,7 @@
             "Properties": {
                 "CidrBlock": "191.0.2.0/24",
                 "AvailabilityZone": "us-east-1c",
-"MapPublicIpOnLaunch" : "true",
+		"MapPublicIpOnLaunch" : "true",
                 "Tags": [
                     {
                         "Key": "foo",
@@ -121,6 +121,105 @@
                 }
             }
         },
+		
+
+        "EC2SecurityGroupDBServer":{
+
+          "Type" : "AWS::EC2::SecurityGroup",
+
+          "Properties" : {
+
+             "GroupDescription" : "Security group for DB server",
+
+             "SecurityGroupIngress" : [ {
+
+                 "IpProtocol" : "tcp",
+
+                 "FromPort" : "3306",
+
+                 "ToPort" : "3306",
+
+                 "SourceSecurityGroupId" : { "Ref": "EC2SecurityGroupWebServer" }
+
+          }],
+
+          "VpcId" : { "Ref": "VPC" },
+
+          "Tags": [{"Key": "Name", "Value": "csye6225-rds"}]
+
+        }
+
+      }
+
+    },
+	"EC2SecurityGroupLoadBalancer": {
+	      "Type": "AWS::EC2::SecurityGroup",
+	      "Properties": {
+		"GroupName": "csye6225-load-balancer-sg",
+		"GroupDescription": "Security group for load balancer",
+		"SecurityGroupIngress": [
+		  {
+		    "IpProtocol": "tcp",
+		    "FromPort": "443",
+		    "ToPort": "443",
+		    "CidrIp": "0.0.0.0/0"
+		  }
+		],
+		"VpcId": {
+		  "Ref": "VPC"
+		}
+	      }
+	    },
+        "EC2SecurityGroupWebServer": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "csye6225-webapp",
+        "GroupDescription": "Security group for web server",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      }
+    },
+    "OutboundRule": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "FromPort": "5001",
+        "ToPort": "5001",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "EC2SecurityGroupWebServer",
+            "GroupId"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "EC2SecurityGroupLoadBalancer",
+            "GroupId"
+          ]
+        }
+      }
+    },
+    "InboundRule": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "FromPort": "5001",
+        "ToPort": "5001",
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "EC2SecurityGroupLoadBalancer",
+            "GroupId"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "EC2SecurityGroupWebServer",
+            "GroupId"
+          ]
+        }
+      }
+    },
         "PublicInternetRoute": {
             "Type": "AWS::EC2::Route",
             "Properties": {
@@ -132,8 +231,8 @@
                     "Ref": "InternetGateway"
                 }
             }
-        }
-    },
+        },
+    
  "Parameters": {
 
         "VPCNAME": {
