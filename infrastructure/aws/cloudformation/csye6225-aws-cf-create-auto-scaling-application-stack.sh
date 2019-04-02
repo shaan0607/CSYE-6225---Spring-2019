@@ -45,11 +45,11 @@ fi
 
 
 
-VpcId=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' \
+myVpc=$(aws ec2 describe-vpcs --query 'Vpcs[].{VpcId:VpcId}' \
 --filters "Name=tag:Name,Values=$networkStackName-csye6225-vpc" "Name=is-default, Values=false" --output text 2>&1)
 
 
-subnet=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=${VpcId})
+subnet=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=${myVpc})
 subnetid1=$(echo -e "$subnet" | jq '.Subnets[0].SubnetId' | tr -d '"')
 subnetid2=$(echo -e "$subnet" | jq '.Subnets[1].SubnetId' | tr -d '"')
 subnetid3=$(echo -e "$subnet" | jq '.Subnets[2].SubnetId' | tr -d '"')
@@ -63,7 +63,7 @@ then
 fi
 
 
-if [ -z "$VpcId" ]
+if [ -z "$myVpc" ]
 then
 	echo "VPC ID error \n Exiting"
 	exit 1
@@ -87,7 +87,7 @@ fi
 
 # Create CloudFormation Stack
 echo "Validating template"
-TMP_code=`aws cloudformation validate-template --template-body file://./csye6225-cf-application.json`
+TMP_code=`aws cloudformation validate-template --template-body file://./csye6225-cf-auto-scaling-application.json`
 if [ -z "$TMP_code" ]
 then
 	echo "Template error exiting! "
@@ -109,7 +109,7 @@ CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}
 CERTIFICATE=$(aws acm list-certificates --query 'CertificateSummaryList[0].CertificateArn' --output text)
 
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=VpcID,ParameterValue=$VpcId ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=Bucket,ParameterValue=arn:aws:s3:::$Bucket ParameterKey=Bucket1,ParameterValue=arn:aws:s3:::$Bucket/* ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=S3Bucket,ParameterValue=$Bucket ParameterKey=DOMAIN,ParameterValue=$DOMAIN_NAME ParameterKey=SGID,ParameterValue=$SGID ParameterKey=CERTIFICATE,ParameterValue=$CERTIFICATE`
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NetworkStackNameParameter,ParameterValue=$networkStackName ParameterKey=ApplicationStackNameParameter,ParameterValue=$appStackName  ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=myVpc,ParameterValue=$myVpc ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=Bucket,ParameterValue=arn:aws:s3:::$Bucket ParameterKey=Bucket1,ParameterValue=arn:aws:s3:::$Bucket/* ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=S3Bucket,ParameterValue=$Bucket ParameterKey=domain,ParameterValue=$DOMAIN_NAME ParameterKey=CERTIFICATE,ParameterValue=$CERTIFICATE`
  
 if [ -z "$CRTSTACK_Code" ]
 then

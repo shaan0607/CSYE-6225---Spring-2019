@@ -98,6 +98,7 @@ echo "Cloudformation template validation success"
 echo "Now Creating CloudFormation Stack"
 
 export circleciuser=circleci
+
 SGID=$(aws ec2 describe-security-groups --filters Name=ip-permission.from-port,Values=5001 --query 'SecurityGroups[*].{Name:GroupId}[0]' --output text)
 
 DBSGID=$(aws ec2 describe-security-groups --filters Name=ip-permission.from-port,Values=3306 --query 'SecurityGroups[*].{Name:GroupId}[0]' --output text)

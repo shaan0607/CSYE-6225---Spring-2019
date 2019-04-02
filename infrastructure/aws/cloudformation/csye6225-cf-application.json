@@ -172,6 +172,25 @@
       }
 
     },
+    "DBSecurityGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Condition": "Is-EC2-VPC",
+			"Properties": {
+				"GroupName": "csye6225-rds",
+				"GroupDescription": "allow connections from specified source security group and ec2 Security group",
+				"VpcId": {
+					"Ref": "myVpc"
+				},
+				"SecurityGroupIngress": [{
+					"IpProtocol": "tcp",
+					"FromPort": "3306",
+					"ToPort": "3306",
+					"SourceSecurityGroupId": {
+						"Ref": "webappSecurityGroup"
+					}
+				}]
+			}
+		},
       "RDSInstance":{
          "Type":"AWS::RDS::DBInstance",
          "Properties":{
@@ -650,8 +669,8 @@
                
             }
          }
-      }
-   },
+      },
+   
    "Listener": {
       "Type": "AWS::ElasticLoadBalancingV2::Listener",
       "Properties": {
@@ -676,42 +695,9 @@
         "Port": "443",
         "Protocol": "HTTPS"
       }
-    },
-
+    }
+  },
    "Outputs":{
-      "EC2Instance":{
-         "Description":"The EC2 Instance for Web Server",
-         "Value":{
-            "Ref":"EC2Instance"
-         },
-         "Export":{
-            "Name":{
-               "Fn::Sub":"EC2InstanceID"
-            }
-         }
-      },
-      "WebServerSecurityGroup":{
-         "Description":"The security group id for the Web Server",
-         "Value":{
-            "Ref":"WebServerSecurityGroup"
-         },
-         "Export":{
-            "Name":{
-               "Fn::Sub":"WebServerSecurityGroupID"
-            }
-         }
-      },
-      "DBServerSecurityGroup":{
-         "Description":"The security group id for the RDS Server",
-         "Value":{
-            "Ref":"DBServerSecurityGroup"
-         },
-         "Export":{
-            "Name":{
-               "Fn::Sub":"DBServerSecurityGroupID"
-            }
-         }
-      },
       "RDSInstance":{
          "Description":"The RDS Instance for Backend Database",
          "Value":{
