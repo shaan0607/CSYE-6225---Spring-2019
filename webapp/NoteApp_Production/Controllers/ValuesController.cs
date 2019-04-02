@@ -163,7 +163,6 @@ namespace trial.Controllers
    
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
-           // var uniqueFileName = GetUniqueFileName(file.FileName);
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
 
             var filePath = Path.Combine(uploads);
