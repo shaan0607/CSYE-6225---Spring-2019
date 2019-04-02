@@ -35,6 +35,8 @@
       "PublicSubnetKey1":{
          "Type":"String"
       },
+"CERTIFICATE":{
+"Type": "string"},
 	"CDARN":{"Type": "String"},
 	"CDARN1": {"Type": "String"},
 	"Bucket":{"Type": "String"},
@@ -434,8 +436,8 @@
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "Name": "LBTarget",
-        "Port": "8080",
-        "HealthCheckPort": "8080",
+        "Port": "5001",
+        "HealthCheckPort": "5001",
         "Matcher": {
           "HttpCode": "401,200"
         },
