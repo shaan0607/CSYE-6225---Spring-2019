@@ -31,7 +31,8 @@ namespace NoteApp_Production
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
                     options.Limits.MinResponseDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
-                    options.Listen(IPAddress.Loopback, 5000);
+                    options.Listen(IPAddress.Any, 5000);
+                     
                   
                 })
                 .ConfigureLogging((hostingContext, logging) =>
@@ -40,7 +41,7 @@ namespace NoteApp_Production
                     logging.AddConsole();
                     logging.AddDebug();
                     logging.AddEventSourceLogger();
-                }).UseSetting("https_port", "443")
+                })
 
                 .UseStartup<Startup>();
     }
