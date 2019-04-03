@@ -411,8 +411,8 @@
                                    "Type": "AWS::EC2::SecurityGroupEgress",
                                    "Properties": {
                                                   "IpProtocol": "tcp",
-                                                  "FromPort": "8080",
-                                                  "ToPort": "8080",
+                                                  "FromPort": "5000",
+                                                  "ToPort": "5000",
                                                   "DestinationSecurityGroupId": {
                                                                                  "Fn::GetAtt": [
                                                                                      "webappSecurityGroup",
@@ -431,8 +431,8 @@
                                     "Type": "AWS::EC2::SecurityGroupIngress",
                                     "Properties": {
                                                    "IpProtocol": "tcp",
-                                                   "FromPort": "8080",
-                                                   "ToPort": "8080",
+                                                   "FromPort": "5000",
+                                                   "ToPort": "5000",
                                                    "SourceSecurityGroupId": {
                                                                               "Fn::GetAtt": [
                                                                                        "EC2SecurityGroupLoadBalancer",

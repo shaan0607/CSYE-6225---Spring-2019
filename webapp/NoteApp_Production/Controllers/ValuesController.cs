@@ -135,7 +135,7 @@ namespace trial.Controllers
                 var user = new Users{Email= u.Email, Password = s};
                 _context.Add(user);
                 _context.SaveChanges();
-                var Created = "User Created Successfully";
+                var Created = "User Creat ed Successfully";
                 return StatusCode(201, new {result = Created});
                 }
                 var badRequest = "Either Email or Password was not in correct format, Please try again";
