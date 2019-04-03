@@ -327,18 +327,24 @@
 			"Type": "AWS::DynamoDB::Table",
 			"Properties": {
 				"TableName": "csye-6225",
-				"AttributeDefinitions": [{
-					"AttributeName": "id",
-					"AttributeType": "S"
-				}
-				],
-				"KeySchema": [{
-					"AttributeName": "id",
-					"KeyType": "HASH"
-				}
-
-
-                                ],
+				"AttributeDefinitions":[
+					{
+						 "AttributeName":"Id",
+						 "AttributeType":"S"
+					},
+			{
+						 "AttributeName":"Email",
+						 "AttributeType":"S"
+					}
+			 ],
+			 "KeySchema":[ {
+						 "AttributeName":"Id",
+						 "KeyType":"HASH"
+					},{
+						 "AttributeName":"Email",
+						 "KeyType":"RANGE"
+					}
+			 ],
 				"ProvisionedThroughput": {
 					"ReadCapacityUnits": "5",
 					"WriteCapacityUnits": "5"
@@ -411,8 +417,8 @@
                                    "Type": "AWS::EC2::SecurityGroupEgress",
                                    "Properties": {
                                                   "IpProtocol": "tcp",
-                                                  "FromPort": "8080",
-                                                  "ToPort": "8080",
+                                                  "FromPort": "5000",
+                                                  "ToPort": "5000",
                                                   "DestinationSecurityGroupId": {
                                                                                  "Fn::GetAtt": [
                                                                                      "webappSecurityGroup",
@@ -431,8 +437,8 @@
                                     "Type": "AWS::EC2::SecurityGroupIngress",
                                     "Properties": {
                                                    "IpProtocol": "tcp",
-                                                   "FromPort": "8080",
-                                                   "ToPort": "8080",
+                                                   "FromPort": "5000",
+                                                   "ToPort": "5000",
                                                    "SourceSecurityGroupId": {
                                                                               "Fn::GetAtt": [
                                                                                        "EC2SecurityGroupLoadBalancer",
@@ -510,7 +516,7 @@
                                  "Tags": [
                                           {
                                            "Key": "Name",
-                                           "Value": "CSYE_6225_AutoScaling"
+                                           "Value": "ec2"
                                           }
                                          ],
                                    "Type" : "application"
@@ -563,28 +569,28 @@
                            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
                            "Properties": {
                                            "Name": "LBTarget",
-                                           "Port": "8080",
-                                           "HealthCheckPort": "8080",
+                                           "Port": "5000",
+                                           "HealthCheckPort": "5000",
                                            "Matcher": {
                                            "HttpCode": "401,200"
                                                        },
-                                          "HealthCheckIntervalSeconds": 30,
-                                          "HealthCheckTimeoutSeconds": 20,
-                                          "HealthyThresholdCount": 3,
-                                          "Protocol": "HTTP",
-                                          "VpcId": {
+                                           "HealthCheckIntervalSeconds": 30,
+                                           "HealthCheckTimeoutSeconds": 20,
+                                           "HealthyThresholdCount": 3,
+                                           "Protocol": "HTTP",
+                                           "VpcId": {
                                                     "Ref": "myVpc"
                                                     },
-                                          "TargetGroupAttributes":[
+                                           "TargetGroupAttributes":[
                                                                       {
                                                                     "Value": "600",
                                                                     "Key": "deregistration_delay.timeout_seconds"
                                                                      }
                                                                   ],
-                                          "Tags": [
+                                           "Tags": [
                                                     {
                                                       "Key": "Name",
-                                                      "Value": "CSYE_6225_AutoScaling"
+                                                      "Value": "ec2"
                                                      }
                                                   ]
                                          }
@@ -618,7 +624,7 @@
 					  {
 					    "PropagateAtLaunch": true,
 					    "Key": "Name",
-					    "Value": "CSYE_6225_AutoScaling"
+					    "Value": "ec2"
 					  }
 					]
 				       }
