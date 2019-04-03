@@ -124,8 +124,8 @@ namespace trial.Controllers
             Users us =  _context.Users.Find(u.Email);
             if(us == null){
                 if(ModelState.IsValid){
-                _log.LogInformation("USER is inserted");
-                Console.WriteLine("User is registered");
+                _log.LogInformation("USER is  inserted");
+                Console.WriteLine("User is regstered");
                 
                 statsDPublisher.Increment("_USER_API");
                 if (string.IsNullOrWhiteSpace(u.Email))
