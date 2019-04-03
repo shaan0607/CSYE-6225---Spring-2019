@@ -32,7 +32,8 @@ namespace NoteApp_Production
                     options.Limits.MinResponseDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
                     options.Listen(IPAddress.Any, 5000);
-                    // options.Listen(IPAddress.Any, 443, listenOptions => {listenOptions.UseHttps("/home/dotnetuser/.ssh/seniordevops.pfx", "SuperSecret123");
+                     
+                  
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
@@ -41,6 +42,7 @@ namespace NoteApp_Production
                     logging.AddDebug();
                     logging.AddEventSourceLogger();
                 })
+
                 .UseStartup<Startup>();
     }
 }

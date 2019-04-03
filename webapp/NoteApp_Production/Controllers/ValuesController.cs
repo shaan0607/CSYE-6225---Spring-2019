@@ -163,7 +163,6 @@ namespace trial.Controllers
    
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
-           // var uniqueFileName = GetUniqueFileName(file.FileName);
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
 
             var filePath = Path.Combine(uploads);
@@ -208,10 +207,6 @@ namespace trial.Controllers
                     }
                 }
             string Json = JsonConvert.SerializeObject(notes, Formatting.Indented);
-   
-          // var a1 = new mAttachments{AID = Attachment.AID ,url=Attachment.url};
-          //  string username = us.getUsername();
-
             return StatusCode(201,new{noteId= notes.noteID, content  = n.content, created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now,attachments = att});
                     }
             else{
