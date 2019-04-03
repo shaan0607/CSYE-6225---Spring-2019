@@ -20,7 +20,6 @@
         <PackageReference Include="StatsdClient.Core" Version="0.0.2-beta" />
         <PackageReference Include="StatsdCsharpClient" Version="1.5.0" />
         <PackageReference Include="StatsN" Version="1.2.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />

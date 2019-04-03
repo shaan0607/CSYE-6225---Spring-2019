@@ -13175,7 +13175,6 @@
       "JustEat.Statsd >= 4.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
-      "Microsoft.AspNetCore.Server.Kestrel >= 2.2.0",
       "Microsoft.EntityFrameworkcore >= 2.2.0",
       "Microsoft.EntityFrameworkcore.Tools >= 2.2.0",
       "Microsoft.Extensions.Configuration.CommandLine >= 2.2.0",
@@ -13262,10 +13261,6 @@
           },
           "Microsoft.AspNetCore.Razor.Design": {
             "suppressParent": "All",
-            "target": "Package",
-            "version": "[2.2.0, )"
-          },
-          "Microsoft.AspNetCore.Server.Kestrel": {
             "target": "Package",
             "version": "[2.2.0, )"
           },
