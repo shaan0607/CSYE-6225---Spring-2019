@@ -44,12 +44,14 @@
 		},
 		"Bucket1": {
 			"Type": "String"
-    },
-    
-                "CERTIFICATE": {
+		},
+		"Bucket3": {
 			"Type": "String"
 		},
-               "CDR": {
+    "CERTIFICATE": {
+			"Type": "String"
+		},
+    "CDR": {
 			"Type": "String"
 		}
 	},
@@ -83,39 +85,39 @@
 						"DeleteOnTermination": "true"
 					}
 				}],
-        "UserData": {
+				"UserData": {
 
-          "Fn::Base64": {
-                        "Fn::Join": [
-                            "\n",
-                            [
-                "#!/bin/bash -xe", 
-		"pwd",
-		"mkdir /home/centos/WebApp",
-		"cd /usr/lib/systemd/system",
-                "touch kestrel.service",
-                "sudo echo '[Unit]' > kestrel.service",
-		"sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
-                "sudo echo '[Service]' >> kestrel.service",
-                "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-		{"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
-		"Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
-
-                "sudo echo 'User=centos' >> kestrel.service",
-		"sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
-                "sudo echo 'Restart=always' >> kestrel.service",
-		"sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
-		"sudo echo 'RestartSec=10' >> kestrel.service",
-                "sudo echo '[Install]' >> kestrel.service",
-                "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
-		"sudo su",
-		"chown centos /usr/lib/systemd/system/kestrel.service",
-		"chown centos /home/centos/WebApp"
-                            ]
-                        ]
-                    }
-
-        },
+					"Fn::Base64": {
+								  "Fn::Join": [
+									  "\n",
+									  [
+						  "#!/bin/bash -xe", 
+				  "pwd",
+				  "mkdir /home/centos/WebApp",
+				  "cd /usr/lib/systemd/system",
+						  "touch kestrel.service",
+						  "sudo echo '[Unit]' > kestrel.service",
+				  "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
+						  "sudo echo '[Service]' >> kestrel.service",
+						  "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
+				  {"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
+				  "Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
+		  
+						  "sudo echo 'User=centos' >> kestrel.service",
+				  "sudo echo 'SyslogIdentifier=WebApp' >> kestrel.service",
+						  "sudo echo 'Restart=always' >> kestrel.service",
+				  "sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
+				  "sudo echo 'RestartSec=10' >> kestrel.service",
+						  "sudo echo '[Install]' >> kestrel.service",
+						  "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
+				  "sudo su",
+				  "chown centos /usr/lib/systemd/system/kestrel.service",
+				  "chown centos /home/centos/WebApp"
+									  ]
+								  ]
+							  }
+		  
+				  },
 				"AssociatePublicIpAddress": "true",
 				"SecurityGroups" : [{"Fn::GetAtt": [
 								"webappSecurityGroup",
@@ -126,6 +128,21 @@
 				"LaunchConfigurationName" : "asglaunchconfig"
 			}
 		},
+		"Ec2InstanceProfile":{
+			"Type":"AWS::IAM::InstanceProfile",
+	   "DependsOn": "CodeDeployEC2ServiceRole",
+			"Properties":{
+		   
+			   "InstanceProfileName":"ec2instanceprofile",
+			   "Path":"/",
+			   "Roles":[
+				  {
+					 "Ref":"CodeDeployEC2ServiceRole"
+				  }
+			   ]
+			}
+   
+		 },
 
                "codeDeployApp": {
 			"Type": "AWS::CodeDeploy::Application",
@@ -142,17 +159,11 @@
 				},
 				"Ec2TagFilters": [{
 					"Key": "Name",
-					"Value": {
-						"Fn::Join": [
-							"",
-							[{
-									"Ref": "AWS::StackName"
-								},
-								"-csye6225-Ec2Instance"
-							]
-						]
-					},
+					"Value": "ec2",
 					"Type": "KEY_AND_VALUE"
+				}],
+				"AutoScalingGroups": [{
+					"Ref": "WebServerGroup"
 				}],
 				"DeploymentGroupName": "csye6225-webapp-deployment",
 				"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
@@ -161,7 +172,10 @@
 					"DeploymentOption": "WITHOUT_TRAFFIC_CONTROL"
 				},
 				"ServiceRoleArn": {
-					"Ref" : "CDR"
+					"Fn::GetAtt":[
+						"CodeDeployServiceRole", "Arn"
+					 ]
+	  
 				},
 				"AutoRollbackConfiguration": {
 					"Enabled": "True",
@@ -169,6 +183,146 @@
 				}
 			}
 		},
+		"SNSAccess": {
+			"Type": "AWS::IAM::ManagedPolicy",
+			"Properties": {
+			  "PolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+				  {
+					"Action": [
+					  "sns:*"
+					],
+					"Effect": "Allow",
+					"Resource": "*"
+				  }
+				]
+			  },
+			  "ManagedPolicyName": "SNSAccess",
+			  "Roles": [{
+				"Ref": "CodeDeployEC2ServiceRole"
+			  }]
+			}
+		  },
+			 "CodeDeployEC2ServiceRole":{
+			   "Type":"AWS::IAM::Role",
+			   "Properties": {
+					  "RoleName": "CodeDeployEC2ServiceRole",
+	  
+					  "AssumeRolePolicyDocument": {
+						  "Version": "2012-10-17",
+						  "Statement": [{
+							  "Effect": "Allow",
+							  "Principal": {
+								  "Service": ["ec2.amazonaws.com"]
+	  
+							  },
+							  "Action": ["sts:AssumeRole"]
+						  }]
+					  },
+					  "Path": "/",
+					  "Policies": [{
+						  "PolicyName": "CodeDeployEC2S3",
+						  "PolicyDocument": {
+							  "Version": "2012-10-17",
+							  "Statement": [{
+								  "Action": [
+									  "s3:Get*",
+									  "s3:Put*",
+									  "s3:Delete*",
+																	  "s3:List*"
+								  ],
+								  "Effect": "Allow",
+								  "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
+							  }]
+						  }
+	  
+							
+								 }]
+						  }
+								},
+	  
+	  
+		  "LogRolePolicy": {
+			"Type": "AWS::IAM::ManagedPolicy",
+			"Properties": {
+			  "PolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+				  {
+					"Action": [
+					  "logs:CreateLogGroup",
+					  "logs:CreateLogStream",
+					  "logs:PutLogEvents",
+					  "logs:DescribeLogStreams"
+					],
+					"Effect": "Allow",
+					"Resource": [
+					  "arn:aws:logs:*:*:*"
+					]
+				  },
+	  
+			 {
+				  "Effect": "Allow",
+				  "Action": [
+					  "cloudwatch:PutMetricAlarm",
+					  "cloudwatch:PutMetricData"
+				  ],
+				  "Resource": "*"
+				}
+				]
+			  },
+			  "ManagedPolicyName":"LogRolePolicy",
+		  "Roles": [{
+				"Ref": "CodeDeployEC2ServiceRole"
+			  }]
+			}
+		  },
+	  
+			  "CodeDeployServiceRole": {
+				  "Type": "AWS::IAM::Role",
+				  "Properties": {
+					  "RoleName": "CodeDeployServiceRole",
+					  "AssumeRolePolicyDocument": {
+						  "Version": "2012-10-17",
+						  "Statement": [{
+							  "Effect": "Allow",
+							  "Principal": {
+								  "Service": "codedeploy.amazonaws.com"
+							  },
+							  "Action": ["sts:AssumeRole"]
+						  }]
+					  },
+					  "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"],
+					  "Path": "/"
+				  }
+			  },
+	   "CodeDeployEC2S3": {
+		 "Type" : "AWS::IAM::Policy",
+		 "Properties" : {
+			"PolicyName" : "CodeDeploy-EC2S3",
+			"PolicyDocument" : {
+				  "Version": "2012-10-17",
+		  "Statement": [
+			  {
+				  "Action": [
+					  "s3:Get*",
+					  "s3:List*",
+			  "s3:Put*",
+			  "s3:Delete*"
+				  ],
+				  "Effect": "Allow",
+				  "Resource": [{"Ref": "CDARN"}, {"Ref":"CDARN1"}, {"Ref":"Bucket"}, {"Ref": "Bucket1"}]
+			  }
+		  ]
+			},
+		  "Users" : [
+		  {
+		  "Ref":"circleci"
+		  }
+		  ]
+			 }
+		  },
 		"myDynamoDB": {
 			"Type": "AWS::DynamoDB::Table",
 			"Properties": {
@@ -257,8 +411,8 @@
                                    "Type": "AWS::EC2::SecurityGroupEgress",
                                    "Properties": {
                                                   "IpProtocol": "tcp",
-                                                  "FromPort": "5001",
-                                                  "ToPort": "5001",
+                                                  "FromPort": "8080",
+                                                  "ToPort": "8080",
                                                   "DestinationSecurityGroupId": {
                                                                                  "Fn::GetAtt": [
                                                                                      "webappSecurityGroup",
@@ -277,8 +431,8 @@
                                     "Type": "AWS::EC2::SecurityGroupIngress",
                                     "Properties": {
                                                    "IpProtocol": "tcp",
-                                                   "FromPort": "5001",
-                                                   "ToPort": "5001",
+                                                   "FromPort": "8080",
+                                                   "ToPort": "8080",
                                                    "SourceSecurityGroupId": {
                                                                               "Fn::GetAtt": [
                                                                                        "EC2SecurityGroupLoadBalancer",
@@ -318,7 +472,7 @@
                             "HostedZoneName" : { "Ref" : "domain" },
                             "Comment" : "DNS name for my instance.",  
                             "Name" : {
-						"Fn::Join" : [ "", [" https://", {"Ref": "domain"}, "/"]]
+								"Ref" : "domain"
 					},
 
                             "Type" : "A",
@@ -409,8 +563,8 @@
                            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
                            "Properties": {
                                            "Name": "LBTarget",
-                                           "Port": "5001",
-                                           "HealthCheckPort": "5001",
+                                           "Port": "8080",
+                                           "HealthCheckPort": "8080",
                                            "Matcher": {
                                            "HttpCode": "401,200"
                                                        },
