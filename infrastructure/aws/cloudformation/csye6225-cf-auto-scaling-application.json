@@ -563,8 +563,8 @@
                            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
                            "Properties": {
                                            "Name": "LBTarget",
-                                           "Port": "8080",
-                                           "HealthCheckPort": "8080",
+                                           "Port": "5000",
+                                           "HealthCheckPort": "5000",
                                            "Matcher": {
                                            "HttpCode": "401,200"
                                                        },
