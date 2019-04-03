@@ -41,7 +41,7 @@ namespace NoteApp_Production
                     logging.AddConsole();
                     logging.AddDebug();
                     logging.AddEventSourceLogger();
-                }).UseSetting("https_port", "443")
+                })
 
                 .UseStartup<Startup>();
     }
