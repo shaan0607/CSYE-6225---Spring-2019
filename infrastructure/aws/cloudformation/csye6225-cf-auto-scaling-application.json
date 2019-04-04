@@ -51,7 +51,7 @@
     "CERTIFICATE": {
 			"Type": "String"
 		},
-    "CDR": {
+    "S3Bucket": {
 			"Type": "String"
 		}
 	},
@@ -100,7 +100,7 @@
 				  "sudo echo 'Description=ASP.NET Core Web Application' >> kestrel.service",
 						  "sudo echo '[Service]' >> kestrel.service",
 						  "sudo echo 'WorkingDirectory=/home/centos/WebApp' >> kestrel.service",
-				  {"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "Bucket"}," ",{
+				  {"Fn::Join": ["",["sudo echo 'ExecStart=/usr/bin/dotnet /home/centos/WebApp/NoteApp_Production.dll " ,{"Ref": "S3Bucket"}," ",{
 				  "Fn::GetAtt":[ "RDSInstance", "Endpoint.Address"]}, " csye6225 csye6225master csye6225password' >> kestrel.service" ]]},
 		  
 						  "sudo echo 'User=centos' >> kestrel.service",
@@ -109,7 +109,8 @@
 				  "sudo echo 'Environment=ASPNETCORE_ENVIRONMENT=Production' >> kestrel.service",
 				  "sudo echo 'RestartSec=10' >> kestrel.service",
 						  "sudo echo '[Install]' >> kestrel.service",
-						  "sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
+							"sudo echo 'WantedBy=multi-user.target' >> kestrel.service",
+							"sudo systemctl start kestrel.service",
 				  "sudo su",
 				  "chown centos /usr/lib/systemd/system/kestrel.service",
 				  "chown centos /home/centos/WebApp"
