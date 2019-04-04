@@ -165,6 +165,9 @@
 				"AutoScalingGroups": [{
 					"Ref": "WebServerGroup"
 				}],
+				"LoadBalancerInfo":{
+					"TargetGroupInfoList":[{"Name":{"Fn::GetAtt":["ALBTargetGroup","TargetGroupName"]}}]
+			},
 				"DeploymentGroupName": "csye6225-webapp-deployment",
 				"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
 				"DeploymentStyle": {
@@ -181,7 +184,13 @@
 					"Enabled": "True",
 					"Events": ["DEPLOYMENT_FAILURE"]
 				}
-			}
+			},
+			"DependsOn": [
+				"codeDeployApp",
+				"asglaunchconfig",
+				"ALBTargetGroup",
+				"WebServerGroup"
+		]
 		},
 		"SNSAccess": {
 			"Type": "AWS::IAM::ManagedPolicy",
@@ -627,7 +636,8 @@
 					    "Value": "ec2"
 					  }
 					]
-				       }
+							 },
+							 "DependsOn" : ["Listener","asglaunchconfig"]
             },
 			"WebServerScaleUpPolicy": {
 			    "Type": "AWS::AutoScaling::ScalingPolicy",
