@@ -9,12 +9,12 @@ hooks:
   AfterInstall:
    - location: ./afterInstall.sh
      timeout: 180
-     runas: centos
+     runas: root
   ApplicationStop:
     - location: ./stop_service.sh
       timeout: 300
-      runas: centos
+      runas: root
   ApplicationStart:
     - location: ./start_service.sh
       timeout: 300
-      runas: centos
+      runas: root
