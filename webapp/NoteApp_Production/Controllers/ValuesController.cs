@@ -84,7 +84,7 @@ namespace trial.Controllers
         }
         
         [HttpGet]
-      //  [Authorize]
+      [Authorize]
         [Route("/")]
         public ActionResult Get()
         {   try{
