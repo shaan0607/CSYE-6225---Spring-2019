@@ -91,6 +91,8 @@ export circleciuser=circleci
 DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 Bucket="${DOMAIN_NAME}csye6225.com"
 
+
+
 DOMAIN_NAME1=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 
 CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}

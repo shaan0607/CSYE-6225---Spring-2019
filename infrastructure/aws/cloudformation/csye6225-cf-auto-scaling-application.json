@@ -600,7 +600,7 @@
                                                     },
                                            "TargetGroupAttributes":[
                                                                       {
-                                                                    "Value": "600",
+                                                                    "Value": "300",
                                                                     "Key": "deregistration_delay.timeout_seconds"
                                                                      }
                                                                   ],
