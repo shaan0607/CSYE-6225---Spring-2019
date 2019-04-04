@@ -223,7 +223,7 @@ namespace trial.Controllers
             IEnumerable<NOTES> notes = _context.notes.AsEnumerable();
 
             List<NOTE> note = new List<NOTE>();
-                    _log.LogInformation("Getting in rthe node");
+                    _log.LogInformation("Gettindg in rthe node");
                    statsDPublisher.Increment("_NOTE_GET_API");
 
             string username = getUsername();
