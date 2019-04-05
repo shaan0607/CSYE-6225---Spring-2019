@@ -7,7 +7,7 @@ namespace trial3
     public partial class Users
     {
         //public Users(string )
-
+       
         [Required]
         [Key]
         [EmailAddress]
