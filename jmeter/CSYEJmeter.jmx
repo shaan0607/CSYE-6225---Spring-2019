@@ -15,9 +15,9 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">3000</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">20</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1554330753000</longProp>
         <longProp name="ThreadGroup.end_time">1554330753000</longProp>
@@ -136,7 +136,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot; : &quot;arjit@gmail.com&quot;,&#xd;
+	&quot;email&quot; : &quot;arjit1@gmail.com&quot;,&#xd;
 	&quot;password&quot; : &quot;A2a@@aaaa&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -265,8 +265,8 @@
           <collectionProp name="AuthManager.auth_list">
             <elementProp name="" elementType="Authorization">
               <stringProp name="Authorization.url">https://csye6225-spring2019-deosthales.me/</stringProp>
-              <stringProp name="Authorization.username">arjit@gmail.com</stringProp>
-              <stringProp name="Authorization.password">A2a@@aaaa</stringProp>
+              <stringProp name="Authorization.username">deosthale.s@husky.neu.edu</stringProp>
+              <stringProp name="Authorization.password">nikonD5@100</stringProp>
               <stringProp name="Authorization.domain"></stringProp>
               <stringProp name="Authorization.realm"></stringProp>
             </elementProp>
