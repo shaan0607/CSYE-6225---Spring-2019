@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -125,7 +125,7 @@ namespace trial.Controllers
             if(us == null){
                 if(ModelState.IsValid){
                 _log.LogInformation("USER is inserted");
-                Console.WriteLine("User is reegstered");
+                Console.WriteLine("User is registered");
                 
                 statsDPublisher.Increment("_USER_API");
                 if (string.IsNullOrWhiteSpace(u.Email))
@@ -223,7 +223,7 @@ namespace trial.Controllers
             IEnumerable<NOTES> notes = _context.notes.AsEnumerable();
 
             List<NOTE> note = new List<NOTE>();
-                    _log.LogInformation("Getting in rthe node");
+                    _log.LogInformation("Getting the node");
                    statsDPublisher.Increment("_NOTE_GET_API");
 
             string username = getUsername();

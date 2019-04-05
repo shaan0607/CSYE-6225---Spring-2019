@@ -7,14 +7,12 @@ then
 fi
 echo "$appStackName"
 echo "Fetching domain name from Route 53"
-DOMAINNAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
-DOMAINNAME="${DOMAINNAME%?}"
-echo "DOMAIN_NAME:- $DOMAINNAME"
+DOMAIN_NAME=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
+DOMAIN_NAME="${DOMAIN_NAME%?}"
+echo "DOMAIN_NAME:- $DOMAIN_NAME"
 
-LAMBDABUCKET="code-deploy."${DOMAINNAME}
+LAMBDABUCKET="code-deploy."${DOMAIN_NAME}
 echo "LAMBDA_BUCKET:- $LAMBDABUCKET"
-
-
 
 AccountId=$(aws iam get-user|python -c "import json as j,sys;o=j.load(sys.stdin);print o['User']['Arn'].split(':')[4]")
 echo "AccountId: $AccountId"
@@ -22,7 +20,7 @@ echo "AccountId: $AccountId"
 SNSTOPIC_ARN="arn:aws:sns:us-east-1:$AccountId:SNSTopicResetPassword"
 echo "SNSTOPIC_ARN: $SNSTOPIC_ARN"
 
-createres=$(aws cloudformation create-stack --stack-name $appStackName-serverless --capabilities "CAPABILITY_NAMED_IAM" --template-body file://csye6225-aws-cf-lambda.json --parameters ParameterKey=LAMBDABUCKET,ParameterValue=$LAMBDABUCKET ParameterKey=SNSTOPICARN,ParameterValue=$SNSTOPIC_ARN ParameterKey=DOMAINNAME,ParameterValue=$DOMAINNAME)
+createres=$(aws cloudformation create-stack --stack-name $appStackName-serverless --capabilities "CAPABILITY_NAMED_IAM" --template-body file://csye6225-aws-cf-lambda.json --parameters ParameterKey=LAMBDABUCKET,ParameterValue=$LAMBDABUCKET ParameterKey=SNSTOPICARN,ParameterValue=$SNSTOPIC_ARN)
 resp=$(aws cloudformation wait stack-create-complete --stack-name $appStackName-serverless)
 if [[ -z "$resp" ]]; then
   echo Stack "$appStackName" sucessfully created
