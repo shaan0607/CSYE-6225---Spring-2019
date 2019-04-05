@@ -40,7 +40,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-deosthales.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -136,14 +136,14 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot; : &quot;arjit100@gmail.com&quot;,&#xd;
+	&quot;email&quot; : &quot;arjit@gmail.com&quot;,&#xd;
 	&quot;password&quot; : &quot;A2a@@aaaa&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-deosthales.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -246,7 +246,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-deosthales.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -264,8 +264,8 @@
         <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
           <collectionProp name="AuthManager.auth_list">
             <elementProp name="" elementType="Authorization">
-              <stringProp name="Authorization.url">https://csye6225-spring2019</stringProp>
-              <stringProp name="Authorization.username">arjit100@gmail.com</stringProp>
+              <stringProp name="Authorization.url">https://csye6225-spring2019-deosthales.me/</stringProp>
+              <stringProp name="Authorization.username">arjit@gmail.com</stringProp>
               <stringProp name="Authorization.password">A2a@@aaaa</stringProp>
               <stringProp name="Authorization.domain"></stringProp>
               <stringProp name="Authorization.realm"></stringProp>
