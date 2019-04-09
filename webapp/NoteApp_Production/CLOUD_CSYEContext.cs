@@ -26,7 +26,6 @@ namespace trial3
             : base(options)
         {
         }
-
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -45,8 +44,6 @@ namespace trial3
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        
-            
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.ToTable("USERS");
@@ -65,11 +62,11 @@ namespace trial3
 
             modelBuilder.Entity<NOTES>(enitityNotes =>{
                 enitityNotes.ToTable("NOTES");
+               
                  enitityNotes.Property(e => e.noteID)
                     .IsRequired()
                     .HasColumnName("ID")
                     .HasColumnType("varchar(100)");
-
                 enitityNotes.Property(e => e.content)
                     .HasColumnName("content")
                     .HasColumnType("varchar(100)");
@@ -85,17 +82,14 @@ namespace trial3
                      enitityNotes.Property(e => e.EMAIL)
                     .HasColumnName("EMAIL")
                     .HasColumnType("varchar(100)");
-                    
-
-            });
+                });
             modelBuilder.Entity<Attachments>(attach =>{
                 attach.ToTable("Attachments");
                 attach.Property(e=> e.AID).IsRequired().HasColumnName("AID").HasColumnType("varchar(100)");
                 attach.Property(e=> e.url).HasColumnName("URL").HasColumnType("varchar(250)");
                 attach.Property(e=> e.FileName).HasColumnName("FileName").HasColumnType("varchar(100)");
                 attach.Property(e=> e.length).HasColumnName("length").HasColumnType("varchar(100)");
-                attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(100)");
-                
+                attach.Property(e=>e.noteID).HasColumnName("NoteID").HasColumnType("varchar(100)");     
             });
            
         }

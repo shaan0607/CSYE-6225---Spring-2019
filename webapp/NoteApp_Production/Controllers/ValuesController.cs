@@ -167,8 +167,9 @@ namespace trial.Controllers
 
             var filePath = Path.Combine(uploads);
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-           { file.CopyToAsync(stream);
-            fileTransferUtility.UploadAsync(stream, bucketName, fileName);
+           { 
+               file.CopyToAsync(stream);
+               fileTransferUtility.UploadAsync(stream, bucketName, fileName);
            }
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
@@ -424,7 +425,7 @@ namespace trial.Controllers
                   NOTES note = _context.notes.Find(id);
 
                   var Attachment = new Attachments{url=url,FileName=fileName, length=file.Length, noteID = note.noteID};
-                  _context.attachments.Add(Attachment);
+                  _context.Add(Attachment);
                   _context.SaveChanges(); 
 
              IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable();
