@@ -183,7 +183,8 @@ namespace trial.Controllers
             att.AID = Attachment.AID;
             att.url = Attachment.url;
             _context.SaveChanges();     
-            var notes = new NOTES{EMAIL = username ,attachments = Attachment,content  =  n.content,created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now };
+            var notes = new NOTES{EMAIL = username ,attachments = new List<Attachments>().Add(Attachment),content  =  n.content,created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now };
+            
             _context.Add(notes);
            // _context.Add(Attachment);
             _context.SaveChanges();
@@ -422,8 +423,9 @@ namespace trial.Controllers
             }
 
                   NOTES note = _context.notes.Find(id);
-
+                    
                   var Attachment = new Attachments{url=url,FileName=fileName, length=file.Length, noteID = note.noteID};
+                  note.attachments.Add(Attachment);
                   _context.attachments.Add(Attachment);
                   _context.SaveChanges(); 
 
