@@ -161,20 +161,11 @@ namespace trial.Controllers
             var fileTransferUtility =
                 new TransferUtility(s3Client);
    
-            string fileName = ( rand.ToString() +file.FileName );
+            string fileName = (rand.ToString() +file.FileName);
             rand++;
-            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
-
-            var filePath = Path.Combine(uploads);
-            if (file.Length > 0)
-            {
-                using (var stream = new FileStream(filePath, FileMode.Create))
-
-
-                    file.CopyToAsync(stream);
-            }
-
-            fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName);
+            _log.LogInformation(uploads+"@!@!@@")
+            fileTransferUtility.UploadAsync(uploads, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
             request.Key = fileName;
