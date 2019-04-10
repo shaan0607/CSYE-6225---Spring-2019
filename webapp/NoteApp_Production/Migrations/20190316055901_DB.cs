@@ -49,12 +49,17 @@ namespace NoteApp_Production.Migrations
                 {
                     table.PrimaryKey("PK_Attachments", x => x.AID);
                     table.ForeignKey(
+                        name: "FK_Attachments_NOTES_NoteID",
                         column: x => x.NoteID,
                         principalTable: "NOTES",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
-
+migrationBuilder.CreateIndex(
+                name: "IX_Attachments_NoteID",
+                table: "Attachments",
+                column: "NoteID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
