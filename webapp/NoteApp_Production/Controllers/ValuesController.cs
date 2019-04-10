@@ -135,51 +135,52 @@ namespace trial.Controllers {
         [HttpPost ("UploadFiles")]
         [Route ("/note")]
         [Authorize]
-        [Consumes ("multipart/form-data")]
-        public ActionResult createNotes (NOTES n, IFormFile file) {
-            if (ModelState.IsValid) {
-                _log.LogInformation ("NOTE is inserted");
-                statsDPublisher.Increment ("_NOTE_API");
-                var authHeader = AuthenticationHeaderValue.Parse (Request.Headers["Authorization"]);
-                var credentialBytes = Convert.FromBase64String (authHeader.Parameter);
-                var credentials = Encoding.UTF8.GetString (credentialBytes).Split (':');
-                var username = credentials[0];
-                var fileTransferUtility =
-                    new TransferUtility (s3Client);
+        [Consumes("multipart/form-data")]
+        public ActionResult createNotes(NOTES n, IFormFile file){
+               if(ModelState.IsValid){
+                   _log.LogInformation("NOTE is inserted");
+                   statsDPublisher.Increment("_NOTE_API");
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
+            var username = credentials[0];
+            var fileTransferUtility =
+                new TransferUtility(s3Client);
+   
+            string fileName = (rand.ToString() +file.FileName);
+            rand++;
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName);
 
-                string fileName = (rand.ToString () + file.FileName);
-                rand++;
-                var uploads = Path.Combine (Directory.GetCurrentDirectory (), file.FileName);
+            var filePath = Path.Combine(uploads);
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+           { 
+               file.CopyToAsync(stream);
+               fileTransferUtility.UploadAsync(stream, bucketName, fileName);
+           }
+            GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
+            request.BucketName = bucketName;
+            request.Key = fileName;
+            request.Expires    = DateTime.Now.AddYears(2);
+            request.Protocol   = Protocol.HTTP;
+            string url =  fileTransferUtility.S3Client.GetPreSignedURL(request);
 
-                var filePath = Path.Combine (uploads);
-                using (var stream = new FileStream (filePath, FileMode.Open, FileAccess.Read)) {
-                    file.CopyToAsync (stream);
-                    fileTransferUtility.UploadAsync (stream, bucketName, fileName);
-                }
-                GetPreSignedUrlRequest request = new GetPreSignedUrlRequest ();
-                request.BucketName = bucketName;
-                request.Key = fileName;
-                request.Expires = DateTime.Now.AddYears (2);
-                request.Protocol = Protocol.HTTP;
-                string url = fileTransferUtility.S3Client.GetPreSignedURL (request);
+            var Attachment = new Attachments{url=url,FileName=fileName, length=file.Length, noteID = n.noteID};
+            _context.Add(Attachment);
+            mAttachments att =  new mAttachments();
+            att.AID = Attachment.AID;
+            att.url = Attachment.url;
+            _context.SaveChanges();     
+            var notes = new NOTES{EMAIL = username ,attachments = Attachment,content  =  n.content,created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now };
+            _context.Add(notes);
+           // _context.Add(Attachment);
+            _context.SaveChanges();
 
-                var Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = n.noteID };
-                _context.Add (Attachment);
-                mAttachments att = new mAttachments ();
-                att.AID = Attachment.AID;
-                att.url = Attachment.url;
-                _context.SaveChanges ();
-                var notes = new NOTES { EMAIL = username, attachments = new List<Attachments> (), content = n.content, created_on = DateTime.Now, title = n.title, last_updated_on = DateTime.Now };
-                notes.attachments.Add (Attachment);
-                _context.Add (notes);
-                // _context.Add(Attachment);
-                _context.SaveChanges ();
 
-                IEnumerable<Attachments> at = _context.attachments.AsEnumerable ();
-                List<mAttachments> newat = new List<mAttachments> ();
-                foreach (Attachments attachment in at) {
-                    if (attachment.noteID == n.noteID) {
-                        mAttachments m = new mAttachments ();
+            IEnumerable<Attachments> at = _context.attachments.AsEnumerable();
+            List<mAttachments> newat = new List<mAttachments>();
+                foreach(Attachments attachment in at){
+                    if(attachment.noteID==n.noteID){
+                        mAttachments m = new mAttachments();
                         m.AID = attachment.AID;
                         m.url = attachment.url;
                         newat.Add (m);
@@ -387,24 +388,24 @@ namespace trial.Controllers {
 
             }
 
-            NOTES note = _context.notes.Find (id);
+                  NOTES note = _context.notes.Find(id);
 
-            Attachments Attachment = new Attachments { url = url, FileName = fileName, length = file.Length, noteID = note.noteID };
-            note.attachments.Add (Attachment);
-            _context.attachments.Add (Attachment);
-            _context.SaveChanges ();
+                  var Attachment = new Attachments{url=url,FileName=fileName, length=file.Length, noteID = note.noteID};
+                  _context.Add(Attachment);
+                  _context.SaveChanges(); 
 
-            IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable ();
-            List<mAttachments> am = new List<mAttachments> ();
-            string key = "";
-            foreach (Attachments at in a1) {
-                if (at.noteID == id) {
-                    key = at.FileName;
-                    mAttachments mA = new mAttachments ();
-                    mA.AID = at.AID;
-                    mA.url = at.url;
-                    am.Add (mA);
-                }
+             IEnumerable<Attachments> a1 = _context.attachments.AsEnumerable();
+             List<mAttachments> am = new List<mAttachments>();
+             string key = "";
+             foreach(Attachments at in a1){
+                 if(at.noteID== id)
+                 {
+                     key = at.FileName;
+                     mAttachments mA = new mAttachments();
+                     mA.AID = at.AID;
+                     mA.url = at.url;
+                     am.Add(mA);
+                 }
             }
 
             //  fileTransferUtility.S3Client.DeleteObjectAsync(new Amazon.S3.Model.DeleteObjectRequest() { BucketName = bucketname, Key =  key });
