@@ -243,7 +243,7 @@ namespace trial.Controllers {
         }
 
         [HttpGet]
-        [Route ("/note/{id}")]
+        [Route ("/note-amish/{id}")]
         [Authorize]
         public ActionResult GetNotebyId (string id) {
             _log.LogInformation ("NOTE is inserted");
