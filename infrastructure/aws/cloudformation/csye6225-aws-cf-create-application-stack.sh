@@ -64,7 +64,7 @@ subnetid2=$(echo -e "$subnet" | jq '.Subnets[1].SubnetId' | tr -d '"')
 subnetid3=$(echo -e "$subnet" | jq '.Subnets[2].SubnetId' | tr -d '"')
 
 CERTIFICATE=$(aws acm list-certificates --query 'CertificateSummaryList[0].CertificateArn' --output text)
-
+CERTIFICATENOWAF=$(aws acm list-certificates --query 'CertificateSummaryList[1].CertificateArn' --output text)
 if [ -z "$subnetid1" ]
 then
 	echo "Subnet ID 1 error \n Exiting"
@@ -96,7 +96,7 @@ Bucket="${DOMAIN_NAME}csye6225.com"
 DOMAIN_NAME1=$(aws route53 list-hosted-zones --query HostedZones[0].Name --output text)
 
 CD_DOMAIN="code-deploy."${DOMAIN_NAME1%?}
-
+nWafDomain="nowaf."${DOMAIN_NAME}
 
 
 # Create CloudFormation Stack
@@ -112,7 +112,7 @@ echo "Cloudformation template validation success"
 echo "Now Creating CloudFormation Stack"
 
 
-CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters   ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=myVpc,ParameterValue=$vpcID ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3  ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=Bucket,ParameterValue=arn:aws:s3:::$Bucket ParameterKey=Bucket1,ParameterValue=arn:aws:s3:::$Bucket/* ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=Bucket3,ParameterValue=$Bucket ParameterKey=S3Bucket,ParameterValue=$Bucket ParameterKey=CERTIFICATE,ParameterValue=$CERTIFICATE ParameterKey=domain,ParameterValue=$DOMAIN_NAME`
+CRTSTACK_Code=`aws cloudformation create-stack --stack-name $appStackName --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters   ParameterKey=KeyName,ParameterValue=$keyName ParameterKey=myVpc,ParameterValue=$vpcID ParameterKey=circleci,ParameterValue=$circleciuser ParameterKey=nWafDomain,ParameterValue=$nWafDomain ParameterKey=PublicSubnetKey1,ParameterValue=$subnetid1 ParameterKey=PublicSubnetKey2,ParameterValue=$subnetid2 ParameterKey=PublicSubnetKey3,ParameterValue=$subnetid3 ParameterKey=CERTIFICATENOWAF,ParameterValue=$CERTIFICATENOWAF  ParameterKey=ImageID,ParameterValue=$imageid ParameterKey=Bucket,ParameterValue=arn:aws:s3:::$Bucket ParameterKey=Bucket1,ParameterValue=arn:aws:s3:::$Bucket/* ParameterKey=CDARN,ParameterValue=arn:aws:s3:::$CD_DOMAIN ParameterKey=CDARN1,ParameterValue=arn:aws:s3:::$CD_DOMAIN/* ParameterKey=Bucket3,ParameterValue=$Bucket ParameterKey=S3Bucket,ParameterValue=$Bucket ParameterKey=CERTIFICATE,ParameterValue=$CERTIFICATE ParameterKey=domain,ParameterValue=$DOMAIN_NAME`
 
 if [ -z "$CRTSTACK_Code" ]
 then

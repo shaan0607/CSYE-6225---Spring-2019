@@ -36,7 +36,13 @@
 		"CDARN": {
 			"Type": "String"
 		},
+		"nWafDomain":{
+			"Type": "String"
+		},
 		"CDARN1": {
+			"Type": "String"
+		},
+		"CERTIFICATENOWAF":{
 			"Type": "String"
 		},
 		"Bucket": {
@@ -144,7 +150,7 @@
    
 		 },
 
-               "codeDeployApp": {
+    "codeDeployApp": {
 			"Type": "AWS::CodeDeploy::Application",
 			"Properties": {
 				"ApplicationName": "csye6225-webapp",
@@ -184,13 +190,7 @@
 					"Enabled": "True",
 					"Events": ["DEPLOYMENT_FAILURE"]
 				}
-			},
-			"DependsOn": [
-				"codeDeployApp",
-				"asglaunchconfig",
-				"ALBTargetGroup",
-				"WebServerGroup"
-		]
+			}
 		},
 		"SNSAccess": {
 			"Type": "AWS::IAM::ManagedPolicy",
@@ -501,9 +501,30 @@
 				 "EvaluateTargetHealth" : "true", 
                             "HostedZoneId": {"Fn::GetAtt": [ "loadbalancer", "CanonicalHostedZoneID" ]    }   
 			}
-			}
-                          },
-
+			}   
+		},
+									"myDNSRecordNoWaf" : {
+														"Type" : "AWS::Route53::RecordSet",
+													 "Properties" : {
+																	 "HostedZoneName" : { "Ref" : "domain" },
+																	 "Comment" : "DNS name for my instance.",  
+																	 "Name" : {
+											 "Ref" : "nWafDomain"
+								 },
+			 
+						 "Type" : "A",
+						 "AliasTarget": {
+								 "DNSName": {
+									 "Fn::GetAtt": [
+										 "loadbalancernoWaf",
+										 "DNSName"
+									 ]
+									},
+								"EvaluateTargetHealth" : "true", 
+							  "HostedZoneId": {"Fn::GetAtt": [ "loadbalancernoWaf", "CanonicalHostedZoneID" ]    }   
+						 }
+						 }
+																 },
                 "loadbalancer" : {
                              "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
                              "Properties" : {    
@@ -530,7 +551,34 @@
                                          ],
                                    "Type" : "application"
                               }
-                            },
+														},
+														"loadbalancernoWaf" : {
+															"Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
+															"Properties" : {    
+																		"IpAddressType" : "ipv4",
+																		"Name" : "load-balancer-noWaf",
+																		"Scheme" : "internet-facing",
+																		"SecurityGroups" : [{ "Ref": "EC2SecurityGroupLoadBalancer"}],
+																		"Subnets" : [
+																									 {
+																										 "Ref": "PublicSubnetKey1"
+																										},
+																										{
+																											"Ref": "PublicSubnetKey2"
+																										},
+																										{
+																											 "Ref": "PublicSubnetKey3"
+																										}
+																							 ],
+																	"Tags": [
+																					 {
+																						"Key": "Name",
+																						"Value": "ec2"
+																					 }
+																					],
+																		"Type" : "application"
+															 }
+														 },
                 "EC2SecurityGroupLoadBalancer": {
 	                 "Type": "AWS::EC2::SecurityGroup",
 	                 "Properties": {
@@ -573,7 +621,32 @@
                                             "Port": "443",
                                             "Protocol": "HTTPS"
                                            }
-                           },
+													 },
+													 "ListenerNOWAF": {
+														"Type": "AWS::ElasticLoadBalancingV2::Listener",
+														"Properties": {
+																					 "Certificates": [
+																															 {
+																																 "CertificateArn": {
+																																										 "Ref": "CERTIFICATE"
+																																									 }
+																																}
+																													 ],
+																					 "DefaultActions": [
+																															{
+																															 "TargetGroupArn": {
+																																									 "Ref": "ALBTargetGroupNOWAF"
+																																								 },
+																															 "Type": "forward"
+																															}
+																														 ],
+																					 "LoadBalancerArn": {
+																																"Ref": "loadbalancernoWaf"
+																															},
+																					 "Port": "443",
+																					 "Protocol": "HTTPS"
+																					}
+													},
                   "ALBTargetGroup": {
                            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
                            "Properties": {
@@ -603,7 +676,37 @@
                                                      }
                                                   ]
                                          }
-                     },
+										 },
+										 "ALBTargetGroupNOWAF": {
+											"Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+											"Properties": {
+																			"Name": "LBTargetNoWAF",
+																			"Port": "5000",
+																			"HealthCheckPort": "5000",
+																			"Matcher": {
+																			"HttpCode": "401,200"
+																									},
+																			"HealthCheckIntervalSeconds": 30,
+																			"HealthCheckTimeoutSeconds": 20,
+																			"HealthyThresholdCount": 3,
+																			"Protocol": "HTTP",
+																			"VpcId": {
+																							 "Ref": "myVpc"
+																							 },
+																			"TargetGroupAttributes":[
+																																 {
+																															 "Value": "300",
+																															 "Key": "deregistration_delay.timeout_seconds"
+																																}
+																														 ],
+																			"Tags": [
+																							 {
+																								 "Key": "Name",
+																								 "Value": "ec2"
+																								}
+																						 ]
+																		}
+								},
 			"WebServerGroup":{
 				       "Type" : "AWS::AutoScaling::AutoScalingGroup",
 				       "Properties" : {
@@ -621,7 +724,7 @@
 				    "TargetGroupARNs": [
 					      {
 						"Ref": "ALBTargetGroup"
-					      }
+					      },{"Ref": "ALBTargetGroupNOWAF"}
 					    ],
 					  "AutoScalingGroupName" : "WebServerGroup",
 					  "Cooldown" : "60",
@@ -638,7 +741,7 @@
 					]
 							 },
 							 "DependsOn" : ["Listener","asglaunchconfig"]
-            },
+						},
 			"WebServerScaleUpPolicy": {
 			    "Type": "AWS::AutoScaling::ScalingPolicy",
 			    "Properties": {
