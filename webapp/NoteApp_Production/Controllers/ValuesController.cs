@@ -170,7 +170,8 @@ namespace trial.Controllers {
             att.AID = Attachment.AID;
             att.url = Attachment.url;
             _context.SaveChanges();     
-            var notes = new NOTES{EMAIL = username ,attachments = new List<Attachments>().Add(Attachment),content  =  n.content,created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now };
+            var notes = new NOTES{EMAIL = username ,attachments = new List<Attachments>(),content  =  n.content,created_on = DateTime.Now,title = n.title,last_updated_on= DateTime.Now };
+            notes.attachments.Add(Attachment);
             _context.Add(notes);
            // _context.Add(Attachment);
             _context.SaveChanges();
