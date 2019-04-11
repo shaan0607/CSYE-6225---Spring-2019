@@ -118,13 +118,13 @@ namespace trial.Controllers
         }
 
         [HttpPost]
-        [Route("/user/register")]
+        [Route("/user/registerShantanu")]
         public ActionResult signup([FromBody] Users u)
         {
             Users us =  _context.Users.Find(u.Email);
             if(us == null){
                 if(ModelState.IsValid){
-                _log.LogInformation("USER is inserted");
+                _log.LogInformation("USER is inserted Successfully");
                 Console.WriteLine("User is registered");
                 
                 statsDPublisher.Increment("_USER_API");
@@ -147,7 +147,7 @@ namespace trial.Controllers
             }
             }
         [HttpPost("UploadFiles")]
-        [Route("/note")]
+        [Route("/noteShantan")]
         [Authorize]
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
@@ -211,7 +211,6 @@ namespace trial.Controllers
 
             }  
     }
-
         [HttpGet]
         [Route("/note")]
         [Authorize]
@@ -256,7 +255,7 @@ namespace trial.Controllers
             return StatusCode(200, Json);
             }
             else{
-                return StatusCode(200, new{result = "You Don't have any notes"});
+                return StatusCode(200, new{result = "You Don't have any notes!!! Sorry"});
             }
        }
         [HttpGet]
@@ -537,7 +536,7 @@ namespace trial.Controllers
         }
 
  [HttpPost]
-        [Route("/reset-password")]
+        [Route("/reset")]
         public async void passwordreset([FromBody] Users u){
            Users a =  _context.Users.Find(u.Email);
            _log.LogInformation( "Listing all items");

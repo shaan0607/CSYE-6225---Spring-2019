@@ -27,6 +27,7 @@ jobs:
             cd NoteApp_Production
             pwd
             dotnet restore
+            dotnet build
             dotnet publish -o aws
             cd aws/
             ls -al
