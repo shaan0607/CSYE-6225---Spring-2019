@@ -211,7 +211,6 @@ namespace trial.Controllers
 
             }  
     }
-
         [HttpGet]
         [Route("/note")]
         [Authorize]
