@@ -118,7 +118,7 @@ namespace trial.Controllers
         }
 
         [HttpPost]
-        [Route("/user/registerShantanu")]
+        [Route("/user/register")]
         public ActionResult signup([FromBody] Users u)
         {
             Users us =  _context.Users.Find(u.Email);
@@ -147,7 +147,7 @@ namespace trial.Controllers
             }
             }
         [HttpPost("UploadFiles")]
-        [Route("/noteShantan")]
+        [Route("/")]
         [Authorize]
         [Consumes("multipart/form-data")]
         public ActionResult createNotes(NOTES n, IFormFile file){
