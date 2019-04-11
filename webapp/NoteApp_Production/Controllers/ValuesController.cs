@@ -150,7 +150,7 @@ namespace trial.Controllers
         [Route("/note")]
         [Authorize]
         [Consumes("multipart/form-data")]
-        public ActionResult createNotes(NOTES n, IFormFile file){
+                public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
                    _log.LogInformation("NOTE is inserted");
                    statsDPublisher.Increment("_NOTE_API");
@@ -164,14 +164,17 @@ namespace trial.Controllers
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
-            var filepath = Path.Combine(uploads);
-            using (var stream = new FileStream(uploads,FileMode.Open, FileAccess.Read))
-                {   file.CopyToAsync(stream);
-                    fileTransferUtility.UploadAsync(stream, bucketName, fileName);
-                }
-            
 
-            
+            var filePath = Path.Combine(uploads);
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+
+
+                    file.CopyToAsync(stream);
+            }
+
+            fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
             request.Key = fileName;
