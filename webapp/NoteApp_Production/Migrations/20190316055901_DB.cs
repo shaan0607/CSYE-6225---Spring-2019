@@ -49,7 +49,7 @@ namespace NoteApp_Production.Migrations
                 {
                     table.PrimaryKey("PK_Attachments", x => x.AID);
                     table.ForeignKey(
-                      
+                        name: "FK_Attachments_NOTES_NoteID",
                         column: x => x.NoteID,
                         principalTable: "NOTES",
                         principalColumn: "ID",
