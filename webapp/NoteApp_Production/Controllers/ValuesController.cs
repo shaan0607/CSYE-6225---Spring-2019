@@ -150,7 +150,7 @@ namespace trial.Controllers
         [Route("/note")]
         [Authorize]
         [Consumes("multipart/form-data")]
-        public ActionResult createNotes(NOTES n, IFormFile file){
+                public ActionResult createNotes(NOTES n, IFormFile file){
                if(ModelState.IsValid){
                    _log.LogInformation("NOTE is inserted");
                    statsDPublisher.Increment("_NOTE_API");
