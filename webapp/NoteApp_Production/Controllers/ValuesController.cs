@@ -256,7 +256,7 @@ namespace trial.Controllers
             return StatusCode(200, Json);
             }
             else{
-                return StatusCode(200, new{result = "You Don't have any notes"});
+                return StatusCode(200, new{result = "You Don't have any notes!!! Sorry"});
             }
        }
         [HttpGet]
