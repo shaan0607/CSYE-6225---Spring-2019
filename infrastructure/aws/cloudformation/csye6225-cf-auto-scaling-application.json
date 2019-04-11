@@ -665,7 +665,7 @@
                                                     },
                                            "TargetGroupAttributes":[
                                                                       {
-                                                                    "Value": "300",
+                                                                    "Value": "120",
                                                                     "Key": "deregistration_delay.timeout_seconds"
                                                                      }
                                                                   ],
@@ -695,7 +695,7 @@
 																							 },
 																			"TargetGroupAttributes":[
 																																 {
-																															 "Value": "300",
+																															 "Value": "120",
 																															 "Key": "deregistration_delay.timeout_seconds"
 																																}
 																														 ],
