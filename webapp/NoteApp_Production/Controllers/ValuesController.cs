@@ -165,7 +165,7 @@ namespace trial.Controllers
             rand++;
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
             var filepath = Path.Combine(uploads);
-          using (var stream = new FileStream(uploads,FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(uploads,FileMode.Open, FileAccess.Read))
                 {   file.CopyToAsync(stream);
                     fileTransferUtility.UploadAsync(stream, bucketName, fileName);
                 }
