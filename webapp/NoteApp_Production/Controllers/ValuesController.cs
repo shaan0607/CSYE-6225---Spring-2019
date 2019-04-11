@@ -169,12 +169,10 @@ namespace trial.Controllers
             if (file.Length > 0)
             {
                 using (var stream = new FileStream(filePath, FileMode.Create))
-
-
-                    file.CopyToAsync(stream);
+                    fileTransferUtility.UploadAsync(stream, bucketName, fileName);
             }
 
-            fileTransferUtility.UploadAsync(filePath, bucketName, fileName);
+            
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
             request.BucketName = bucketName;
             request.Key = fileName;
