@@ -164,11 +164,12 @@ namespace trial.Controllers
             string fileName = ( rand.ToString() +file.FileName );
             rand++;
             var uploads = Path.Combine(Directory.GetCurrentDirectory(), file.FileName );
-            if (file.Length > 0)
-            {
-                using (var stream = new FileStream(uploads,FileMode.Open, FileAccess.Read))
+            var filepath = Path.Combine(uploads);
+          using (var stream = new FileStream(uploads,FileMode.Open, FileAccess.Read))
+                {   file.CopyToAsync(stream);
                     fileTransferUtility.UploadAsync(stream, bucketName, fileName);
-            }
+                }
+            
 
             
             GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
