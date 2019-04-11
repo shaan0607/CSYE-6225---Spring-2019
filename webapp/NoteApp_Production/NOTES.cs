@@ -19,7 +19,7 @@ namespace trial3
     
         public string EMAIL{get; set;}
 
-        public Attachments attachments {get; set;}
+        public  Attachments attachments {get; set;}
 
     }
 }
